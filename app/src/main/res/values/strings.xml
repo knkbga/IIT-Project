@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Game</string>
+
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_trials_wodistraction">TrialsWODistraction</string>
+
+    <string name="title_activity_trials">Trials</string>
+</resources>

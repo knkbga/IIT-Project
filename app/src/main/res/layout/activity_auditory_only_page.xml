@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/activity_auditory_only_page"
+    tools:context="com.example.om.mygame.AuditoryOnlyPage"
+    android:weightSum="1"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="#39add1"
+        android:text="Auditory only Memory Test Game"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text=""
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:id="@+id/auditory_only_output"
+        android:layout_alignBottom="@+id/auditory_only_input"
+        android:layout_alignLeft="@+id/auditory_only_input"
+        android:layout_alignStart="@+id/auditory_only_input" />
+
+    <EditText
+        android:layout_width="316dp"
+        android:layout_height="100dp"
+        android:hint="Write your answer here"
+        android:inputType= "number"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:id="@+id/auditory_only_input"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/auditory_only_submit_button"
+        android:layout_gravity="center"
+        android:onClick="auditoryOnlySubmitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="59dp" />
+</RelativeLayout>
+
+
+</LinearLayout>
