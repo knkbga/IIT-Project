@@ -8,4 +8,25 @@
     <string name="title_activity_trials_wodistraction">TrialsWODistraction</string>
 
     <string name="title_activity_trials">Trials</string>
+
+    <string name="title_activity_trials_wdistraction">TrialsWDistraction</string>
+
+    <string name="instruction_wo_trial_1">To be decided...</string>
+    <string name="instruction_wo_trial_2">To be decided...</string>
+    <string name="instruction_wo_trial_3">To be decided...</string>
+    <string name="instruction_wo_trial_4">To be decided...</string>
+
+    <string name="instruction_w_trial_1">To be decided...</string>
+    <string name="instruction_w_trial_2">To be decided...</string>
+    <string name="instruction_w_trial_3">To be decided...</string>
+    <string name="instruction_w_trial_4">To be decided...</string>
+
+    <string name="instruction_game_1">To be decided...</string>
+    <string name="instruction_game_2">To be decided...</string>
+    <string name="instruction_game_3">To be decided...</string>
+    <string name="instruction_game_4">To be decided...</string>
+
+    <string name="title_activity_game_welcome_page">GameWelcomePage</string>
+
+
 </resources>

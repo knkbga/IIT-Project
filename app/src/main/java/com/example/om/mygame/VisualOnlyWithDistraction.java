@@ -1,9 +1,11 @@
 package com.example.om.mygame;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -14,11 +16,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Random;
-//import java.util.logging.Handler;
-//import android.os.Handler;
 
 public class VisualOnlyWithDistraction extends AppCompatActivity {
-    private int level = 4 ;
+    protected static boolean for_game = false;
+    protected int lives_left = 3;
+    private int number_of_sets =0;
+    private int level = 6 ;
     private String questionString  ;
     //private Random distraction = new Random() ;
     private int distraction_int = 1 ;                // With Auditory Distraction
@@ -44,7 +47,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             //Visual only game with auditory distraction
             printWithDelay("With Auditory Distraction",1450);
         }
-        myGameLoop(level) ;
+        myGameLoop(level);
     }
     public void myGameLoop(int level)
     {
@@ -52,7 +55,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         int total_delay_time ;
         int[] randomArray = new int[lenth] ;
         back_button_pressed = 0 ;
-        if (level != 4)
+        if (level != 6)
         {
             String level_string  = "Level : " + Integer.toString(level-3);
             printWithDelay(level_string,1450);
@@ -141,7 +144,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             }
         }
         // Delay of 2 Has to be inserted here
-        printWithDelay("Type the answer in the below textbox",total_delay_time + 1500);
+        printWithDelay("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
         final EditText inputText = (EditText) findViewById(R.id.visual_only_input);
         final Button submit_button  = (Button)findViewById(R.id.visual_only_submit_button) ;
@@ -168,7 +171,11 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 {
                     // Perform action on key press
                     //Toast.makeText(HelloFormStuff.this, edittext.getText(), Toast.LENGTH_SHORT).show();
-                    visualOnlySubmitButton();
+                    try {
+                        visualOnlySubmitButton();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 }
                 return false;
@@ -178,13 +185,11 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         // From here the answer that the user gives will be checked by clicking on the Submit button on the visual only page
     } // The work of this loop is just to display the random numbers/audio with appropriate time delay and make questionString
 
-    public void visualOnlySubmitButton(View view)
-    {
+    public void visualOnlySubmitButton(View view) throws InterruptedException {
         visualOnlySubmitButton();
     }
 
-    public void visualOnlySubmitButton()
-    {
+    public void visualOnlySubmitButton() throws InterruptedException {
         String answerString ;
         TextView outputTextView = (TextView) findViewById(R.id.visual_only_output);
         final EditText inputText = (EditText) findViewById(R.id.visual_only_input);
@@ -200,22 +205,60 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             answerString  = "" ;
         }
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <16))
+        if ((questionString.equals(answerString))&&(lenth <14))
         {
             outputTextView.setText("Correct Answer !");
             level = level + 1 ;
-            inputText.setText("") ;
+            lives_left=3;
+            inputText.setText("");
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth == 16))
+        else if ((questionString.equals(answerString))&&(lenth == 14))
         {
-            outputTextView.setText("Great ! You passed all the levels ");
-            level = 4 ;
+            outputTextView.setText("Congratulations! All Levels Completed successfully");
+            number_of_sets++;
+            if(number_of_sets < 3)
+            {
+                outputTextView.setText("Now set number :: "+(number_of_sets+1)+" begins");
+                level =6;
+                myGameLoop(level);
+            }
+            else
+            {
+                if(for_game==false)
+                {
+                    startActivity(new Intent(VisualOnlyWithDistraction.this,TrialsWDistraction.class));
+                }
+                else
+                {
+                    VisualOnlyWithDistraction.for_game=true;
+                    startActivity(new Intent(VisualOnlyWithDistraction.this,TrialsWDistraction.class));
+                }
+            }
         }
         else
         {
-            outputTextView.setText("Oops Wrong Answer. Game Terminated!"); ;
-            level = 4 ;
+            lives_left--;
+            if(lives_left > 0)
+            {
+                String str = "";
+                str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
+                outputTextView.setText(str);
+                inputText.setVisibility(View.INVISIBLE);
+                Thread.sleep(1500);
+                level = 6;
+                myGameLoop(level);
+            }
+            else
+            {
+                outputTextView.setText("You have lost all your lives.");
+                inputText.setVisibility(View.INVISIBLE);
+                Thread.sleep(1500);
+                for_game = false;
+                lives_left = 3;
+                Intent myIntent = new Intent(VisualOnlyWithDistraction.this,HomePage.class);
+                startActivity(myIntent);
+            }
         }
     }// This is the Submit Answer button in the visual only page
 
@@ -276,7 +319,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
+        /*super.onBackPressed();
         if((distraction_int==1)&&(audio !=null)&&(audio.isPlaying()==true))
         {
             audio.pause();
@@ -294,6 +337,24 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         back_button_pressed = 1 ;
         Intent intent = new Intent(VisualOnlyWithDistraction.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startActivity(intent);*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to leave?")
+                .setCancelable(false)
+                .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent myIntent = new Intent(VisualOnlyWithDistraction.this,HomePage.class);
+                        startActivity(myIntent);
+                        audio.pause();
+                        audio.reset();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

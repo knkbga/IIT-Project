@@ -19,7 +19,7 @@ public class HomePage extends AppCompatActivity {
         comprehensiveTestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(HomePage.this,TrialsWODistraction.class);
+                Intent myIntent = new Intent(HomePage.this,TrialsWDistraction.class);
                 startActivity(myIntent);
             }
         });

@@ -1,50 +1,131 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="#ffff"
     tools:context="com.example.om.mygame.GameWelcomePage">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <TextView
-        android:id="@+id/fullscreen_content"
+    <RelativeLayout
+        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
+        <TextView
+            android:textSize="14dp"
+            android:id="@+id/instruction_title"
+            android:textAlignment="center"
+            android:textColor="#bababa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            android:text="Before you start here are few things to keep in mind."/>
 
-            <Button
-                android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
 
-        </LinearLayout>
-    </FrameLayout>
+        <RelativeLayout
+            android:layout_below="@+id/instruction_title"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</FrameLayout>
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:id="@+id/instruction_1"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:background="#000000"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+                <TextView
+                    android:textColor="#000000"
+                    android:paddingLeft="10dp"
+                    android:text="@string/instruction_game_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:layout_below="@+id/instruction_1"
+                android:id="@+id/instruction_2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:background="#000000"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+                <TextView
+                    android:textColor="#000000"
+                    android:paddingLeft="10dp"
+                    android:text="@string/instruction_game_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:id="@+id/instruction_3"
+                android:layout_below="@+id/instruction_2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:background="#000000"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:textColor="#000000"
+                    android:text="@string/instruction_game_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:id="@+id/instruction_4"
+                android:layout_below="@id/instruction_3"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:background="#000000"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:textColor="#000000"
+                    android:text="@string/instruction_game_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:textSize="20dp"
+        android:padding="17dp"
+        android:textColor="#ffff"
+        android:background="#9ddb1d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start The Game"
+        android:id="@+id/StartGame"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

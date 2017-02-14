@@ -26,7 +26,7 @@ public class TrialsWODistraction extends AppCompatActivity {
         startTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(TrialsWODistraction.this,AuditoryOnlyPage.class);
+                Intent myIntent = new Intent(TrialsWODistraction.this,VisualOnlyWithDistraction.class);
                 startActivity(myIntent);
             }
         });

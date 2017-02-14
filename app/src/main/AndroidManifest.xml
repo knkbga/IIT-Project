@@ -41,6 +41,16 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_trials_wodistraction"
             android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".TrialsWDistraction"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_trials_wdistraction"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".GameWelcomePage"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_game_welcome_page"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

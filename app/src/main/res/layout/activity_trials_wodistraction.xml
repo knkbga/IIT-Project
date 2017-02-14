@@ -45,7 +45,7 @@
                 <TextView
                     android:textColor="#000000"
                     android:paddingLeft="10dp"
-                    android:text="instruction_1"
+                    android:text="@string/instruction_wo_trial_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -65,7 +65,7 @@
                 <TextView
                     android:textColor="#000000"
                     android:paddingLeft="10dp"
-                    android:text="instruction_2"
+                    android:text="@string/instruction_wo_trial_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -85,7 +85,7 @@
                 <TextView
                     android:paddingLeft="10dp"
                     android:textColor="#000000"
-                    android:text="instruction_3"
+                    android:text="@string/instruction_wo_trial_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -105,7 +105,7 @@
                 <TextView
                     android:paddingLeft="10dp"
                     android:textColor="#000000"
-                    android:text="instruction_4"
+                    android:text="@string/instruction_wo_trial_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

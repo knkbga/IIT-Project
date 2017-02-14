@@ -1,50 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_visual_and_auditory_page"
     tools:context="com.example.om.mygame.VisualAndAuditoryPage"
-    android:weightSum="1"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:textColor="#39add1"
-        android:text="Visual and Auditory Memory Test Game" />
+    <RelativeLayout
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <TextView
-        android:layout_width="316dp"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:gravity="center"
-        android:id="@+id/visual_and_auditory_output"
-        android:layout_margin="16dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/visual_and_auditory_submit_button"
+            android:layout_gravity="center"
+            android:onClick="visualOnlySubmitButton"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="51dp" />
 
-    <EditText
-        android:layout_width="316dp"
-        android:layout_height="100dp"
-        android:hint="Write your answer here"
-        android:inputType= "number"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:id="@+id/visual_and_auditory_input"
-        android:layout_margin="16dp" />
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#39add1"
+            android:text="Visual and Auditory Memory Test Game"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="23dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/visual_and_auditory_submit_button"
-        android:layout_gravity="center"
-        android:onClick="visualOnlySubmitButton"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:gravity="center"
+            android:id="@+id/visual_and_auditory_output"
+            android:layout_marginTop="85dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="316dp"
+            android:layout_height="100dp"
+            android:hint="Write your answer here"
+            android:inputType= "number"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:id="@+id/visual_and_auditory_input"
+            android:layout_below="@+id/visual_and_auditory_output"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp" />
+    </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
