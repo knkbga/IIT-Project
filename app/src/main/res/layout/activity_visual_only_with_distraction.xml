@@ -10,7 +10,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp">
         <TextView
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
@@ -20,17 +24,6 @@
             android:textColor="#39add1"
             android:text="Visual Only with Auditory Distraction Memory Test Game"
             android:id="@+id/textView2" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/visual_only_submit_button"
-            android:layout_gravity="center"
-            android:onClick="visualOnlySubmitButton"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp" />
 
         <TextView
             android:layout_width="316dp"
@@ -51,8 +44,19 @@
             android:textSize="30sp"
             android:gravity="center"
             android:id="@+id/visual_only_input"
-            android:layout_marginBottom="89dp"
-            android:layout_above="@+id/visual_only_submit_button"
+            android:layout_alignTop="@+id/visual_only_output"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/visual_only_submit_button"
+            android:layout_gravity="center"
+            android:onClick="visualOnlySubmitButton"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/visual_only_input"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 

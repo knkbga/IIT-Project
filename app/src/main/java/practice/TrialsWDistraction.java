@@ -1,14 +1,13 @@
-package com.example.om.mygame;
+package practice;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.om.mygame.HomePage;
+import com.example.om.mygame.R;
 
 public class TrialsWDistraction extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class TrialsWDistraction extends AppCompatActivity {
             start_this_test.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent myIntent = new Intent(TrialsWDistraction.this,VisualOnlyWithDistraction.class);
+                    Intent myIntent = new Intent(practice.TrialsWDistraction.this, practice.VisualOnlyWithDistraction.class);
                     startActivity(myIntent);
                 }
             });

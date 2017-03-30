@@ -1,10 +1,12 @@
-package com.example.om.mygame;
+package comprehensive;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,59 +15,49 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.om.mygame.HomePage;
+import com.example.om.mygame.R;
+import com.example.om.mygame.TrialsWDistraction;
+
 import java.util.Random;
 
-public class AuditoryOnlyWithDistraction extends AppCompatActivity {
-    private int level = 4 ;
+public class VisualAndAuditoryPage extends AppCompatActivity {
+    protected int lives_left = 3;
+    private int number_of_sets =0;
+    private int level = 6 ;
     private String questionString  ;
-    //private Random distraction = new Random() ;
     private static MediaPlayer audio ;
     private static int back_button_pressed ;
-    private int distraction_int = 1 ; // With distraction
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auditory_only_with_distraction);
+        setContentView(R.layout.activity_visual_and_auditory_page);
         Intent intent = getIntent() ;
-        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_auditory_only_with_distraction);
+        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_visual_and_auditory_page);
         myGameLoop(level) ;
     }
+
     public void myGameLoop(int level)
     {
         questionString = "" ;
         int i, lenth = level ;
         int total_delay_time ;
-        back_button_pressed = 0 ;
+        back_button_pressed = 0;
         int[] randomArray = new int[lenth] ;
-        TextView outputTextView = (TextView) findViewById(R.id.auditory_only_output);
-        if ((distraction_int==1)&&(level==4))
-        {
-            // Auditory test with visual distraction
-            printWithDelay("Auditory Test with Visual Distraction",1500);
-        }
-        else if ((distraction_int==0)&&(level==4))
-        {
-            // No Visual Distraction
-            printWithDelay("Auditory test with No Distraction",1500);
-        }
-        else
-            printWithDelay("Level : " + Integer.toString(level-3),1500);
-        total_delay_time = 1500 ;
+        TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
+        printWithDelay("",1000);
+        total_delay_time = 1000 ;
         for(i = 0;i<lenth;i++)
         {
             Random r = new Random();
             int rand = r.nextInt(10) ;  // Generates a random number from 0-9
-            int distraction_rand = r.nextInt(10) ;
             randomArray[i] = rand ;
             questionString = questionString + Integer.toString(rand) ;
             // Delay of 1 Has to inserted here
-            total_delay_time = 1500 + 1000*(i+1);
+            total_delay_time = 1000 + 1000*(i+1);
             printWithDelay("",total_delay_time-50); //Just for clearness between the first number and the next number
-            if(distraction_int==1) // With Distraction
-                printWithDelay(Integer.toString(distraction_rand),total_delay_time);
-            else // With No distraction
-                printWithDelay("Please hear the words carefully!",total_delay_time);
+            printWithDelay(Integer.toString(rand),total_delay_time);
             if (rand==0)
             {
                 audio =  MediaPlayer.create(this, R.raw.zero);
@@ -128,10 +120,10 @@ public class AuditoryOnlyWithDistraction extends AppCompatActivity {
             }
         }
         // Delay of 2 Has to be inserted here
-        printWithDelay("Type the answer in the below textbox",total_delay_time + 1500);
+        printWithDelay("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
-        final EditText inputText = (EditText) findViewById(R.id.auditory_only_input);
-        final Button submit_button  = (Button)findViewById(R.id.auditory_only_submit_button) ;
+        final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
+        final Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
         inputText.setVisibility(View.INVISIBLE) ;
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
@@ -154,26 +146,27 @@ public class AuditoryOnlyWithDistraction extends AppCompatActivity {
                 {
                     // Perform action on key press
                     //Toast.makeText(HelloFormStuff.this, edittext.getText(), Toast.LENGTH_SHORT).show();
-                    auditoryOnlySubmitButton();
+                    try {
+                        visualOnlySubmitButton();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 }
                 return false;
             }
         });
         // From here the answer that the user gives will be checked by clicking on the Submit button on the visual only page
-    } // The work of this loop is to display random numbers, speak audio numbers after appropriate delay & make questionString
+    } // The work of this loop is to display the random numbers with their audio after appropriate delay & make questionString
 
-    public void auditoryOnlySubmitButton(View view)
-    {
-        auditoryOnlySubmitButton() ;
+    public void visualOnlySubmitButton(View view) throws InterruptedException {
+        visualOnlySubmitButton();
     }
 
-
-    public void auditoryOnlySubmitButton()
-    {
+    public void visualOnlySubmitButton() throws InterruptedException {
         String answerString ;
-        TextView outputTextView = (TextView) findViewById(R.id.auditory_only_output);
-        final EditText inputText = (EditText) findViewById(R.id.auditory_only_input);
+        TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
+        final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
         int lenth = level ;
         ///////////////////////////////////////////////////////////////////////
         if(inputText != null || !inputText.getText().equals(""))
@@ -186,22 +179,51 @@ public class AuditoryOnlyWithDistraction extends AppCompatActivity {
             answerString  = "" ;
         }
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <16))
+        if ((questionString.equals(answerString))&&(lenth <14))
         {
-            outputTextView.setText("Correct Answer! Get Ready for next level");
+            outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString(level-5));
             level = level + 1 ;
+            lives_left=3;
             inputText.setText("") ;
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==16))
+        else if ((questionString.equals(answerString))&&(lenth ==14))
         {
             outputTextView.setText("Congratulations! All Levels Completed successfully");
-            level = 4 ;
+            number_of_sets++;
+            if(number_of_sets < 3)
+            {
+                outputTextView.setText("Now set number :: "+(number_of_sets+1)+" begins");
+                level = 6;
+                myGameLoop(level);
+            }
+            else
+            {
+                startActivity(new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.TrialsWDistraction.class));
+            }
         }
         else
         {
-            outputTextView.setText("Oops Wrong Answer. Game Terminated!");
-            level = 4 ;
+            lives_left--;
+            if(lives_left > 0)
+            {
+                String str = "";
+                str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
+                outputTextView.setText(str);
+                inputText.setVisibility(View.INVISIBLE);
+                Thread.sleep(1500);
+                level = 6;
+                myGameLoop(level);
+            }
+            else
+            {
+                outputTextView.setText("You have lost all your lives.");
+                inputText.setVisibility(View.INVISIBLE);
+                Thread.sleep(1500);
+                lives_left = 3;
+                Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
+                startActivity(myIntent);
+            }
         }
     }// This is the Submit Answer button in the visual only page
 
@@ -214,7 +236,7 @@ public class AuditoryOnlyWithDistraction extends AppCompatActivity {
                 public void run() {
                     // D0 something after delay_time milli seconds
                     // 1 second = 1000 milli second
-                    TextView outputTextView = (TextView) findViewById(R.id.auditory_only_output);
+                    TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
                     outputTextView.setText(string_to_print);
                 }
             }, delay_time);
@@ -249,16 +271,16 @@ public class AuditoryOnlyWithDistraction extends AppCompatActivity {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
                     if ((audio != null)&&(back_button_pressed==0))
-                        audio.start();
+                    audio.start();
                 }
             }, delay_time);
         }
-    }// Starts the audio after delay_time milliseconds
+    }// Stops the audio after delay_time milliseconds
 
     @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
+        /*super.onBackPressed();
         if((audio !=null)&&(audio.isPlaying()==true))
         {
             audio.pause();
@@ -274,9 +296,26 @@ public class AuditoryOnlyWithDistraction extends AppCompatActivity {
             //audio.release();
         }
         back_button_pressed = 1 ;
-        Intent intent = new Intent(AuditoryOnlyWithDistraction.this, MainActivity.class);
+        Intent intent = new Intent(VisualAndAuditoryPage.this, PracticeHomePage.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startActivity(intent);*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to leave?")
+                .setCancelable(false)
+                .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
+                        startActivity(myIntent);
+                        audio.pause();
+                        audio.reset();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
-
 }

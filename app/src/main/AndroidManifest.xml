@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.om.mygame">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -8,27 +11,35 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".VisualOnlyPage" />
+        <activity android:name=".PracticeHomePage" />
         <activity android:name=".VisualAndAuditoryPage" />
-        <activity android:name=".AuditoryOnlyPage" />
-        <activity android:name=".SanskritGame" />
-        <activity android:name=".FillUps" />
-        <activity android:name=".PictorialMatching" />
-        <activity android:name=".CardGame" />
-        <activity android:name=".FlashCard" />
-        <activity android:name=".Hangman" />
-        <activity android:name=".SpeakingExercises" />
-        <activity android:name=".ListeningAndWriting" />
-        <activity android:name=".TrailMakingPage" />
-        <activity android:name=".Trail2Game" />
+        <activity android:name="practice.VisualAndAuditoryPage" />
+        <activity android:name="comprehensive.VisualAndAuditoryPage" />
         <activity android:name=".VisualOnlyWithDistraction" />
-        <activity android:name=".AuditoryOnlyWithDistraction" />
+        <activity android:name="practice.VisualOnlyWithDistraction" />
+        <activity android:name="comprehensive.VisualOnlyWithDistraction" />
         <activity
             android:name=".HomePage"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_home_page"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".TrialsWODistraction"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_trials_wodistraction"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name="practice.TrialsWODistraction"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_trials_wodistraction"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name="comprehensive.TrialsWODistraction"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_trials_wodistraction"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name="authentication.Authenticate"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,20 +48,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TrialsWODistraction"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_trials_wodistraction"
-            android:theme="@style/FullscreenTheme" />
-        <activity
             android:name=".TrialsWDistraction"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_trials_wdistraction"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".GameWelcomePage"
+            android:name="practice.TrialsWDistraction"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_game_welcome_page"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:label="@string/title_activity_trials_wdistraction"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name="comprehensive.TrialsWDistraction"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_trials_wdistraction"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name="authentication.LogIn"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_sign_up"
+            android:parentActivityName="authentication.Authenticate"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="authentication.Authenticate" />
+        </activity>
+        <activity
+            android:name="authentication.Register"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_register"
+            android:parentActivityName="authentication.Authenticate"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="authentication.Authenticate" />
+        </activity>
     </application>
 
 </manifest>
