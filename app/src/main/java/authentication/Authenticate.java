@@ -7,11 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.om.mygame.Network;
 import com.example.om.mygame.R;
 
 
 public class Authenticate extends FragmentActivity {
 
+    public static int reg_log;
+    public static String url;
     ViewPager viewPager;
 
     @Override
@@ -32,7 +35,8 @@ public class Authenticate extends FragmentActivity {
 
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(Authenticate.this, Register.class);
+                reg_log=0;
+                Intent myIntent = new Intent(Authenticate.this, Network.class);
                 startActivity(myIntent);
             }
         });
@@ -40,7 +44,8 @@ public class Authenticate extends FragmentActivity {
 
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(Authenticate.this, LogIn.class);
+                reg_log=1;
+                Intent myIntent = new Intent(Authenticate.this, Network.class);
                 startActivity(myIntent);
             }
         });

@@ -1,5 +1,6 @@
 package comprehensive;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -12,48 +13,115 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.om.mygame.API;
 import com.example.om.mygame.HomePage;
+import com.example.om.mygame.Network;
 import com.example.om.mygame.R;
 import com.example.om.mygame.TrialsWDistraction;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Random;
+import java.util.TimeZone;
+
+import authentication.Authenticate;
+import authentication.PersonCredentials;
 
 public class VisualAndAuditoryPage extends AppCompatActivity {
+    private JSONObject request;
+    public String route;
+    public static Boolean gaming ;
     protected int lives_left = 3;
-    private int number_of_sets =0;
+    private int number_of_sets =1;
     private int level = 6 ;
-    private String questionString  ;
-    private static MediaPlayer audio ;
-    private static int back_button_pressed ;
+    private String questionString;
+    private static MediaPlayer audio;
+    private static int back_button_pressed;
+    private TextView levelLabel;
+    private Chronometer timer;
+    private SimpleDateFormat df;
+    private Context mContext;
+    private ProgressBar progressBar;
+    private ArrayList<JSONObject> different_events;
+    private JSONObject individual_event;
+    private int number_of_events =-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        different_events = new ArrayList<>();
+        request = new JSONObject();
+        mContext= getBaseContext();
+        df = new SimpleDateFormat( "yyyy-MM-dd'T'hh:mm:ssz");
+        df.setTimeZone(TimeZone.getTimeZone("IST"));
+
+        try {
+            request.put("_id",PersonCredentials.oid);
+            request.put("start_session",df.format(new java.util.Date()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("TIME",df.format(new java.util.Date()));
+
+        if(gaming)
+        {
+            route = "/comprehensive/gaming/without";
+        }
+        else
+        {
+            route = "/comprehensive/trial/without";
+        }
         super.onCreate(savedInstanceState);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         setContentView(R.layout.activity_visual_and_auditory_page);
         Intent intent = getIntent() ;
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_visual_and_auditory_page);
+        levelLabel = (TextView) findViewById(R.id.levelIndicator);
+        levelLabel.setText("Level - "+(level-5));
+        timer = (Chronometer) findViewById(R.id.timer);
         myGameLoop(level) ;
     }
 
     public void myGameLoop(int level)
     {
+        individual_event = new JSONObject();
+        timer.setVisibility(View.VISIBLE);
+        timer.start();
         questionString = "" ;
         int i, lenth = level ;
         int total_delay_time ;
         back_button_pressed = 0;
         int[] randomArray = new int[lenth] ;
-        TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
         printWithDelay("",1000);
-        total_delay_time = 1000 ;
+        total_delay_time = 1000;
         for(i = 0;i<lenth;i++)
         {
             Random r = new Random();
             int rand = r.nextInt(10) ;  // Generates a random number from 0-9
             randomArray[i] = rand ;
             questionString = questionString + Integer.toString(rand) ;
+
+            try
+            {
+                individual_event.put("time_of_start",df.format(new java.util.Date()));
+                individual_event.put("string_question",questionString);
+                individual_event.put("level",level-5);
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
             // Delay of 1 Has to inserted here
             total_delay_time = 1000 + 1000*(i+1);
             printWithDelay("",total_delay_time-50); //Just for clearness between the first number and the next number
@@ -156,6 +224,11 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 return false;
             }
         });
+        try {
+            individual_event.put("time_of_end",df.format(new java.util.Date()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         // From here the answer that the user gives will be checked by clicking on the Submit button on the visual only page
     } // The work of this loop is to display the random numbers with their audio after appropriate delay & make questionString
 
@@ -164,6 +237,12 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
     }
 
     public void visualOnlySubmitButton() throws InterruptedException {
+        try {
+            individual_event.put("time_of_submission",df.format(new java.util.Date()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        number_of_events++;
         String answerString ;
         TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
         final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
@@ -178,32 +257,115 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
         {
             answerString  = "" ;
         }
+
+        try {
+            individual_event.put("string_answer",answerString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <14))
+        if ((questionString.equals(answerString))&&(lenth <14))//correct but not final level
         {
-            outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString(level-5));
-            level = level + 1 ;
+            try {
+
+                // adding current ongoing event's variables
+                individual_event.put("set_number",number_of_sets);
+                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("success",true);
+
+                // adding individual_event in different_events
+                different_events.add(individual_event);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            Log.d("Params","Before last level:'Different events\t'"+different_events.toString());
+
+            outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level-5)+1));
+            level = level + 1;
             lives_left=3;
-            inputText.setText("") ;
+            inputText.setText("");
+            levelLabel.setText("Level - "+(level-5));
             myGameLoop(level);
         }
         else if ((questionString.equals(answerString))&&(lenth ==14))
         {
+            try {
+
+                // adding current ongoing event's variables
+                individual_event.put("set_number",number_of_sets);
+                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("success",true);
+
+                // adding individual_event in different_events
+                different_events.add(individual_event);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             outputTextView.setText("Congratulations! All Levels Completed successfully");
             number_of_sets++;
             if(number_of_sets < 3)
             {
                 outputTextView.setText("Now set number :: "+(number_of_sets+1)+" begins");
                 level = 6;
+                levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
             }
             else
             {
+                if(gaming==true)
+                {
+                    comprehensive.TrialsWDistraction.gaming=true;
+                }
+                else
+                {
+                    comprehensive.TrialsWDistraction.gaming=false;
+                }
+                try {
+                    request.put("end_session",df.format(new java.util.Date()));
+                    request.put("point_end",level);
+
+                    Iterator i = different_events.iterator();
+                    JSONObject different_events_array[] = new JSONObject[different_events.size()];
+                    for(int j=0 ; j<different_events_array.length;j++)
+                    {
+                        different_events_array[j] = different_events.get(j);
+                    }
+
+                    request.put("different_events",different_events_array);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+                API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+
+                obj.execute();
+
+                Log.d("Params","Right answer given"+request.toString());
+
                 startActivity(new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.TrialsWDistraction.class));
             }
         }
-        else
+        else//wrong answer given
         {
+            try {
+
+                // adding current ongoing event's variables
+                individual_event.put("set_number",number_of_sets);
+                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("success",false);
+
+                // adding individual_event in different_events
+                different_events.add(individual_event);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             lives_left--;
             if(lives_left > 0)
             {
@@ -213,16 +375,52 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
                 level = 6;
+                levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
             }
             else
             {
+
+                try {
+                    request.put("end_session", df.format(new java.util.Date()));
+                    request.put("point_end", level);
+
+                    Iterator i = different_events.iterator();
+                    JSONObject different_events_array[] = new JSONObject[different_events.size()];
+                    for(int j=0 ; j<different_events_array.length;j++)
+                    {
+                        different_events_array[j] = different_events.get(j);
+                    }
+                    request.put("different_events",different_events_array);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+                API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+
+                obj.execute();
+
+                Log.d("Params","After wrong answers given."+request.toString());
+
                 outputTextView.setText("You have lost all your lives.");
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
                 lives_left = 3;
-                Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
-                startActivity(myIntent);
+                if(gaming == true)
+                {
+                    outputTextView.setText("Your game ended.");
+                    Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
+                    startActivity(myIntent);
+                }
+                else
+                {
+                    outputTextView.setText("Restarting your game");
+                    Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.VisualAndAuditoryPage.class);
+                    startActivity(myIntent);
+                }
             }
         }
     }// This is the Submit Answer button in the visual only page
@@ -305,7 +503,29 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
+                        try {
+                            request.put("point_end", level);
+                            request.put("end_session", df.format(new java.util.Date()));
+
+                            JSONArray different_events_array = new JSONArray();
+                            for(int j=0 ; j<different_events.size();j++)
+                            {
+                                different_events_array.put(different_events.get(j));
+                            }
+                            request.put("different_events",different_events_array);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                        API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                        obj.execute();
+
+                        Log.d("Params","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
+
                         startActivity(myIntent);
+                        VisualAndAuditoryPage.super.onBackPressed();
                         audio.pause();
                         audio.reset();
                     }

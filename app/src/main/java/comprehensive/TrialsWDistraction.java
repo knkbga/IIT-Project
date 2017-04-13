@@ -12,6 +12,8 @@ import com.example.om.mygame.VisualOnlyWithDistraction;
 
 public class TrialsWDistraction extends AppCompatActivity {
 
+    public static Boolean gaming;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,14 @@ public class TrialsWDistraction extends AppCompatActivity {
             start_this_test.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(gaming == true)
+                    {
+                        comprehensive.VisualOnlyWithDistraction.gaming = true;
+                    }
+                    else
+                    {
+                        comprehensive.VisualOnlyWithDistraction.gaming = false;
+                    }
                     Intent myIntent = new Intent(comprehensive.TrialsWDistraction.this,comprehensive.VisualOnlyWithDistraction.class);
                     startActivity(myIntent);
                 }

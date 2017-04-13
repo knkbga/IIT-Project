@@ -180,7 +180,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
         {
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString(level-5));
             level = level + 1 ;
-            inputText.setText("") ;
+            inputText.setText("");
             myGameLoop(level);
         }
         else if ((questionString.equals(answerString))&&(lenth ==14))

@@ -7,33 +7,31 @@
     tools:context="authentication.LogIn">
 
     <TextView
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Enter Phone Number"
+        android:text="Enter your email"
         android:textColor="@color/colorPrimary"
         android:id="@+id/textView4"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:inputType="numberDecimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EmailField"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Log In"
         android:id="@+id/LogIn"
-        android:layout_centerVertical="true"
+        android:layout_alignBottom="@+id/testing"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -43,21 +41,39 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Enter Password"
         android:textColor="@color/colorPrimary"
-        android:id="@+id/textView2"
-        android:layout_above="@+id/editText2"
+        android:id="@+id/PasswordLabel"
+        android:layout_marginTop="62dp"
+        android:layout_alignTop="@+id/EmailField"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="28dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_marginBottom="63dp"
-        android:layout_alignBottom="@+id/LogIn"
+        android:id="@+id/PasswordField"
+        android:layout_below="@+id/PasswordLabel"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:textSize="23dp"
+        android:textColor="#ff0000"
+        android:id="@+id/testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PasswordField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 
 </RelativeLayout>

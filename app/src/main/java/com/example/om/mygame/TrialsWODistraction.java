@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import comprehensive.*;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -26,7 +28,7 @@ public class TrialsWODistraction extends AppCompatActivity {
         startTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(TrialsWODistraction.this,VisualOnlyPage.class);
+                Intent myIntent = new Intent(TrialsWODistraction.this,VisualAndAuditoryPage.class);
                 startActivity(myIntent);
             }
         });

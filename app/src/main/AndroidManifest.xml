@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.om.mygame">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,7 +23,7 @@
             android:name=".HomePage"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_home_page"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".TrialsWODistraction"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -76,6 +77,16 @@
             android:name="authentication.Register"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_register"
+            android:parentActivityName="authentication.Authenticate"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="authentication.Authenticate" />
+        </activity>
+        <activity
+            android:name=".Network"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_network"
             android:parentActivityName="authentication.Authenticate"
             android:theme="@style/FullscreenTheme">
             <meta-data
