@@ -268,7 +268,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         }
 
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <14))//correct but not final level
+        if ((questionString.equals(answerString))&&(lenth <11))//correct but not final level
         {
             try {
 
@@ -292,7 +292,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             levelLabel.setText("Level - "+(level-5));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==14))
+        else if ((questionString.equals(answerString))&&(lenth ==11))
         {
             try {
 
@@ -308,11 +308,11 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            outputTextView.setText("Congratulations! All Levels Completed successfully.Redirecting to home page.");
+            outputTextView.setText("Congratulations! All Levels Completed successfully.");
             number_of_sets++;
-            if(number_of_sets < 3)
+            if(number_of_sets <= 3)
             {
-                outputTextView.setText("Now set number :: "+(number_of_sets+1)+" begins");
+                outputTextView.setText("Now set number :: "+(number_of_sets)+" begins");
                 level = 6;
                 levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
@@ -369,7 +369,6 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 outputTextView.setText(str);
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
-                level = 6;
                 levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
             }
@@ -400,24 +399,25 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 Log.d("Params","After wrong answers given."+request.toString());
 
-                outputTextView.setText("You have lost all your lives.");
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
-                lives_left = 3;
                 if(gaming == true)
                 {
-                    outputTextView.setText("Your game ended.");
-                    Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,HomePage.class);
+                    outputTextView.setText("You have lost all your lives."+"\n"+"Your game ended.");
+                    comprehensive.VisualAndAuditoryPage.gaming=true;
+                    Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class);
                     startActivity(myIntent);
                 }
                 else
                 {
-                    outputTextView.setText("Restarting your game");
-                    Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class);
-                    startActivity(myIntent);
+                    level++;
+                    outputTextView.setText("You have lost all your lives."+"\n"+"Restarting your game...");
+                    levelLabel.setText(level+"");
+                    myGameLoop(level);
                 }
             }
         }
+        inputText.setText("");
     }// This is the Submit Answer button in the visual only page
 
     public void printWithDelay(final String string_to_print, final int delay_time) // time in milli seconds

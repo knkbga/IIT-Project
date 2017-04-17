@@ -185,7 +185,7 @@ public class API extends AsyncTask<String , String , String>
                         testing.setText("** "+res.getString("response")+" **");
                     }
                 }
-                case 2: //comprehensive/trial/without
+                case 2: //comprehensive...
                 {
 
                 }

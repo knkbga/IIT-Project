@@ -265,7 +265,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
         }
 
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <14))//correct but not final level
+        if ((questionString.equals(answerString))&&(lenth <11))//correct but not final level
         {
             try {
 
@@ -280,7 +280,22 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Log.d("Params","Before last level:'Different events\t'"+different_events.toString());
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+            API obj1 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+
+            obj1.execute();
+
+            Log.d("Params","Correct but not final level"+request.toString());
+
+            different_events.clear();
+            Iterator keys = individual_event.keys();
+            while(keys.hasNext())
+            {
+                individual_event.remove(keys.next().toString());
+            }
+
+
 
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level-5)+1));
             level = level + 1;
@@ -289,7 +304,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             levelLabel.setText("Level - "+(level-5));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==14))
+        else if ((questionString.equals(answerString))&&(lenth ==11))
         {
             try {
 
@@ -307,9 +322,24 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
             outputTextView.setText("Congratulations! All Levels Completed successfully");
             number_of_sets++;
-            if(number_of_sets < 3)
+            if(number_of_sets <= 3)
             {
-                outputTextView.setText("Now set number :: "+(number_of_sets+1)+" begins");
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+                API obj2 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+
+                obj2.execute();
+
+                Log.d("Params","Correct but not final level"+request.toString());
+
+                different_events.clear();
+                Iterator keys = individual_event.keys();
+                while(keys.hasNext())
+                {
+                    individual_event.remove(keys.next().toString());
+                }
+
+                outputTextView.setText("Now set number :: "+(number_of_sets)+" begins");
                 level = 6;
                 levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
@@ -340,11 +370,9 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
-                API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-                obj.execute();
+                obj3.execute();
 
                 Log.d("Params","Right answer given"+request.toString());
 
@@ -374,7 +402,6 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 outputTextView.setText(str);
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
-                level = 6;
                 levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
             }
@@ -399,30 +426,33 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-                API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
-                obj.execute();
+                obj4.execute();
 
                 Log.d("Params","After wrong answers given."+request.toString());
 
-                outputTextView.setText("You have lost all your lives.");
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
                 lives_left = 3;
                 if(gaming == true)
                 {
-                    outputTextView.setText("Your game ended.");
-                    Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
+                    outputTextView.setText("You have lost all your lives."+"Your game ended.");
+                    comprehensive.VisualAndAuditoryPage.gaming=true;
+                    Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.VisualAndAuditoryPage.class);
                     startActivity(myIntent);
                 }
                 else
                 {
-                    outputTextView.setText("Restarting your game");
-                    Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.VisualAndAuditoryPage.class);
-                    startActivity(myIntent);
+                    level++;
+                    outputTextView.setText("You have lost all your lives."+"\n"+"Restarting your game at next level");
+                    Thread.sleep(1000);
+                    levelLabel.setText(level+"");
+                    myGameLoop(level);
                 }
             }
         }
+        inputText.setText("");
     }// This is the Submit Answer button in the visual only page
 
     public void printWithDelay(final String string_to_print, final int delay_time) // time in milli seconds
@@ -519,8 +549,8 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                         }
 
                         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                        API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                        obj.execute();
+                        API obj5 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                        obj5.execute();
 
                         Log.d("Params","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
 

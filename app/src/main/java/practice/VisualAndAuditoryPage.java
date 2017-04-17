@@ -176,14 +176,14 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             answerString  = "" ;
         }
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <14))
+        if ((questionString.equals(answerString))&&(lenth <11))
         {
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString(level-5));
             level = level + 1 ;
             inputText.setText("");
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==14))
+        else if ((questionString.equals(answerString))&&(lenth ==11))
         {
             outputTextView.setText("Congratulations! All Levels Completed successfully");
             startActivity(new Intent(practice.VisualAndAuditoryPage.this, practice.TrialsWDistraction.class));
@@ -195,6 +195,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             Thread.sleep(1500);
             myGameLoop(level);
         }
+        inputText.setText("");
     }// This is the Submit Answer button in the visual only page
 
     public void printWithDelay(final String string_to_print, final int delay_time) // time in milli seconds

@@ -11,20 +11,26 @@
 
     <string name="title_activity_trials_wdistraction">TrialsWDistraction</string>
 
-    <string name="instruction_wo_trial_1">This trial includes 6 levels.</string>
+    <string name="instruction_wo_trial_1">This trial includes 3 sets, each including 6 levels.</string>
     <string name="instruction_wo_trial_2">For each level you will be provided with 3 lives.</string>
-    <string name="instruction_wo_trial_3">If any user exhaust his/her all 3 lives that level will start again.</string>
+    <string name="instruction_wo_trial_3">If any user exhaust his/her all 3 lives then next level will start.</string>
     <string name="instruction_wo_trial_4">Answer should be in the same sequence as they are displayed.</string>
 
-    <string name="instruction_w_trial_1">This trial includes 6 levels.</string>
+    <string name="instruction_wo_gaming_1">This trial includes 3 sets, each including 6 levels.</string>
+    <string name="instruction_wo_gaming_2">For each level you will be provided with 3 lives.</string>
+    <string name="instruction_wo_gaming_3">If any user exhaust his/her all 3 lives then next game(with distraction) will start.</string>
+    <string name="instruction_wo_gaming_4">Answer should be in the same sequence as they are displayed.</string>
+
+    <string name="instruction_w_trial_1">This trial includes 3 sets, each including 6 levels.</string>
     <string name="instruction_w_trial_2">For each level you will be provided with 3 lives.</string>
     <string name="instruction_w_trial_3">If any user exhaust his/her all 3 lives that level will start again.</string>
     <string name="instruction_w_trial_4">Answer should be in the same sequence as they are displayed not what you hear(distraction).</string>
 
-    <string name="instruction_game_1">To be decided...</string>
-    <string name="instruction_game_2">To be decided...</string>
-    <string name="instruction_game_3">To be decided...</string>
-    <string name="instruction_game_4">To be decided...</string>
+    <string name="instruction_w_gaming_1">This trial includes 3 sets, each including 6 levels.</string>
+    <string name="instruction_w_gaming_2">For each level you will be provided with 3 lives.</string>
+    <string name="instruction_w_gaming_3">If any user exhaust his/her all 3 lives then next game (with distraction) will start.</string>
+    <string name="instruction_w_gaming_4">Answer should be in the same sequence as they are displayed not what you hear(distraction).</string>
+
 
     <string name="title_activity_game_welcome_page">GameWelcomePage</string>
 
