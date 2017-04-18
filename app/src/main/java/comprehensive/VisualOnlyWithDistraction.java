@@ -283,7 +283,20 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Log.d("Params","Before last level:'Different events\t'"+different_events.toString());
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+            API obj1 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+
+            obj1.execute();
+
+            Log.d("Params","Correct but not final level"+request.toString());
+
+            different_events.clear();
+            Iterator keys = individual_event.keys();
+            while(keys.hasNext())
+            {
+                individual_event.remove(keys.next().toString());
+            }
 
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level-5)+1));
             level = level + 1;
@@ -312,6 +325,21 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             number_of_sets++;
             if(number_of_sets <= 3)
             {
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+                API obj2 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+
+                obj2.execute();
+
+                Log.d("Params","Correct but not final level"+request.toString());
+
+                different_events.clear();
+                Iterator keys = individual_event.keys();
+                while(keys.hasNext())
+                {
+                    individual_event.remove(keys.next().toString());
+                }
+
                 outputTextView.setText("Now set number :: "+(number_of_sets)+" begins");
                 level = 6;
                 levelLabel.setText("Level - "+(level-5));
@@ -337,9 +365,9 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-                API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
-                obj.execute();
+                obj3.execute();
 
                 Log.d("Params","Right answer given"+request.toString());
 
@@ -393,9 +421,9 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-                API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
-                obj.execute();
+                obj4.execute();
 
                 Log.d("Params","After wrong answers given."+request.toString());
 
@@ -514,8 +542,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                         }
 
                         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                        API obj = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                        obj.execute();
+                        API obj5 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                        obj5.execute();
 
                         Log.d("Params","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
 
