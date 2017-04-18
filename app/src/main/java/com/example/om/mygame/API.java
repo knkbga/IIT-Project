@@ -28,6 +28,7 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import authentication.Authenticate;
 import authentication.LogIn;
 import authentication.PersonCredentials;
 import authentication.Register;
@@ -74,7 +75,6 @@ public class API extends AsyncTask<String , String , String>
             result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
         }
 
-        Log.d("URLEncoder",result.toString());
 
         return result.toString();
     }
@@ -137,6 +137,8 @@ public class API extends AsyncTask<String , String , String>
             e.printStackTrace();
         }
 
+        Log.d("API","Called to url ::\t"+ requestURL);
+
         return response;
     }
 
@@ -161,7 +163,7 @@ public class API extends AsyncTask<String , String , String>
                     Boolean success = res.getBoolean("success");
                     if(success)
                     {
-                        Intent myIntent = new Intent(mContext,HomePage.class);
+                        Intent myIntent = new Intent(mContext,Authenticate.class);
                         mContext.startActivity(myIntent);
                     }
                     else
@@ -176,7 +178,7 @@ public class API extends AsyncTask<String , String , String>
                     Boolean success = res.getBoolean("success");
                     if(success)
                     {
-                        oid = res.getString("_id");
+                        PersonCredentials.oid = res.getString("_id");
                         Intent myIntent = new Intent(mContext,HomePage.class);
                         mContext.startActivity(myIntent);
                     }

@@ -55,17 +55,19 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
     private SimpleDateFormat df;
     private Context mContext;
     private ProgressBar progressBar;
-    private ArrayList<JSONObject> different_events;
+    private JSONArray different_events;
     private JSONObject individual_event;
     private int number_of_events =-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        different_events = new ArrayList<>();
+        different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
         df = new SimpleDateFormat( "yyyy-MM-dd'T'hh:mm:ssz");
         df.setTimeZone(TimeZone.getTimeZone("IST"));
+
+        Log.d("_id",PersonCredentials.oid);
 
         try {
             request.put("_id",PersonCredentials.oid);
@@ -267,6 +269,8 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
         //////////////////////////////////////////////////////////////////////
         if ((questionString.equals(answerString))&&(lenth <11))//correct but not final level
         {
+            different_events = new JSONArray();
+
             try {
 
                 // adding current ongoing event's variables
@@ -275,10 +279,17 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 individual_event.put("success",true);
 
                 // adding individual_event in different_events
-                different_events.add(individual_event);
+                different_events.put(individual_event);
+
+                request.put("point_end", level);
+                request.put("end_session", df.format(new java.util.Date()));
+
+                request.put("different_events",different_events);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+
 
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -286,16 +297,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
             obj1.execute();
 
-            Log.d("Params","Correct but not final level"+request.toString());
-
-            different_events.clear();
-            Iterator keys = individual_event.keys();
-            while(keys.hasNext())
-            {
-                individual_event.remove(keys.next().toString());
-            }
-
-
+            Log.d("API","Correct but not final level"+request.toString());
 
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level-5)+1));
             level = level + 1;
@@ -306,6 +308,8 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
         }
         else if ((questionString.equals(answerString))&&(lenth ==11))
         {
+            different_events = new JSONArray();
+
             try {
 
                 // adding current ongoing event's variables
@@ -314,8 +318,12 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 individual_event.put("success",true);
 
                 // adding individual_event in different_events
-                different_events.add(individual_event);
+                different_events.put(individual_event);
 
+                request.put("point_end", level);
+                request.put("end_session", df.format(new java.util.Date()));
+
+                request.put("different_events",different_events);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -330,14 +338,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
                 obj2.execute();
 
-                Log.d("Params","Correct but not final level"+request.toString());
-
-                different_events.clear();
-                Iterator keys = individual_event.keys();
-                while(keys.hasNext())
-                {
-                    individual_event.remove(keys.next().toString());
-                }
+                Log.d("API","Correct but not final level"+request.toString());
 
                 outputTextView.setText("Now set number :: "+(number_of_sets)+" begins");
                 level = 6;
@@ -358,14 +359,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                     request.put("end_session",df.format(new java.util.Date()));
                     request.put("point_end",level);
 
-                    Iterator i = different_events.iterator();
-                    JSONObject different_events_array[] = new JSONObject[different_events.size()];
-                    for(int j=0 ; j<different_events_array.length;j++)
-                    {
-                        different_events_array[j] = different_events.get(j);
-                    }
-
-                    request.put("different_events",different_events_array);
+                    request.put("different_events",different_events);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -374,13 +368,14 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
                 obj3.execute();
 
-                Log.d("Params","Right answer given"+request.toString());
+                Log.d("API","Right answer given"+request.toString());
 
                 startActivity(new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.TrialsWDistraction.class));
             }
         }
         else//wrong answer given
         {
+            different_events = new JSONArray();
             try {
 
                 // adding current ongoing event's variables
@@ -389,14 +384,26 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 individual_event.put("success",false);
 
                 // adding individual_event in different_events
-                different_events.add(individual_event);
+                different_events.put(individual_event);
 
+                request.put("point_end", level);
+                request.put("end_session", df.format(new java.util.Date()));
+
+                request.put("different_events",different_events);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             lives_left--;
             if(lives_left > 0)
             {
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+
+                obj4.execute();
+
+                Log.d("API","After wrong answers given."+request.toString());
+
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
@@ -412,13 +419,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                     request.put("end_session", df.format(new java.util.Date()));
                     request.put("point_end", level);
 
-                    Iterator i = different_events.iterator();
-                    JSONObject different_events_array[] = new JSONObject[different_events.size()];
-                    for(int j=0 ; j<different_events_array.length;j++)
-                    {
-                        different_events_array[j] = different_events.get(j);
-                    }
-                    request.put("different_events",different_events_array);
+                    request.put("different_events",different_events);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -430,7 +431,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
                 obj4.execute();
 
-                Log.d("Params","After wrong answers given."+request.toString());
+                Log.d("API","After wrong answers given."+request.toString());
 
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
@@ -534,15 +535,12 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
                         try {
+                            different_events = new JSONArray();
+
                             request.put("point_end", level);
                             request.put("end_session", df.format(new java.util.Date()));
 
-                            JSONArray different_events_array = new JSONArray();
-                            for(int j=0 ; j<different_events.size();j++)
-                            {
-                                different_events_array.put(different_events.get(j));
-                            }
-                            request.put("different_events",different_events_array);
+                            request.put("different_events",different_events);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -552,7 +550,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                         API obj5 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
                         obj5.execute();
 
-                        Log.d("Params","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
+                        Log.d("API","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
 
                         startActivity(myIntent);
                         VisualAndAuditoryPage.super.onBackPressed();

@@ -117,13 +117,6 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public void StartActivity()
-    {
-        Intent myIntent  = new Intent(getApplicationContext(),HomePage.class);
-        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplicationContext().startActivity(myIntent);
-    }
-
 }
 
 
