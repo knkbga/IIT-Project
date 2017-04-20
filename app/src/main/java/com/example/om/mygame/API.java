@@ -164,6 +164,7 @@ public class API extends AsyncTask<String , String , String>
                     if(success)
                     {
                         Intent myIntent = new Intent(mContext,Authenticate.class);
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(myIntent);
                     }
                     else
@@ -180,6 +181,7 @@ public class API extends AsyncTask<String , String , String>
                     {
                         PersonCredentials.oid = res.getString("_id");
                         Intent myIntent = new Intent(mContext,HomePage.class);
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(myIntent);
                     }
                     else
