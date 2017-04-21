@@ -61,6 +61,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_visual_only_with_distraction);
+
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -193,8 +195,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         // Delay of 2 Has to be inserted here
         printWithDelay("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
-        final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
-        final Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
+        final EditText inputText = (EditText) findViewById(R.id.visual_only_input);
+        final Button submit_button  = (Button)findViewById(R.id.visual_only_submit_button) ;
         inputText.setVisibility(View.INVISIBLE) ;
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
@@ -247,8 +249,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         }
         number_of_events++;
         String answerString ;
-        TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
-        final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
+        TextView outputTextView = (TextView) findViewById(R.id.visual_only_output);
+        final EditText inputText = (EditText) findViewById(R.id.visual_only_input);
         int lenth = level ;
         ///////////////////////////////////////////////////////////////////////
         if(inputText != null || !inputText.getText().equals(""))
@@ -361,7 +363,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 Log.d("Params","Right answer given"+request.toString());
 
-                startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this,HomePage.class));
+                comprehensive.VisualAndAuditoryPage.gaming = true;
+                startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class));
             }
         }
         else//wrong answer given
@@ -427,9 +430,31 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 }
                 else
                 {
-                    outputTextView.setText("You have lost all your lives."+"\n"+"Restarting your game...");
-                    levelLabel.setText("Level - "+(level-5));
-                    myGameLoop(level);
+                    if(level == 11)//last level (can't increment level)
+                    {
+                        if(number_of_sets <3)
+                        {
+                            number_of_sets++;
+                            level = 6;
+
+                            outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 6 of next set.");
+                            levelLabel.setText("Level - "+(level-5));
+                            myGameLoop(level);
+                        }
+                        else if(number_of_sets ==3)
+                        {
+                            printWithDelay("Starting next game",1500);
+                            Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class);
+                            startActivity(myIntent);
+                        }
+                    }
+                    else// can increment level
+                    {
+                        level++;
+                        outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to next level");
+                        levelLabel.setText("Level - "+(level-5));
+                        myGameLoop(level);
+                    }
                 }
             }
         }
@@ -445,7 +470,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 public void run() {
                     // D0 something after delay_time milli seconds
                     // 1 second = 1000 milli second
-                    TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
+                    TextView outputTextView = (TextView) findViewById(R.id.visual_only_output);
                     outputTextView.setText(string_to_print);
                 }
             }, delay_time);

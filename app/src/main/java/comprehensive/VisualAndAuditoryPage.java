@@ -437,10 +437,31 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 }
                 else
                 {
-                    outputTextView.setText("You have lost all your lives."+"\n"+"Restarting your game at next level");
-                    Thread.sleep(1000);
-                    levelLabel.setText("Level - "+(level-5));
-                    myGameLoop(level);
+                    if(level == 11)//last level (can't increment level)
+                    {
+                        if(number_of_sets <3)
+                        {
+                            number_of_sets++;
+                            level = 6;
+
+                            outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 6 of next set.");
+                            levelLabel.setText("Level - "+(level-5));
+                            myGameLoop(level);
+                        }
+                        else if(number_of_sets ==3)
+                        {
+                            printWithDelay("Your game has ended. Thank you for your response...",1500);
+                            Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
+                            startActivity(myIntent);
+                        }
+                    }
+                    else// can increment level
+                    {
+                        level++;
+                        outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to next level");
+                        levelLabel.setText("Level - "+(level-5));
+                        myGameLoop(level);
+                    }
                 }
             }
         }
