@@ -239,6 +239,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
     }
 
     public void visualOnlySubmitButton() throws InterruptedException {
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
         } catch (JSONException e) {
@@ -290,9 +291,6 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             }
 
 
-
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
             API obj1 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
             obj1.execute();
@@ -332,8 +330,6 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             number_of_sets++;
             if(number_of_sets <= 3)
             {
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
                 API obj2 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
                 obj2.execute();
@@ -396,8 +392,6 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             lives_left--;
             if(lives_left > 0)
             {
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
                 API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
                 obj4.execute();
@@ -425,8 +419,6 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
                 API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
                 obj4.execute();
@@ -445,10 +437,9 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 }
                 else
                 {
-                    level++;
                     outputTextView.setText("You have lost all your lives."+"\n"+"Restarting your game at next level");
                     Thread.sleep(1000);
-                    levelLabel.setText(level+"");
+                    levelLabel.setText("Level - "+(level-5));
                     myGameLoop(level);
                 }
             }

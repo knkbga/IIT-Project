@@ -427,9 +427,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 }
                 else
                 {
-                    level++;
                     outputTextView.setText("You have lost all your lives."+"\n"+"Restarting your game...");
-                    levelLabel.setText(level+"");
+                    levelLabel.setText("Level - "+(level-5));
                     myGameLoop(level);
                 }
             }
