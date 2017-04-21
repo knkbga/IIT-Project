@@ -20,11 +20,6 @@
         </activity>
         <activity android:name="practice.VisualOnlyWithDistraction" />
         <activity android:name="comprehensive.VisualOnlyWithDistraction" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".HomePage"
@@ -49,11 +44,11 @@
         <activity
             android:name="authentication.Authenticate"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".TrialsWDistraction"
