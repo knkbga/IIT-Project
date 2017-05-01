@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.om.mygame.API;
+import com.example.om.mygame.Connectivity;
 import com.example.om.mygame.HomePage;
 import com.example.om.mygame.R;
 
@@ -40,6 +42,9 @@ public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         mContext = getBaseContext();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -79,38 +84,24 @@ public class Register extends AppCompatActivity {
                 }
                 else
                 {
-                    testing.setText("");
-                    JSONObject postDataParams = new JSONObject();
-                    try {
-                        postDataParams.put("email", email.getText().toString());
-                        postDataParams.put("password", password.getText().toString());
-                        postDataParams.put("name", name.getText().toString());
-                        postDataParams.put("phone", phone.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    if(Connectivity.isConnected(mContext,Authenticate.url)) {
+                        testing.setText("");
+                        JSONObject postDataParams = new JSONObject();
+                        try {
+                            postDataParams.put("email", email.getText().toString());
+                            postDataParams.put("password", password.getText().toString());
+                            postDataParams.put("name", name.getText().toString());
+                            postDataParams.put("phone", phone.getText().toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        API api = new API(PersonCredentials.oid, postDataParams, Authenticate.url + "/register", testing, mContext, 0, progressBar);
+
+                        progressBar.setVisibility(View.VISIBLE);
+                        api.execute();
+                        progressBar.setVisibility(View.GONE);
                     }
-
-                    API api = new API(PersonCredentials.oid,postDataParams, Authenticate.url+"/register",testing,mContext,0,progressBar);
-
-                    progressBar.setVisibility(View.VISIBLE);
-                    api.execute();
-                    progressBar.setVisibility(View.GONE);
-
-                    /*try
-                    {
-                        Boolean success = reg.getBoolean("success");
-                        if(success)
-                        {
-                            Intent myIntent  = new Intent(Register.this,HomePage.class);
-                            startActivity(myIntent);
-                        }
-                        else
-                        {
-                            testing.setText("** "+reg.getString("response")+" **");
-                        }
-                    } catch (JSONException e) {
-                        testing.setText("** Some Error occurred **");
-                    }*/
                 }
             }
         });

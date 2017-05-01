@@ -282,7 +282,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
+                request.put("point_end", level-5);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -318,7 +318,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
+                request.put("point_end", level-5);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -353,7 +353,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 }
                 try {
                     request.put("end_session",df.format(new java.util.Date()));
-                    request.put("point_end",level);
+                    request.put("point_end",level-5);
 
                     request.put("different_events",different_events);
                 } catch (JSONException e) {
@@ -382,7 +382,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
+                request.put("point_end", level-5);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -411,7 +411,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
                 try {
                     request.put("end_session", df.format(new java.util.Date()));
-                    request.put("point_end", level);
+                    request.put("point_end", level-5);
 
                     request.put("different_events",different_events);
 
@@ -549,7 +549,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                         try {
                             different_events = new JSONArray();
 
-                            request.put("point_end", level);
+                            request.put("point_end", level-5);
                             request.put("end_session", df.format(new java.util.Date()));
 
                             request.put("different_events",different_events);

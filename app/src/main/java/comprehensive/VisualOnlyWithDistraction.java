@@ -283,7 +283,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
+                request.put("point_end", level-5);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -319,7 +319,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
+                request.put("point_end", level-5);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -348,7 +348,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             {
                 try {
                     request.put("end_session",df.format(new java.util.Date()));
-                    request.put("point_end",level);
+                    request.put("point_end",level-5);
 
                     request.put("different_events",different_events);
                 } catch (JSONException e) {
@@ -380,7 +380,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
+                request.put("point_end", level-5);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -403,7 +403,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 try {
                     request.put("end_session", df.format(new java.util.Date()));
-                    request.put("point_end", level);
+                    request.put("point_end", level-5);
 
                     request.put("different_events",different_events);
 
@@ -540,7 +540,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,HomePage.class);
                         try {
-                            request.put("point_end", level);
+                            request.put("point_end", level-5);
                             request.put("end_session", df.format(new java.util.Date()));
 
                             request.put("different_events",different_events);

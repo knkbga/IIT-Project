@@ -1,25 +1,35 @@
 package com.example.om.mygame;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import authentication.Authenticate;
 import authentication.LogIn;
 import authentication.Register;
 
+import static android.R.attr.data;
 
 
 public class Network extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        final Context mContext =getBaseContext();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_network);
 
@@ -27,10 +37,15 @@ public class Network extends AppCompatActivity {
         final RadioButton internet = (RadioButton) findViewById(R.id.radio_internet);
         final RadioButton localhost = (RadioButton) findViewById(R.id.radio_localhost);
         final EditText localhostAddress = (EditText) findViewById(R.id.LocalhostAddress);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.GONE);
 
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                progressBar.setVisibility(View.VISIBLE);
 
                 Boolean can_proceed=false;
 
@@ -69,7 +84,7 @@ public class Network extends AppCompatActivity {
                         }).show();
                 }
 
-                if (can_proceed && true)//todo check if connection is successful
+                if (can_proceed && Connectivity.isConnected(mContext,Authenticate.url))//todo check if connection is successful
                 {
                     if (Authenticate.reg_log == 0) {
                         Intent myIntent = new Intent(Network.this, Register.class);
@@ -79,6 +94,11 @@ public class Network extends AppCompatActivity {
                         startActivity(myIntent);
                     }
                 }
+                else
+                {
+                    Toast.makeText(mContext, "Couldn't connect to the network selected. Try other one",Toast.LENGTH_LONG).show();
+                }
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

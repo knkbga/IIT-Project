@@ -34,8 +34,8 @@
         android:layout_height="wrap_content"
         android:text="Log In"
         android:id="@+id/LogIn"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/testing"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/forgot_pass"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -46,8 +46,8 @@
         android:text="Enter Password"
         android:textColor="@color/colorPrimary"
         android:id="@+id/PasswordLabel"
-        android:layout_marginTop="100dp"
-        android:layout_alignTop="@+id/EmailField"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/EmailField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -69,7 +69,7 @@
         android:layout_below="@+id/PasswordField"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="20dp"
         android:textColor="#ff0000"
         android:textSize="23dp" />
 
@@ -82,5 +82,15 @@
         android:layout_below="@+id/PasswordField"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
+
+    <TextView
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/forgot_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:layout_below="@+id/testing"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp" />
 
 </RelativeLayout>

@@ -16,11 +16,9 @@
         <activity android:name=".VisualAndAuditoryPage" />
         <activity android:name="practice.VisualAndAuditoryPage" />
         <activity android:name="comprehensive.VisualAndAuditoryPage" />
-        <activity android:name=".VisualOnlyWithDistraction" >
-        </activity>
+        <activity android:name=".VisualOnlyWithDistraction" />
         <activity android:name="practice.VisualOnlyWithDistraction" />
-        <activity android:name="comprehensive.VisualOnlyWithDistraction" >
-        </activity>
+        <activity android:name="comprehensive.VisualOnlyWithDistraction" />
         <activity
             android:name=".HomePage"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -68,7 +66,7 @@
         <activity
             android:name="authentication.LogIn"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_sign_up"
+            android:label="@string/title_activity_log_in"
             android:parentActivityName="authentication.Authenticate"
             android:theme="@style/FullscreenTheme">
             <meta-data
@@ -94,6 +92,26 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="authentication.Authenticate" />
+        </activity>
+        <activity
+            android:name=".ForgotPassword"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_forgot_password"
+            android:parentActivityName="authentication.LogIn"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="authentication.LogIn" />
+        </activity>
+        <activity
+            android:name=".ResetPassword"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_reset_password"
+            android:parentActivityName=".ForgotPassword"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="authentication.LogIn" />
         </activity>
     </application>
 

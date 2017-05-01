@@ -35,10 +35,15 @@
     <string name="title_activity_game_welcome_page">GameWelcomePage</string>
 
     <string name="title_activity_sign_up">SignUp</string>
+    <string name="title_activity_log_in">LogIn</string>
 
     <string name="title_activity_register">Register</string>
 
     <string name="title_activity_network">Network</string>
+
+    <string name="title_activity_forgot_password">ForgotPassword</string>
+
+    <string name="title_activity_reset_password">ResetPassword</string>
 
 
 </resources>

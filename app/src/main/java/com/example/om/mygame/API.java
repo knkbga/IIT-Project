@@ -2,6 +2,7 @@ package com.example.om.mygame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -133,12 +134,13 @@ public class API extends AsyncTask<String , String , String>
             } else {
                 response = null;
             }
+            Log.d("API","Called to url ::\t"+ requestURL);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Log.d("API","Called to url ::\t"+ requestURL);
 
+        Log.d("API","response (for url :: "+requestURL+") ::\t"+response);
         return response;
     }
 
@@ -163,7 +165,7 @@ public class API extends AsyncTask<String , String , String>
                     Boolean success = res.getBoolean("success");
                     if(success)
                     {
-                        Intent myIntent = new Intent(mContext,Authenticate.class);
+                        Intent myIntent = new Intent(mContext,LogIn.class);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(myIntent);
                     }
@@ -189,9 +191,43 @@ public class API extends AsyncTask<String , String , String>
                         testing.setText("** "+res.getString("response")+" **");
                     }
                 }
-                case 2: //comprehensive...
+                case 2: //Comprehensive Events
                 {
 
+                }
+                break;
+                case 3: // Forgot password
+                {
+                    Log.d("API","Forgot Password");
+                    JSONObject res = new JSONObject(result);
+                    Boolean success = res.getBoolean("success");
+                    if(success)
+                    {
+                        Log.d("API","Success found");
+                        Intent myIntent = new Intent(mContext,ResetPassword.class);
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(myIntent);
+                    }
+                    else
+                    {
+                        testing.setText("** "+res.getString("response")+" **");
+                    }
+                }
+                break;
+                case 4:// Reset Password
+                {
+                    JSONObject res = new JSONObject(result);
+                    Boolean success = res.getBoolean("success");
+                    if(success)
+                    {
+                        Intent myIntent = new Intent(mContext,LogIn.class);
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(myIntent);
+                    }
+                    else
+                    {
+                        testing.setText("** "+res.getString("response")+" **");
+                    }
                 }
             }
         }
