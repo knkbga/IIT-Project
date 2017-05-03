@@ -1,6 +1,7 @@
 package com.example.om.mygame;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import authentication.Authenticate;
+import authentication.LogIn;
 import authentication.PersonCredentials;
 
 public class ResetPassword extends AppCompatActivity {
@@ -52,10 +54,16 @@ public class ResetPassword extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                API api = new API(PersonCredentials.oid, request, Authenticate.url + "/resetpass/chg", testing, mContext, 4, progressBar);
+                API api = new API(PersonCredentials.oid, request, Authenticate.url + "/api/resetpass/chg", testing, mContext, 4, progressBar);
 
                 api.execute();
             }
         });
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent myIntent = new Intent(ResetPassword.this, LogIn.class);
+        startActivity(myIntent);
     }
 }

@@ -14,11 +14,16 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import authentication.Authenticate;
+import authentication.PersonCredentials;
+import comprehensive.*;
 
 
 public class HomePage extends AppCompatActivity {
@@ -100,5 +105,26 @@ public class HomePage extends AppCompatActivity {
                     .show();
         }
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setMessage("Are you sure ? You will have to login again.")
+                .setCancelable(false)
+                .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent myIntent = new Intent(HomePage.this,Authenticate.class);
+                        startActivity(myIntent);
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        android.support.v7.app.AlertDialog alert = builder.create();
+        alert.show();
     }
 }

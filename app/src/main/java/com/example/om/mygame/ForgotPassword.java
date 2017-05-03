@@ -2,6 +2,7 @@ package com.example.om.mygame;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import authentication.Authenticate;
+import authentication.LogIn;
 import authentication.PersonCredentials;
 
 public class ForgotPassword extends AppCompatActivity {
@@ -75,10 +77,12 @@ public class ForgotPassword extends AppCompatActivity {
 
             }
         });
-
-        //Post Process
-
-
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent myIntent = new Intent(ForgotPassword.this, LogIn.class);
+        startActivity(myIntent);
+    }
 }

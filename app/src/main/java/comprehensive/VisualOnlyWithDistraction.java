@@ -66,7 +66,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
-        df = new SimpleDateFormat( "yyyy-MM-dd'T'hh:mm:ssz");
+        df = new SimpleDateFormat( "dd-MM-yyyy 'at' kk:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("IST"));
 
         try {
@@ -278,7 +278,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
                 individual_event.put("lives_till_used",3-lives_left);
-                individual_event.put("success",true);
+                individual_event.put("success","true");
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
@@ -314,7 +314,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
                 individual_event.put("lives_till_used",3-lives_left);
-                individual_event.put("success",true);
+                individual_event.put("success","true");
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
@@ -375,7 +375,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
                 individual_event.put("lives_till_used",3-lives_left);
-                individual_event.put("success",false);
+                individual_event.put("success","false");
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);

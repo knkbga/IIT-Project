@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import authentication.LogIn;
+
 public class PracticeHomePage extends AppCompatActivity {
 
     @Override
@@ -21,5 +23,12 @@ public class PracticeHomePage extends AppCompatActivity {
     {
         Intent intent = new Intent(this, practice.VisualOnlyWithDistraction.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent myIntent = new Intent(PracticeHomePage.this, HomePage.class);
+        startActivity(myIntent);
     }
 }
