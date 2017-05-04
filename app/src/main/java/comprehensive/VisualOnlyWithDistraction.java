@@ -306,7 +306,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             levelLabel.setText("Level - "+(level-5));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==11))
+        else if ((questionString.equals(answerString))&&(lenth ==11))// correct and final level
         {
             different_events = new JSONArray();
             try {
@@ -344,7 +344,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
             }
-            else
+            else// all sets completed
             {
                 try {
                     request.put("end_session",df.format(new java.util.Date()));
@@ -363,8 +363,16 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 Log.d("Params","Right answer given"+request.toString());
 
-                comprehensive.VisualAndAuditoryPage.gaming = true;
-                startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class));
+                if(gaming == false) {
+                    comprehensive.VisualAndAuditoryPage.gaming = true;
+                    startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this, comprehensive.VisualAndAuditoryPage.class));
+                }
+                else
+                {
+                    printWithDelay("Thanks for your answers...",1500);
+                    Thread.sleep(2000);
+                    startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this, HomePage.class));
+                }
             }
         }
         else//wrong answer given
