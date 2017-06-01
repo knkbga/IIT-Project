@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Game</string>
+    <string name="app_name">Working Memory</string>
 
     <string name="title_activity_home_page">HomePage</string>
     <string name="dummy_button">Dummy Button</string>
