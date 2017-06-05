@@ -50,4 +50,9 @@
         <item>Male</item>
     </string-array>
 
+    <string-array name="Institutes">
+        <item>Pi Scholastics</item>
+        <item>VMC</item>
+    </string-array>
+
 </resources>
