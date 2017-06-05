@@ -27,6 +27,7 @@ import com.example.om.mygame.TrialsWDistraction;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -58,11 +59,13 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
     private JSONArray different_events;
     private JSONObject individual_event;
     private int number_of_events =-1;
+    private TextView setNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_visual_only_with_distraction);
+        setNumber = (TextView) findViewById(R.id.setNumber);
 
+        setContentView(R.layout.activity_visual_only_with_distraction);
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -79,15 +82,16 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
         if(gaming)
         {
+            setNumber.setVisibility(View.GONE);
             route = "/comprehensive/gaming/with";
         }
         else
         {
+            setNumber.setVisibility(View.VISIBLE);
             route = "/comprehensive/trial/with";
         }
         super.onCreate(savedInstanceState);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        setContentView(R.layout.activity_visual_only_with_distraction);
         Intent intent = getIntent() ;
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_visual_and_auditory_page);
         levelLabel = (TextView) findViewById(R.id.levelIndicator);
@@ -329,7 +333,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
             outputTextView.setText("Congratulations! All Levels Completed successfully.");
             number_of_sets++;
-            if(number_of_sets <= 3)
+            setNumber.setText("Set = "+number_of_sets);
+            if(number_of_sets <= 2)
             {
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -398,6 +403,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             lives_left--;
             if(lives_left > 0)
             {
+                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                obj4.execute();
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
@@ -426,7 +433,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 obj4.execute();
 
                 Log.d("Params","After wrong answers given."+request.toString());
-
+                lives_left = 3;
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
                 if(gaming == true)
@@ -440,16 +447,17 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 {
                     if(level == 11)//last level (can't increment level)
                     {
-                        if(number_of_sets <3)
+                        if(number_of_sets <2)
                         {
                             number_of_sets++;
+                            setNumber.setText("Set = "+number_of_sets);
                             level = 6;
 
                             outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 6 of next set.");
                             levelLabel.setText("Level - "+(level-5));
                             myGameLoop(level);
                         }
-                        else if(number_of_sets ==3)
+                        else if(number_of_sets ==2)
                         {
                             printWithDelay("Starting next game",1500);
                             Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class);

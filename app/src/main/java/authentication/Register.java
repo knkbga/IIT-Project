@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.om.mygame.API;
@@ -38,7 +39,6 @@ import javax.net.ssl.HttpsURLConnection;
 public class Register extends AppCompatActivity {
 
     public Context mContext;
-    public static JSONObject reg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,11 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         Button Login =(Button) findViewById(R.id.Register);
+        final EditText testRank = (EditText) findViewById(R.id.TestRankField);
+        final EditText sleepHour = (EditText) findViewById(R.id.Sleep_hourField);
+        final EditText grade_10 = (EditText) findViewById(R.id.Grade_10Field);
+        final Spinner gender = (Spinner) findViewById(R.id.GenderField);
+        final EditText age = (EditText) findViewById(R.id.AgeField);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         final EditText email  = (EditText) findViewById(R.id.EmailField);
         final EditText password = (EditText) findViewById(R.id.PasswordField);
@@ -66,7 +71,7 @@ public class Register extends AppCompatActivity {
                 * todo: Code to send post request to web server
                 * */
 
-                if(name.getText().toString().equals("") || email.getText().toString().equals("") || password.getText().toString().equals("") || phone.getText().toString().equals("") || confirmPassword.getText().toString().equals(""))
+                if(age.getText().toString().trim().equals("") || gender.getSelectedItem().toString().trim().equals("") || grade_10.getText().toString().trim().equals("") || sleepHour.getText().toString().trim().equals("") || testRank.getText().toString().trim().equals("") || name.getText().toString().trim().equals("") || email.getText().toString().trim().equals("") || password.getText().toString().trim().equals("") || phone.getText().toString().trim().equals("") || confirmPassword.getText().toString().trim().equals(""))
                 {
                     testing.setText("** All fields are required **");
                 }
@@ -88,10 +93,15 @@ public class Register extends AppCompatActivity {
                         testing.setText("");
                         JSONObject postDataParams = new JSONObject();
                         try {
-                            postDataParams.put("email", email.getText().toString());
-                            postDataParams.put("password", password.getText().toString());
-                            postDataParams.put("name", name.getText().toString());
-                            postDataParams.put("phone", phone.getText().toString());
+                            postDataParams.put("email", email.getText().toString().trim());
+                            postDataParams.put("password", password.getText().toString().trim());
+                            postDataParams.put("name", name.getText().toString().trim());
+                            postDataParams.put("phone", phone.getText().toString().trim());
+                            postDataParams.put("gender", gender.getSelectedItem().toString());
+                            postDataParams.put("age", age.getText().toString().trim());
+                            postDataParams.put("grade_10", grade_10.getText().toString().trim());
+                            postDataParams.put("sleep_hour", sleepHour.getText().toString().trim());
+                            postDataParams.put("test_rank", testRank.getText().toString().trim());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

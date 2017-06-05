@@ -58,9 +58,13 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
     private JSONArray different_events;
     private JSONObject individual_event;
     private int number_of_events =-1;
+    private TextView setNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_visual_and_auditory_page);
+        setNumber = (TextView) findViewById(R.id.setNumber);
+
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -79,15 +83,16 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
         if(gaming)
         {
+            setNumber.setVisibility(View.GONE);
             route = "/comprehensive/gaming/without";
         }
         else
         {
+            setNumber.setVisibility(View.VISIBLE);
             route = "/comprehensive/trial/without";
         }
         super.onCreate(savedInstanceState);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        setContentView(R.layout.activity_visual_and_auditory_page);
         Intent intent = getIntent() ;
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_visual_and_auditory_page);
         levelLabel = (TextView) findViewById(R.id.levelIndicator);
@@ -307,7 +312,6 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
         else if ((questionString.equals(answerString))&&(lenth ==11))
         {
             different_events = new JSONArray();
-
             try {
 
                 // adding current ongoing event's variables
@@ -328,7 +332,8 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
             outputTextView.setText("Congratulations! All Levels Completed successfully");
             number_of_sets++;
-            if(number_of_sets <= 3)
+            setNumber.setText("Set = "+number_of_sets);
+            if(number_of_sets <= 2)
             {
                 API obj2 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
@@ -393,11 +398,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             if(lives_left > 0)
             {
                 API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
                 obj4.execute();
-
-                Log.d("API","After wrong answers given."+request.toString());
-
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
@@ -439,16 +440,17 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 {
                     if(level == 11)//last level (can't increment level)
                     {
-                        if(number_of_sets <3)
+                        if(number_of_sets <2)
                         {
                             number_of_sets++;
+                            setNumber.setText("Set = "+number_of_sets);
                             level = 6;
 
                             outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 6 of next set.");
                             levelLabel.setText("Level - "+(level-5));
                             myGameLoop(level);
                         }
-                        else if(number_of_sets ==3)
+                        else if(number_of_sets ==2)
                         {
                             printWithDelay("Your game has ended. Thank you for your response...",1500);
                             Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
