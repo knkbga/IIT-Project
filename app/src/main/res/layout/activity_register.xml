@@ -196,7 +196,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:text="Sleep hours"
+                android:text="Sleep hours (Avg)"
                 android:textSize="20dp" />
 
             <EditText
@@ -212,6 +212,7 @@
 
         <!-- Average Test Rank -->
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/linearLayout8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -225,7 +226,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:text="Tests Rank"
+                android:text="Test Rank"
                 android:textSize="20dp" />
 
             <EditText
@@ -257,14 +258,13 @@
                 android:text="Institute Name"
                 android:textSize="20dp" />
 
-            <Spinner
+            <EditText
+                android:textAlignment="center"
                 android:id="@+id/InstituteField"
-                android:entries="@array/Institutes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.70"
-                android:ems="10"
-                android:inputType="textPassword" />
+                android:ems="10"/>
 
         </LinearLayout>
 

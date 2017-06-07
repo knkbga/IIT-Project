@@ -281,7 +281,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
-                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("lives_till_used",(3-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -309,14 +309,14 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             levelLabel.setText("Level - "+(level-5));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==11))
+        else if ((questionString.equals(answerString))&&(lenth ==11)) // correct and final level
         {
             different_events = new JSONArray();
             try {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
-                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("lives_till_used",(3-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -333,7 +333,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             outputTextView.setText("Congratulations! All Levels Completed successfully");
             number_of_sets++;
             setNumber.setText("Set = "+number_of_sets);
-            if(number_of_sets <= 2)
+            if(number_of_sets <= 1) // not final set
             {
                 API obj2 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
 
@@ -346,7 +346,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
             }
-            else
+            else // final set
             {
                 if(gaming==true)
                 {
@@ -381,7 +381,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
-                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("lives_till_used",(3-lives_left+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -407,7 +407,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 levelLabel.setText("Level - "+(level-5));
                 myGameLoop(level);
             }
-            else
+            else // 0 lives left
             {
 
                 try {
@@ -432,28 +432,29 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
                 if(gaming == true)
                 {
                     outputTextView.setText("You have lost all your lives."+"Your game ended.");
-                    comprehensive.VisualAndAuditoryPage.gaming=true;
-                    Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.VisualAndAuditoryPage.class);
+                    comprehensive.TrialsWDistraction.gaming=true;
+                    Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.TrialsWDistraction.class);
                     startActivity(myIntent);
                 }
                 else
                 {
                     if(level == 11)//last level (can't increment level)
                     {
-                        if(number_of_sets <2)
+                        if(number_of_sets <1)
                         {
                             number_of_sets++;
                             setNumber.setText("Set = "+number_of_sets);
                             level = 6;
 
-                            outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 6 of next set.");
+                            outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 1 of next set.");
                             levelLabel.setText("Level - "+(level-5));
                             myGameLoop(level);
                         }
-                        else if(number_of_sets ==2)
+                        else if(number_of_sets ==1)
                         {
-                            printWithDelay("Your game has ended. Thank you for your response...",1500);
-                            Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,HomePage.class);
+                            printWithDelay("Starting new game ...",1500);
+                            comprehensive.TrialsWDistraction.gaming=false;
+                            Intent myIntent = new Intent(comprehensive.VisualAndAuditoryPage.this,comprehensive.TrialsWDistraction.class);
                             startActivity(myIntent);
                         }
                     }

@@ -11,22 +11,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="11dp">
-            <TextView
-                android:id="@+id/setNumber"
-                android:text="Set = 1"
-                android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="7dp" />
+            android:layout_marginTop="12dp">
+
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
@@ -81,31 +74,49 @@
                 android:layout_marginTop="47dp"
                 android:visibility="gone" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView2"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/progressBar"
+                android:layout_toRightOf="@+id/progressBar"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="1">
+
+                <Chronometer
+                    android:textAlignment="center"
+                    android:id="@+id/timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33"
+                    android:textSize="25dp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/setNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView2"
+                    android:layout_weight="0.33"
+                    android:text="Set = 1"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/levelIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33"
+                    android:textAlignment="center"
+                    android:textSize="25dp" />
+            </LinearLayout>
+
         </RelativeLayout>
 
-        <Chronometer
-            android:textSize="25dp"
-            android:visibility="visible"
-            android:id="@+id/timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="31dp"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="84dp" />
-        <TextView
-            android:textSize="25dp"
-            android:id="@+id/levelIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/textView"
-            android:layout_marginEnd="39dp"
-            android:layout_marginRight="39dp"
-            android:layout_marginTop="90dp" />
+
+
     </RelativeLayout>
 
 </ScrollView>

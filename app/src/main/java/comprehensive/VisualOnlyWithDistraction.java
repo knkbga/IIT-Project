@@ -63,9 +63,10 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setNumber = (TextView) findViewById(R.id.setNumber);
+
 
         setContentView(R.layout.activity_visual_only_with_distraction);
+        setNumber = (TextView) findViewById(R.id.setNumber);
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -281,7 +282,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
-                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("lives_till_used",(3-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -317,7 +318,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
-                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("lives_till_used",(3-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -334,7 +335,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             outputTextView.setText("Congratulations! All Levels Completed successfully.");
             number_of_sets++;
             setNumber.setText("Set = "+number_of_sets);
-            if(number_of_sets <= 2)
+            if(number_of_sets <= 1)
             {
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -369,8 +370,8 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 Log.d("Params","Right answer given"+request.toString());
 
                 if(gaming == false) {
-                    comprehensive.VisualAndAuditoryPage.gaming = true;
-                    startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this, comprehensive.VisualAndAuditoryPage.class));
+                    comprehensive.TrialsWODistraction.gaming = true;
+                    startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this, comprehensive.TrialsWODistraction.class));
                 }
                 else
                 {
@@ -387,7 +388,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",number_of_sets);
-                individual_event.put("lives_till_used",3-lives_left);
+                individual_event.put("lives_till_used",(3-lives_left+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -439,28 +440,29 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 if(gaming == true)
                 {
                     outputTextView.setText("You have lost all your lives."+"\n"+"Your game ended.");
-                    comprehensive.VisualAndAuditoryPage.gaming=true;
-                    Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class);
+                    comprehensive.TrialsWODistraction.gaming=true;
+                    Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,HomePage.class);
                     startActivity(myIntent);
                 }
                 else
                 {
                     if(level == 11)//last level (can't increment level)
                     {
-                        if(number_of_sets <2)
+                        if(number_of_sets <1)
                         {
                             number_of_sets++;
                             setNumber.setText("Set = "+number_of_sets);
                             level = 6;
 
-                            outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 6 of next set.");
+                            outputTextView.setText("You have lost all your lives."+"\n"+"Taking you to level 1 of next set.");
                             levelLabel.setText("Level - "+(level-5));
                             myGameLoop(level);
                         }
-                        else if(number_of_sets ==2)
+                        else if(number_of_sets ==1)
                         {
-                            printWithDelay("Starting next game",1500);
-                            Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.VisualAndAuditoryPage.class);
+                            printWithDelay("Your game has ended. Thank you for your response...",1500);
+                            comprehensive.TrialsWODistraction.gaming = true;
+                            Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,comprehensive.TrialsWODistraction.class);
                             startActivity(myIntent);
                         }
                     }
