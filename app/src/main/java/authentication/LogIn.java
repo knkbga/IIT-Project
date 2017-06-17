@@ -70,6 +70,7 @@ public class LogIn extends AppCompatActivity {
 
             progressBar.setVisibility(View.VISIBLE);
 
+
             if(email.getText().toString().equals("") || password.getText().toString().equals(""))
             {
                 testing.setText("**  All fields should be filled **");
@@ -91,6 +92,7 @@ public class LogIn extends AppCompatActivity {
                     try {
                         postDataParams.put("email", email.getText().toString());
                         postDataParams.put("password", password.getText().toString());
+                        postDataParams.put("app_code", "mzf");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

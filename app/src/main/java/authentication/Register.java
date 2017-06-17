@@ -51,7 +51,6 @@ public class Register extends AppCompatActivity {
 
         Button Login =(Button) findViewById(R.id.Register);
         final EditText institute = (EditText) findViewById(R.id.InstituteField);
-        final EditText sleepHour = (EditText) findViewById(R.id.Sleep_hourField);
         final EditText grade_10 = (EditText) findViewById(R.id.Grade_10Field);
         final Spinner gender = (Spinner) findViewById(R.id.GenderField);
         final EditText age = (EditText) findViewById(R.id.AgeField);
@@ -71,7 +70,7 @@ public class Register extends AppCompatActivity {
                 * todo: Code to send post request to web server
                 * */
 
-                if(institute.getText().toString().trim().equals("") || age.getText().toString().trim().equals("") || gender.getSelectedItem().toString().trim().equals("") || grade_10.getText().toString().trim().equals("") || sleepHour.getText().toString().trim().equals("") || name.getText().toString().trim().equals("") || email.getText().toString().trim().equals("") || password.getText().toString().trim().equals("") || phone.getText().toString().trim().equals("") || confirmPassword.getText().toString().trim().equals(""))
+                if(institute.getText().toString().trim().equals("") || age.getText().toString().trim().equals("") || gender.getSelectedItem().toString().trim().equals("") || grade_10.getText().toString().trim().equals("") || name.getText().toString().trim().equals("") || email.getText().toString().trim().equals("") || password.getText().toString().trim().equals("") || phone.getText().toString().trim().equals("") || confirmPassword.getText().toString().trim().equals(""))
                 {
                     testing.setText("** All fields are required **");
                 }
@@ -100,7 +99,6 @@ public class Register extends AppCompatActivity {
                             postDataParams.put("gender", gender.getSelectedItem().toString());
                             postDataParams.put("age", age.getText().toString().trim());
                             postDataParams.put("grade_10", grade_10.getText().toString().trim());
-                            postDataParams.put("sleep_hour", sleepHour.getText().toString().trim());
                             postDataParams.put("institute", institute.getText().toString().trim());
                         } catch (JSONException e) {
                             e.printStackTrace();
