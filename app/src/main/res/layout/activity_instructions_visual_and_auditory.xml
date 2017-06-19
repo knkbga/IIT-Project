@@ -2,9 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_instructions_visual_and_auditory"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     android:background="#ffff"
-    tools:context="com.example.om.mygame.TrialsWODistraction">
+    tools:context="comprehensive.InstructionsVisualAndAuditory">
 
 
     <RelativeLayout
@@ -46,7 +47,7 @@
                     android:id="@+id/instruction_1_text"
                     android:textColor="#000000"
                     android:paddingLeft="10dp"
-                    android:text="@string/instruction_wo_trial_1"
+                    android:text="@string/instruction_wo_gaming_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -67,7 +68,7 @@
                     android:id="@+id/instruction_2_text"
                     android:textColor="#000000"
                     android:paddingLeft="10dp"
-                    android:text="@string/instruction_wo_trial_2"
+                    android:text="@string/instruction_wo_gaming_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -88,7 +89,7 @@
                     android:id="@+id/instruction_3_text"
                     android:paddingLeft="10dp"
                     android:textColor="#000000"
-                    android:text="@string/instruction_wo_trial_3"
+                    android:text="@string/instruction_wo_gaming_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -109,7 +110,7 @@
                     android:id="@+id/instruction_4_text"
                     android:paddingLeft="10dp"
                     android:textColor="#000000"
-                    android:text="@string/instruction_wo_trial_4"
+                    android:text="@string/instruction_wo_gaming_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

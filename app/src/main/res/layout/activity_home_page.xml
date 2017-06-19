@@ -15,16 +15,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <TextView
-            android:id="@+id/NameDisplay"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp"
-            android:text=""
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="130dp" />
 
         <RelativeLayout
             android:padding="20dp"
@@ -38,7 +28,7 @@
                 android:layout_margin="20dp"
                 android:padding="30dp"
                 android:textColor="#ffff"
-                android:background="#39e239"
+                android:background="#4aa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="COMPREHENSIVE TEST"
@@ -50,7 +40,7 @@
                 android:layout_margin="20dp"
                 android:textColor="#ffff"
                 android:padding="30dp"
-                android:background="#39e239"
+                android:background="#4aa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SPECIFIC MODULES"

@@ -267,7 +267,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
             //audio.release();
         }
         back_button_pressed = 1 ;
-        Intent intent = new Intent(VisualAndAuditoryPage.this, PracticeHomePage.class);
+        Intent intent = new Intent(VisualAndAuditory.this, PracticeHomePage.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

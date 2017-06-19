@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_visual_and_auditory_page"
+    android:id="@+id/activity_audio_only"
     tools:context="comprehensive.VisualAndAuditory"
     android:orientation="vertical"
+    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#39add1"
-                android:text="Visual and Auditory Memory Test Game"
+                android:text="Auditory Only Memory Test Game"
                 android:id="@+id/textView"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
                 android:gravity="center"
-                android:id="@+id/visual_and_auditory_output"
+                android:id="@+id/audio_only_output"
                 android:layout_marginTop="85dp"
                 android:layout_below="@+id/textView"
                 android:layout_alignParentLeft="true"
@@ -49,20 +50,20 @@
                 android:inputType= "number"
                 android:textSize="30sp"
                 android:gravity="center"
-                android:id="@+id/visual_and_auditory_input"
-                android:layout_below="@+id/visual_and_auditory_output"
+                android:id="@+id/audio_only_input"
+                android:layout_below="@+id/audio_only_output"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp" />
 
             <Button
                 android:layout_marginTop="30dp"
-                android:layout_below="@+id/visual_and_auditory_input"
+                android:layout_below="@+id/audio_only_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
-                android:id="@+id/visual_and_auditory_submit_button"
+                android:id="@+id/audio_only_submit_button"
                 android:layout_gravity="center"
-                android:onClick="visualOnlySubmitButton"
+                android:onClick="AudioOnlySubmitButton"
                 android:layout_centerHorizontal="true" />
 
 
@@ -72,17 +73,9 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/visual_and_auditory_output"
+                android:layout_below="@+id/audio_only_output"
                 android:layout_centerHorizontal="true"
                 android:visibility="gone" />
-
-            <TextView
-                android:textSize="80dp"
-                android:id="@+id/digits_show"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
         </RelativeLayout>
 
         <LinearLayout

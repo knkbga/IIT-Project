@@ -11,26 +11,25 @@
 
     <string name="title_activity_trials_wdistraction">Trials With Distraction</string>
 
-    <string name="instruction_wo_trial_1">This trial includes 3 sets, each including 6 levels.</string>
-    <string name="instruction_wo_trial_2">For each level you will be provided with 3 lives.</string>
-    <string name="instruction_wo_trial_3">If any user exhaust his/her all 3 lives then next level will start.</string>
-    <string name="instruction_wo_trial_4">Answer should be in the same sequence as they are displayed.</string>
-
-    <string name="instruction_wo_gaming_1">This trial includes 3 sets, each including 6 levels.</string>
+    <string name="instruction_wo_gaming_1">This game includes levels from 6 to 20. Each level indicating number of digits in that level.</string>
     <string name="instruction_wo_gaming_2">For each level you will be provided with 3 lives.</string>
-    <string name="instruction_wo_gaming_3">If any user exhaust his/her all 3 lives then next game(with distraction) will start.</string>
+    <string name="instruction_wo_gaming_3">If any user exhaust his/her all 3 lives then next game will start.</string>
     <string name="instruction_wo_gaming_4">Answer should be in the same sequence as they are displayed.</string>
 
-    <string name="instruction_w_trial_1">This trial includes 3 sets, each including 6 levels.</string>
-    <string name="instruction_w_trial_2">For each level you will be provided with 3 lives.</string>
-    <string name="instruction_w_trial_3">If any user exhaust his/her all 3 lives that level will start again.</string>
-    <string name="instruction_w_trial_4">Answer should be in the same sequence as they are displayed not what you hear(distraction).</string>
-
-    <string name="instruction_w_gaming_1">This trial includes 3 sets, each including 6 levels.</string>
+    <string name="instruction_w_gaming_1">This game includes levels from 6 to 20. Each level indicating number of digits in that level.</string>
     <string name="instruction_w_gaming_2">For each level you will be provided with 3 lives.</string>
-    <string name="instruction_w_gaming_3">If any user exhaust his/her all 3 lives then next game (with distraction) will start.</string>
+    <string name="instruction_w_gaming_3">If any user exhaust his/her all 3 lives then next game will start.</string>
     <string name="instruction_w_gaming_4">Answer should be in the same sequence as they are displayed not what you hear(distraction).</string>
 
+    <string name="instruction_audio_only_1">This game includes levels from 6 to 20. Each level indicating number of digits in that level.</string>
+    <string name="instruction_audio_only_2">For each level you will be provided with 3 lives.</string>
+    <string name="instruction_audio_only_3">If any user exhaust his/her all 3 lives then next game will start.</string>
+    <string name="instruction_audio_only_4">Answer should be in the same sequence as the sound comes out.</string>
+
+    <string name="instruction_visual_only_1">This game includes levels from 6 to 20. Each level indicating number of digits in that level.</string>
+    <string name="instruction_visual_only_2">For each level you will be provided with 3 lives.</string>
+    <string name="instruction_visual_only_3">If any user exhaust his/her all 3 lives then next game will start.</string>
+    <string name="instruction_visual_only_4">Answer should be in the same sequence as they are shown.</string>
 
     <string name="title_activity_game_welcome_page">GameWelcomePage</string>
 
@@ -54,5 +53,15 @@
         <item>Pi Scholastics</item>
         <item>VMC</item>
     </string-array>
+
+    <string name="title_activity_audio_only_page">AudioOnlyPage</string>
+
+    <string name="title_activity_instructions_audio_only">Instructions For Audio Only Game</string>
+
+    <string name="title_activity_visual_only">VisualOnly</string>
+
+    <string name="title_activity_instructions_visual_only">InstructionsVisualOnly</string>
+
+    <string name="title_activity_set">Set</string>
 
 </resources>

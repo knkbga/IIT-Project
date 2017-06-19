@@ -18,7 +18,7 @@ public class TrialsWODistraction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_trials_wodistraction);
+        setContentView(R.layout.activity_instructions_visual_and_auditory);
         Button startTest = (Button) findViewById(R.id.StartTestWO);
 
         startTest.setOnClickListener(new View.OnClickListener() {

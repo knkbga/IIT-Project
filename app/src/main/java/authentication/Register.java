@@ -66,9 +66,6 @@ public class Register extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /**
-                * todo: Code to send post request to web server
-                * */
 
                 if(institute.getText().toString().trim().equals("") || age.getText().toString().trim().equals("") || gender.getSelectedItem().toString().trim().equals("") || grade_10.getText().toString().trim().equals("") || name.getText().toString().trim().equals("") || email.getText().toString().trim().equals("") || password.getText().toString().trim().equals("") || phone.getText().toString().trim().equals("") || confirmPassword.getText().toString().trim().equals(""))
                 {
@@ -100,6 +97,7 @@ public class Register extends AppCompatActivity {
                             postDataParams.put("age", age.getText().toString().trim());
                             postDataParams.put("grade_10", grade_10.getText().toString().trim());
                             postDataParams.put("institute", institute.getText().toString().trim());
+                            postDataParams.put("app_code", "mzf");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

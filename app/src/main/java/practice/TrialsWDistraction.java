@@ -18,7 +18,7 @@ public class TrialsWDistraction extends AppCompatActivity {
         //is connected to the internet
         if(HomePage.isConnected)
         {
-            setContentView(R.layout.activity_trials_wdistraction);
+            setContentView(R.layout.activity_instructions_visual_only_with_distraction);
             Button start_this_test = (Button) findViewById(R.id.StartTestW);
 
             start_this_test.setOnClickListener(new View.OnClickListener() {

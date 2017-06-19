@@ -84,7 +84,7 @@ public class Network extends AppCompatActivity {
                         }).show();
                 }
 
-                if (can_proceed && Connectivity.isConnected(mContext,Authenticate.url))//todo check if connection is successful
+                if (can_proceed && Connectivity.isConnected(mContext,Authenticate.url))
                 {
                     if (Authenticate.reg_log == 0) {
                         Intent myIntent = new Intent(Network.this, Register.class);

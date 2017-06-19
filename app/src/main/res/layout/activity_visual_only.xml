@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id = "@+id/activity_visual_only_with_distraction"
+    android:id = "@+id/activity_visual_only"
     android:orientation="vertical"
     android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="comprehensive.VisualOnlyWithDistraction"
+    tools:context="comprehensive.VisualOnly"
     android:weightSum="1">
 
     <RelativeLayout
@@ -28,7 +28,7 @@
                 android:textSize="20sp"
                 android:gravity="center"
                 android:textColor="#39add1"
-                android:text="Visual Only with Auditory Distraction Memory Test Game"
+                android:text="Visual Only Memory Test Game"
                 android:id="@+id/textView2" />
 
             <TextView
@@ -36,11 +36,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
                 android:gravity="center"
-                android:id="@+id/visual_only_with_distraction_output"
+                android:id="@+id/visual_only_output"
                 android:layout_marginTop="76dp"
                 android:layout_below="@+id/textView2"
-                android:layout_alignLeft="@+id/visual_only_with_distraction_input"
-                android:layout_alignStart="@+id/visual_only_with_distraction_input" />
+                android:layout_alignLeft="@+id/visual_only_input"
+                android:layout_alignStart="@+id/visual_only_input" />
 
             <EditText
                 android:layout_width="316dp"
@@ -49,8 +49,8 @@
                 android:inputType= "number"
                 android:textSize="30sp"
                 android:gravity="center"
-                android:id="@+id/visual_only_with_distraction_input"
-                android:layout_alignTop="@+id/visual_only_with_distraction_output"
+                android:id="@+id/visual_only_input"
+                android:layout_alignTop="@+id/visual_only_output"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="23dp" />
 
@@ -58,22 +58,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
-                android:id="@+id/visual_only_with_distraction_submit_button"
+                android:id="@+id/visual_only_submit_button"
                 android:layout_gravity="center"
-                android:onClick="visualOnlyWithDistractionSubmitButton"
+                android:onClick="visualOnlySubmitButton"
                 android:layout_marginTop="22dp"
-                android:layout_below="@+id/visual_only_with_distraction_input"
+                android:layout_below="@+id/visual_only_input"
                 android:layout_centerHorizontal="true" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/visual_only_with_distraction_output"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="47dp"
-                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,7 +94,7 @@
                     android:textSize="25dp" />
 
                 <TextView
-                    android:text="level -1"
+                    android:text="level - 1"
                     android:id="@+id/levelIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,6 +111,15 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 />
+
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/visual_only_submit_button"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 
