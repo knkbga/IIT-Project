@@ -1,4 +1,4 @@
-package comprehensive;
+package practice;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,11 +18,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.om.mygame.API;
+
 import com.example.om.mygame.HomePage;
+import com.example.om.mygame.PracticeHomePage;
 import com.example.om.mygame.R;
 import com.example.om.mygame.Set;
-import com.google.api.client.util.Sets;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +34,7 @@ import java.util.TimeZone;
 
 import authentication.Authenticate;
 import authentication.PersonCredentials;
+import comprehensive.InstructionsVisualOnly;
 
 public class AudioOnly extends AppCompatActivity {
     private JSONObject request;
@@ -59,7 +60,7 @@ public class AudioOnly extends AppCompatActivity {
 
         setContentView(R.layout.activity_audio_only);
         setNumber = (TextView) findViewById(R.id.setNumber);
-        setNumber.setText("Set = "+ Set.Sets_game);
+        setNumber.setVisibility(View.INVISIBLE);
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -284,11 +285,6 @@ public class AudioOnly extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-            API obj1 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-            obj1.execute();
-
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
@@ -327,8 +323,6 @@ public class AudioOnly extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-            obj3.execute();
 
             printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
             Thread.sleep(1500);
@@ -338,7 +332,7 @@ public class AudioOnly extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    final Intent mainIntent = new Intent(comprehensive.AudioOnly.this, InstructionsVisualOnly.class);
+                    final Intent mainIntent = new Intent(AudioOnly.this, PracticeHomePage.class);
                     AudioOnly.this.startActivity(mainIntent);
                     AudioOnly.this.finish();
                 }
@@ -368,8 +362,6 @@ public class AudioOnly extends AppCompatActivity {
             lives_left--;
             if(lives_left > 0)
             {
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                obj4.execute();
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
@@ -390,10 +382,6 @@ public class AudioOnly extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-                obj4.execute();
-
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
                 lives_left = Set.max_lives_every_game;
@@ -406,7 +394,7 @@ public class AudioOnly extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        final Intent mainIntent = new Intent(comprehensive.AudioOnly.this, InstructionsVisualOnly.class);
+                        final Intent mainIntent = new Intent(AudioOnly.this, PracticeHomePage.class);
                         AudioOnly.this.startActivity(mainIntent);
                         AudioOnly.this.finish();
                     }
@@ -490,11 +478,11 @@ public class AudioOnly extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Not recommended to leave the game before you complete all 3 sets.")
+        builder.setMessage("Are you sure you want to leave ?")
                 .setCancelable(false)
                 .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent myIntent = new Intent(AudioOnly.this,HomePage.class);
+                        Intent myIntent = new Intent(AudioOnly.this,PracticeHomePage.class);
                         try {
                             different_events = new JSONArray();
 
@@ -508,15 +496,11 @@ public class AudioOnly extends AppCompatActivity {
                         }
 
                         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                        API obj5 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                        obj5.execute();
 
                         Log.d("API","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
 
                         startActivity(myIntent);
                         AudioOnly.super.onBackPressed();
-                        audio.pause();
-                        audio.reset();
                     }
                 })
                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {

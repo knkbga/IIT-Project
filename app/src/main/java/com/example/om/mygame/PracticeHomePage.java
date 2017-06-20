@@ -16,12 +16,22 @@ public class PracticeHomePage extends AppCompatActivity {
     }
     public void visualAndAuditory(View view)
     {
-        Intent intent = new Intent(this, practice.VisualAndAuditoryPage.class);
+        Intent intent = new Intent(this, practice.VisualAndAuditory.class);
         startActivity(intent);
     }
     public void visualOnlyWithDistraction(View view)
     {
         Intent intent = new Intent(this, practice.VisualOnlyWithDistraction.class);
+        startActivity(intent);
+    }
+    public void visualOnly(View view)
+    {
+        Intent intent = new Intent(this, practice.VisualOnly.class);
+        startActivity(intent);
+    }
+    public void audioOnly(View view)
+    {
+        Intent intent = new Intent(this, practice.AudioOnly.class);
         startActivity(intent);
     }
 

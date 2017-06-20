@@ -201,7 +201,7 @@ public class VisualOnly extends AppCompatActivity {
         }
 
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <20))//correct but not final level
+        if ((questionString.equals(answerString))&&(lenth <Set.max_levels_every_game))//correct but not final level
         {
             different_events = new JSONArray();
 
@@ -236,7 +236,7 @@ public class VisualOnly extends AppCompatActivity {
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==20)) // correct and final level
+        else if ((questionString.equals(answerString))&&(lenth ==Set.max_levels_every_game)) // correct and final level
         {
             different_events = new JSONArray();
             try {
@@ -471,8 +471,6 @@ public class VisualOnly extends AppCompatActivity {
 
                         startActivity(myIntent);
                         VisualOnly.super.onBackPressed();
-                        audio.pause();
-                        audio.reset();
                     }
                 })
                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {

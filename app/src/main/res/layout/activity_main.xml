@@ -14,38 +14,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="#F00"
+            android:textColor="#7d45e6"
             android:id="@+id/instruction_text_view"
             android:text="Please select the type of game that you want to play from the following options!" />
 
         <Button
+            android:textColor="#fff"
+            android:background="#4aa"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:text="Visual Trials without Distraction"
+            android:text="Visual With Audio Distraction"
             android:id="@+id/visual_and_auditory"
             android:onClick="visualAndAuditory"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="60dp"
             android:layout_below="@+id/instruction_text_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <Button
+            android:background="#4aa"
+            android:textColor="#fff"
             android:id="@+id/visual_only_with_Distraction"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:onClick="visualOnlyWithDistraction"
-            android:text="Visual Trials with Distraction"
+            android:text="Visual with Audio"
             android:layout_below="@+id/visual_and_auditory"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="20dp" />
+        <Button
+            android:textColor="#fff"
+            android:background="#4aa"
+            android:id="@+id/visual_only"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:onClick="visualOnly"
+            android:text="Visual Only"
+            android:layout_below="@+id/visual_only_with_Distraction"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp" />
+        <Button
+            android:textColor="#fff"
+            android:background="#4aa"
+            android:id="@+id/audio_only"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:onClick="audioOnly"
+            android:text="Audio Only"
+            android:layout_below="@+id/visual_only"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp" />
     </RelativeLayout>
 
 

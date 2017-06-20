@@ -1,4 +1,4 @@
-package comprehensive;
+package practice;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,8 +18,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.om.mygame.API;
 import com.example.om.mygame.HomePage;
+import com.example.om.mygame.PracticeHomePage;
 import com.example.om.mygame.R;
 import com.example.om.mygame.Set;
 
@@ -33,11 +33,12 @@ import java.util.TimeZone;
 
 import authentication.Authenticate;
 import authentication.PersonCredentials;
+import comprehensive.InstructionsAudioOnly;
 
-public class VisualOnlyWithDistraction extends AppCompatActivity {
+public class VisualAndAuditory extends AppCompatActivity {
     private JSONObject request;
     public String route;
-    protected int lives_left;
+    protected int lives_left ;
     private int level = 6;
     private String questionString;
     private static MediaPlayer audio;
@@ -53,20 +54,20 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
     private TextView setNumber;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         lives_left = Set.max_lives_every_game;
 
-        setContentView(R.layout.activity_visual_only_with_distraction);
+        setContentView(R.layout.activity_visual_and_auditory);
         setNumber = (TextView) findViewById(R.id.setNumber);
-
-        setNumber.setText("Set = "+Set.Sets_game);
+        setNumber.setVisibility(View.INVISIBLE);
 
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
         df = new SimpleDateFormat( "dd-MM-yyyy 'at' kk:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("IST"));
+
+        Log.d("_id",PersonCredentials.oid);
 
         try {
             request.put("_id",PersonCredentials.oid);
@@ -76,7 +77,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         }
         Log.d("TIME",df.format(new java.util.Date()));
 
-        route = "/comprehensive/gaming/with";
+        route = "/comprehensive/gaming/without";
 
         super.onCreate(savedInstanceState);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -120,64 +121,61 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             total_delay_time = 1000 + 1000*(i+1);
             printWithDelayDigit("",total_delay_time-50); //Just for clearness between the first number and the next number
             printWithDelayDigit(Integer.toString(rand),total_delay_time);
-
-            int distraction_audio = new Random().nextInt(10);
-
-            if (distraction_audio==0)
+            if (rand==0)
             {
                 audio =  MediaPlayer.create(this, R.raw.zero);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==1)
+            else if (rand==1)
             {
                 audio =  MediaPlayer.create(this, R.raw.one);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==2)
+            else if (rand==2)
             {
                 audio =  MediaPlayer.create(this, R.raw.two);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==3)
+            else if (rand==3)
             {
                 audio =  MediaPlayer.create(this, R.raw.three);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==4)
+            else if (rand==4)
             {
                 audio =  MediaPlayer.create(this, R.raw.four);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==5)
+            else if (rand==5)
             {
                 audio =  MediaPlayer.create(this, R.raw.five);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==6)
+            else if (rand==6)
             {
                 audio =  MediaPlayer.create(this, R.raw.six);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==7)
+            else if (rand==7)
             {
                 audio =  MediaPlayer.create(this, R.raw.seven);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==8)
+            else if (rand==8)
             {
                 audio =  MediaPlayer.create(this, R.raw.eight);
                 setAudioStartTime(audio,total_delay_time);
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
-            else if (distraction_audio==9)
+            else if (rand==9)
             {
                 audio =  MediaPlayer.create(this, R.raw.nine);
                 setAudioStartTime(audio,total_delay_time);
@@ -187,9 +185,9 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         // Delay of 2 Has to be inserted here
         printWithDelayDigit("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
-        final EditText inputText = (EditText) findViewById(R.id.visual_only_with_distraction_input);
-        final Button submit_button  = (Button)findViewById(R.id.visual_only_with_distraction_submit_button) ;
-        inputText.setVisibility(View.INVISIBLE) ;
+        final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
+        final Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
+        inputText.setVisibility(View.INVISIBLE);
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
         {
@@ -199,7 +197,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 public void run() {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
-                    inputText.setVisibility(View.VISIBLE) ;
+                    inputText.setVisibility(View.VISIBLE);
                     submit_button.setVisibility(View.VISIBLE) ;
                 }
             }, delay_time);
@@ -212,7 +210,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                     // Perform action on key press
                     //Toast.makeText(HelloFormStuff.this, edittext.getText(), Toast.LENGTH_SHORT).show();
                     try {
-                        visualOnlyWithDistractionSubmitButton();
+                        visualOnlySubmitButton();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -226,15 +224,17 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         // From here the answer that the user gives will be checked by clicking on the Submit button on the visual only page
     } // The work of this loop is to display the random numbers with their audio after appropriate delay & make questionString
 
-    public void visualOnlyWithDistractionSubmitButton(View view) throws InterruptedException {
-        visualOnlyWithDistractionSubmitButton();
+    public void visualOnlySubmitButton(View view) throws InterruptedException {
+        visualOnlySubmitButton();
     }
 
-    public void visualOnlyWithDistractionSubmitButton() throws InterruptedException {
-        Button submit_button  = (Button)findViewById(R.id.visual_only_with_distraction_submit_button) ;
+    public void visualOnlySubmitButton() throws InterruptedException {
+        Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
         } catch (JSONException e) {
@@ -242,8 +242,9 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         }
         number_of_events++;
         String answerString ;
-        TextView outputTextView = (TextView) findViewById(R.id.visual_only_with_distraction_output);
-        final EditText inputText = (EditText) findViewById(R.id.visual_only_with_distraction_input);
+        TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
+
+        final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
         int lenth = level ;
         ///////////////////////////////////////////////////////////////////////
         if(inputText != null || !inputText.getText().equals(""))
@@ -266,6 +267,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         if ((questionString.equals(answerString))&&(lenth <Set.max_levels_every_game))//correct but not final level
         {
             different_events = new JSONArray();
+
             try {
 
                 // adding current ongoing event's variables
@@ -284,14 +286,6 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-            API obj1 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-            obj1.execute();
-
-            Log.d("Params","Correct but not final level"+request.toString());
-
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
@@ -300,7 +294,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==Set.max_levels_every_game))// correct and final level
+        else if ((questionString.equals(answerString))&&(lenth ==Set.max_levels_every_game)) // correct and final level
         {
             different_events = new JSONArray();
             try {
@@ -321,8 +315,9 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            Thread.sleep(3000);
             outputTextView.setText("Congratulations! All Levels Completed successfully. Starting next game...");
-            Thread.sleep(1500);
+
 
             try {
                 request.put("end_session",df.format(new java.util.Date()));
@@ -333,16 +328,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-            API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-            obj3.execute();
-
-
-            Set.Sets_game++;
-
-            printWithDelay("Starting your next Set",1500);
+            printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
             Thread.sleep(1500);
 
             submit_button.setVisibility(View.INVISIBLE);
@@ -350,12 +336,11 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    final Intent mainIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this, Set.class);
-                    VisualOnlyWithDistraction.this.startActivity(mainIntent);
-                    VisualOnlyWithDistraction.this.finish();
+                    final Intent mainIntent = new Intent(VisualAndAuditory.this, PracticeHomePage.class);
+                    VisualAndAuditory.this.startActivity(mainIntent);
+                    VisualAndAuditory.this.finish();
                 }
             }, 1500);
-
 
         }
         else//wrong answer given
@@ -381,8 +366,6 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             lives_left--;
             if(lives_left > 0)
             {
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                obj4.execute();
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
@@ -391,7 +374,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 levelLabel.setText("Level - "+(level));
                 myGameLoop(level);
             }
-            else
+            else // 0 lives left
             {
 
                 try {
@@ -404,18 +387,12 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-                obj4.execute();
-
-                lives_left = Set.max_lives_every_game;
                 inputText.setVisibility(View.INVISIBLE);
+                lives_left = Set.max_lives_every_game;
 
-                Set.Sets_game++;
 
-                printWithDelay("You have lost all your lives. Starting your next Set...",1500);
+
+                printWithDelay("You have lost all your lives. Starting next game...",1500);
                 Thread.sleep(1500);
 
                 submit_button.setVisibility(View.INVISIBLE);
@@ -423,9 +400,9 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        final Intent mainIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this, Set.class);
-                        VisualOnlyWithDistraction.this.startActivity(mainIntent);
-                        VisualOnlyWithDistraction.this.finish();
+                        final Intent mainIntent = new Intent(VisualAndAuditory.this, PracticeHomePage.class);
+                        VisualAndAuditory.this.startActivity(mainIntent);
+                        VisualAndAuditory.this.finish();
                     }
                 }, 1500);
 
@@ -443,7 +420,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                 public void run() {
                     // D0 something after delay_time milli seconds
                     // 1 second = 1000 milli second
-                    TextView outputTextView = (TextView) findViewById(R.id.visual_only_with_distraction_output);
+                    TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
                     outputTextView.setText(string_to_print);
                 }
             }, delay_time);
@@ -494,7 +471,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
                     if ((audio != null)&&(back_button_pressed==0))
-                        audio.start();
+                    audio.start();
                 }
             }, delay_time);
         }
@@ -523,12 +500,14 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Not recommended to leave the game before you complete all 3 sets.")
+        builder.setMessage("Are you sure you want to leave ?")
                 .setCancelable(false)
                 .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,HomePage.class);
+                        Intent myIntent = new Intent(VisualAndAuditory.this,PracticeHomePage.class);
                         try {
+                            different_events = new JSONArray();
+
                             request.put("point_end", level);
                             request.put("end_session", df.format(new java.util.Date()));
 
@@ -539,13 +518,11 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
                         }
 
                         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                        API obj5 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                        obj5.execute();
 
-                        Log.d("Params","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
+                        Log.d("API","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
 
                         startActivity(myIntent);
-                        VisualOnlyWithDistraction.super.onBackPressed();
+                        VisualAndAuditory.super.onBackPressed();
                         audio.pause();
                         audio.reset();
                     }

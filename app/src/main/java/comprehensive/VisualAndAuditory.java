@@ -263,7 +263,7 @@ public class VisualAndAuditory extends AppCompatActivity {
         }
 
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <20))//correct but not final level
+        if ((questionString.equals(answerString))&&(lenth <Set.max_levels_every_game))//correct but not final level
         {
             different_events = new JSONArray();
 
@@ -299,7 +299,7 @@ public class VisualAndAuditory extends AppCompatActivity {
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==20)) // correct and final level
+        else if ((questionString.equals(answerString))&&(lenth ==Set.max_levels_every_game)) // correct and final level
         {
             different_events = new JSONArray();
             try {

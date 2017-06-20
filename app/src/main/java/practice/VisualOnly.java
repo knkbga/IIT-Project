@@ -1,4 +1,4 @@
-package comprehensive;
+package practice;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,11 +18,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.om.mygame.API;
 import com.example.om.mygame.HomePage;
+import com.example.om.mygame.PracticeHomePage;
 import com.example.om.mygame.R;
 import com.example.om.mygame.Set;
-import com.google.api.client.util.Sets;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,8 +33,9 @@ import java.util.TimeZone;
 
 import authentication.Authenticate;
 import authentication.PersonCredentials;
+import comprehensive.InstructionsVisualOnlyWithDistraction;
 
-public class AudioOnly extends AppCompatActivity {
+public class VisualOnly extends AppCompatActivity {
     private JSONObject request;
     public String route;
     protected int lives_left;
@@ -57,9 +57,10 @@ public class AudioOnly extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         lives_left = Set.max_lives_every_game;
 
-        setContentView(R.layout.activity_audio_only);
+        setContentView(R.layout.activity_visual_only);
         setNumber = (TextView) findViewById(R.id.setNumber);
-        setNumber.setText("Set = "+ Set.Sets_game);
+        setNumber.setVisibility(View.INVISIBLE);
+
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -74,14 +75,13 @@ public class AudioOnly extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("TIME",df.format(new java.util.Date()));
 
-            route = "/comprehensive/gaming/audio";
+        route = "/comprehensive/gaming/visual";
 
         super.onCreate(savedInstanceState);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         Intent intent = getIntent() ;
-        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_audio_only);
+        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_visual_only);
         levelLabel = (TextView) findViewById(R.id.levelIndicator);
         levelLabel.setText("Level - "+(level));
         timer = (Chronometer) findViewById(R.id.timer);
@@ -118,74 +118,14 @@ public class AudioOnly extends AppCompatActivity {
             }
             // Delay of 1 Has to inserted here
             total_delay_time = 1000 + 1000*(i+1);
-            printWithDelay("",total_delay_time-50); //Just for clearness between the first number and the next number
-//            printWithDelay(Integer.toString(rand),total_delay_time); commented for audio only page
-            if (rand==0)
-            {
-                audio =  MediaPlayer.create(this, R.raw.zero);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==1)
-            {
-                audio =  MediaPlayer.create(this, R.raw.one);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==2)
-            {
-                audio =  MediaPlayer.create(this, R.raw.two);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==3)
-            {
-                audio =  MediaPlayer.create(this, R.raw.three);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==4)
-            {
-                audio =  MediaPlayer.create(this, R.raw.four);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==5)
-            {
-                audio =  MediaPlayer.create(this, R.raw.five);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==6)
-            {
-                audio =  MediaPlayer.create(this, R.raw.six);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==7)
-            {
-                audio =  MediaPlayer.create(this, R.raw.seven);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==8)
-            {
-                audio =  MediaPlayer.create(this, R.raw.eight);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
-            else if (rand==9)
-            {
-                audio =  MediaPlayer.create(this, R.raw.nine);
-                setAudioStartTime(audio,total_delay_time);
-                setAudioStopTime(audio,total_delay_time+1000-50);
-            }
+            printWithDelayDigit("",total_delay_time-50); //Just for clearness between the first number and the next number
+            printWithDelayDigit(Integer.toString(rand),total_delay_time);
         }
         // Delay of 2 Has to be inserted here
-        printWithDelay("",total_delay_time + 1500);
+        printWithDelayDigit("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
-        final EditText inputText = (EditText) findViewById(R.id.audio_only_input);
-        final Button submit_button  = (Button)findViewById(R.id.audio_only_submit_button) ;
+        final EditText inputText = (EditText) findViewById(R.id.visual_only_input);
+        final Button submit_button  = (Button)findViewById(R.id.visual_only_submit_button) ;
         inputText.setVisibility(View.INVISIBLE) ;
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
@@ -197,7 +137,7 @@ public class AudioOnly extends AppCompatActivity {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
                     inputText.setVisibility(View.VISIBLE) ;
-                    submit_button.setVisibility(View.VISIBLE);
+                    submit_button.setVisibility(View.VISIBLE) ;
                 }
             }, delay_time);
         }
@@ -209,7 +149,7 @@ public class AudioOnly extends AppCompatActivity {
                     // Perform action on key press
                     //Toast.makeText(HelloFormStuff.this, edittext.getText(), Toast.LENGTH_SHORT).show();
                     try {
-                        audioOnlySubmitButton();
+                        visualOnlySubmitButton();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -227,12 +167,12 @@ public class AudioOnly extends AppCompatActivity {
         // From here the answer that the user gives will be checked by clicking on the Submit button on the visual only page
     } // The work of this loop is to display the random numbers with their audio after appropriate delay & make questionString
 
-    public void AudioOnlySubmitButton(View view) throws InterruptedException {
-        audioOnlySubmitButton();
+    public void visualOnlySubmitButton(View view) throws InterruptedException {
+        visualOnlySubmitButton();
     }
 
-    public void audioOnlySubmitButton() throws InterruptedException {
-        Button submit_button  = (Button)findViewById(R.id.audio_only_submit_button);
+    public void visualOnlySubmitButton() throws InterruptedException {
+        Button submit_button  = (Button)findViewById(R.id.visual_only_submit_button);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
@@ -241,8 +181,8 @@ public class AudioOnly extends AppCompatActivity {
         }
         number_of_events++;
         String answerString ;
-        TextView outputTextView = (TextView) findViewById(R.id.audio_only_output);
-        final EditText inputText = (EditText) findViewById(R.id.audio_only_input);
+        TextView outputTextView = (TextView) findViewById(R.id.visual_only_output);
+        final EditText inputText = (EditText) findViewById(R.id.visual_only_input);
         int lenth = level ;
         ///////////////////////////////////////////////////////////////////////
         if(inputText != null || !inputText.getText().equals(""))
@@ -284,11 +224,6 @@ public class AudioOnly extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-            API obj1 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-            obj1.execute();
-
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
@@ -304,7 +239,7 @@ public class AudioOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -327,9 +262,6 @@ public class AudioOnly extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-            obj3.execute();
-
             printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
             Thread.sleep(1500);
 
@@ -338,9 +270,9 @@ public class AudioOnly extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    final Intent mainIntent = new Intent(comprehensive.AudioOnly.this, InstructionsVisualOnly.class);
-                    AudioOnly.this.startActivity(mainIntent);
-                    AudioOnly.this.finish();
+                    final Intent mainIntent = new Intent(VisualOnly.this, PracticeHomePage.class);
+                    VisualOnly.this.startActivity(mainIntent);
+                    VisualOnly.this.finish();
                 }
             }, 1500);
 
@@ -352,7 +284,7 @@ public class AudioOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -368,8 +300,6 @@ public class AudioOnly extends AppCompatActivity {
             lives_left--;
             if(lives_left > 0)
             {
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                obj4.execute();
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
@@ -384,15 +314,12 @@ public class AudioOnly extends AppCompatActivity {
                 try {
                     request.put("end_session", df.format(new java.util.Date()));
                     request.put("point_end", level);
+
                     request.put("different_events",different_events);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-
-                obj4.execute();
 
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
@@ -406,9 +333,9 @@ public class AudioOnly extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        final Intent mainIntent = new Intent(comprehensive.AudioOnly.this, InstructionsVisualOnly.class);
-                        AudioOnly.this.startActivity(mainIntent);
-                        AudioOnly.this.finish();
+                        final Intent mainIntent = new Intent(VisualOnly.this, PracticeHomePage.class);
+                        VisualOnly.this.startActivity(mainIntent);
+                        VisualOnly.this.finish();
                     }
                 }, 1500);
 
@@ -426,7 +353,23 @@ public class AudioOnly extends AppCompatActivity {
                 public void run() {
                     // D0 something after delay_time milli seconds
                     // 1 second = 1000 milli second
-                    TextView outputTextView = (TextView) findViewById(R.id.audio_only_output);
+                    TextView outputTextView = (TextView) findViewById(R.id.visual_only_output);
+                    outputTextView.setText(string_to_print);
+                }
+            }, delay_time);
+        }
+    }// Prints the string_to_print with delay_time in the OutputTextView
+
+    public void printWithDelayDigit(final String string_to_print, final int delay_time) // time in milli seconds
+    {
+        Handler handler = new Handler();
+        {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // D0 something after delay_time milli seconds
+                    // 1 second = 1000 milli second
+                    TextView outputTextView = (TextView) findViewById(R.id.digits_show);
                     outputTextView.setText(string_to_print);
                 }
             }, delay_time);
@@ -490,11 +433,11 @@ public class AudioOnly extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Not recommended to leave the game before you complete all 3 sets.")
+        builder.setMessage("Are you sure you want to leave ?")
                 .setCancelable(false)
                 .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent myIntent = new Intent(AudioOnly.this,HomePage.class);
+                        Intent myIntent = new Intent(VisualOnly.this,PracticeHomePage.class);
                         try {
                             different_events = new JSONArray();
 
@@ -508,15 +451,11 @@ public class AudioOnly extends AppCompatActivity {
                         }
 
                         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                        API obj5 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                        obj5.execute();
 
                         Log.d("API","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
 
                         startActivity(myIntent);
-                        AudioOnly.super.onBackPressed();
-                        audio.pause();
-                        audio.reset();
+                        VisualOnly.super.onBackPressed();
                     }
                 })
                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {

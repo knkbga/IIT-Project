@@ -2,6 +2,7 @@ package authentication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -83,7 +84,6 @@ public class LogIn extends AppCompatActivity {
             }
             else
             {
-
                 progressBar.setVisibility(View.VISIBLE);
 
 

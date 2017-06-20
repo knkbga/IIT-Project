@@ -13,20 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".PracticeHomePage" />
-        <activity android:name="practice.VisualAndAuditoryPage" />
         <activity android:name="comprehensive.VisualAndAuditory" />
-        <activity android:name="practice.VisualOnlyWithDistraction" />
+        <activity android:name="practice.VisualAndAuditory" />
         <activity android:name="comprehensive.VisualOnlyWithDistraction" />
+        <activity android:name="practice.VisualOnlyWithDistraction" />
         <activity
             android:name=".HomePage"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_home_page"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="practice.TrialsWODistraction"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_trials_wodistraction"
-            android:theme="@style/FullscreenTheme" />
         <activity
             android:name="comprehensive.InstructionsVisualOnlyWithDistraction"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -41,11 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="practice.TrialsWDistraction"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_trials_wdistraction"
-            android:theme="@style/FullscreenTheme" />
         <activity
             android:name="comprehensive.InstructionsVisualAndAuditory"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -107,12 +97,22 @@
             android:label="@string/title_activity_audio_only_page"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name="practice.AudioOnly"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_audio_only_page"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name="comprehensive.InstructionsAudioOnly"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_instructions_audio_only"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name="comprehensive.VisualOnly"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_visual_only"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name="practice.VisualOnly"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_visual_only"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
