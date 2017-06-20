@@ -115,12 +115,12 @@
             android:name="comprehensive.VisualOnly"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_visual_only"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name="comprehensive.InstructionsVisualOnly"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_instructions_visual_only"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/FullscreenTheme"/>
         <activity
             android:name=".Set"
             android:configChanges="orientation|keyboardHidden|screenSize"
