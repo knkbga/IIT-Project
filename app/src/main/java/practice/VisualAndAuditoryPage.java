@@ -29,7 +29,7 @@ public class VisualAndAuditoryPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visual_and_auditory_page);
+        setContentView(R.layout.activity_visual_and_auditory);
         Intent intent = getIntent() ;
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_visual_and_auditory_page);
         myGameLoop(level) ;

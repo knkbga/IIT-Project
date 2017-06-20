@@ -56,7 +56,7 @@ public class VisualAndAuditory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         lives_left = Set.max_lives_every_game;
 
-        setContentView(R.layout.activity_visual_and_auditory_page);
+        setContentView(R.layout.activity_visual_and_auditory);
         setNumber = (TextView) findViewById(R.id.setNumber);
         setNumber.setText("Set = "+Set.Sets_game);
 
