@@ -23,12 +23,12 @@ public class InstructionsVisualAndAuditory extends AppCompatActivity {
         //is connected to the internet
         if(HomePage.isConnected)
         {
-            setContentView(R.layout.activity_instructions_visual_only_with_distraction);
+            setContentView(R.layout.activity_instructions_visual_and_auditory);
             setTitle("Gaming 'Visual And Auditory'");
             Button start_this_test = (Button) findViewById(R.id.StartTestW);
 
 
-            TextView ins1 = (TextView) findViewById(R.id.instruction_1_text);
+            /*TextView ins1 = (TextView) findViewById(R.id.instruction_1_text);
             ins1.setText(R.string.instruction_w_gaming_1);
 
             TextView ins2 = (TextView) findViewById(R.id.instruction_2_text);
@@ -38,7 +38,7 @@ public class InstructionsVisualAndAuditory extends AppCompatActivity {
             ins3.setText(R.string.instruction_w_gaming_3);
 
             TextView ins4 = (TextView) findViewById(R.id.instruction_4_text);
-            ins4.setText(R.string.instruction_w_gaming_4);
+            ins4.setText(R.string.instruction_w_gaming_4);*/
 
 
             start_this_test.setOnClickListener(new View.OnClickListener() {

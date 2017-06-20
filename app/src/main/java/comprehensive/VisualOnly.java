@@ -37,7 +37,7 @@ import authentication.PersonCredentials;
 public class VisualOnly extends AppCompatActivity {
     private JSONObject request;
     public String route;
-    protected int lives_left = 3;
+    protected int lives_left;
     private int level = 6;
     private String questionString;
     private static MediaPlayer audio;
@@ -54,6 +54,8 @@ public class VisualOnly extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        lives_left = Set.max_lives_every_game;
+
         setContentView(R.layout.activity_visual_only);
         setNumber = (TextView) findViewById(R.id.setNumber);
         setNumber.setText("Set = "+Set.Sets_game);
@@ -169,6 +171,7 @@ public class VisualOnly extends AppCompatActivity {
     }
 
     public void visualOnlySubmitButton() throws InterruptedException {
+        Button submit_button  = (Button)findViewById(R.id.visual_only_submit_button);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
@@ -206,7 +209,7 @@ public class VisualOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number", Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -228,7 +231,7 @@ public class VisualOnly extends AppCompatActivity {
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
-            lives_left=3;
+            lives_left=Set.max_lives_every_game;
             inputText.setText("");
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
@@ -240,7 +243,7 @@ public class VisualOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -254,9 +257,6 @@ public class VisualOnly extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            outputTextView.setText("Congratulations! All Levels Completed successfully. Starting next game...");
-            Thread.sleep(1500);
-
             try {
                 request.put("end_session",df.format(new java.util.Date()));
                 request.put("point_end",level);
@@ -268,7 +268,20 @@ public class VisualOnly extends AppCompatActivity {
 
             API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
             obj3.execute();
-            startActivity(new Intent(comprehensive.VisualOnly.this, InstructionsVisualOnlyWithDistraction.class));
+
+            printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
+            Thread.sleep(1500);
+
+            submit_button.setVisibility(View.INVISIBLE);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    final Intent mainIntent = new Intent(comprehensive.VisualOnly.this, InstructionsVisualOnlyWithDistraction.class);
+                    VisualOnly.this.startActivity(mainIntent);
+                    VisualOnly.this.finish();
+                }
+            }, 1500);
 
         }
         else//wrong answer given
@@ -278,7 +291,7 @@ public class VisualOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -323,13 +336,21 @@ public class VisualOnly extends AppCompatActivity {
 
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
-                lives_left = 3;
+                lives_left = Set.max_lives_every_game;
 
-
-                outputTextView.setText("You have lost all your lives. Starting next game...");
+                printWithDelay("You have lost all your lives. Starting next game...",1500);
                 Thread.sleep(1500);
-                Intent myIntent = new Intent(comprehensive.VisualOnly.this, InstructionsVisualOnlyWithDistraction.class);
-                startActivity(myIntent);
+
+                submit_button.setVisibility(View.INVISIBLE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Intent mainIntent = new Intent(comprehensive.VisualOnly.this, InstructionsVisualOnlyWithDistraction.class);
+                        VisualOnly.this.startActivity(mainIntent);
+                        VisualOnly.this.finish();
+                    }
+                }, 1500);
 
             }
         }

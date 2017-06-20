@@ -37,7 +37,7 @@ import authentication.PersonCredentials;
 public class VisualOnlyWithDistraction extends AppCompatActivity {
     private JSONObject request;
     public String route;
-    protected int lives_left = 3;
+    protected int lives_left;
     private int level = 6;
     private String questionString;
     private static MediaPlayer audio;
@@ -55,6 +55,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        lives_left = Set.max_lives_every_game;
 
         setContentView(R.layout.activity_visual_only_with_distraction);
         setNumber = (TextView) findViewById(R.id.setNumber);
@@ -233,6 +234,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
     }
 
     public void visualOnlyWithDistractionSubmitButton() throws InterruptedException {
+        Button submit_button  = (Button)findViewById(R.id.visual_only_with_distraction_submit_button) ;
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
         } catch (JSONException e) {
@@ -268,7 +270,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number", Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -293,7 +295,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
-            lives_left=3;
+            lives_left=Set.max_lives_every_game;
             inputText.setText("");
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
@@ -305,7 +307,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -338,10 +340,21 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
             obj3.execute();
 
 
+            Set.Sets_game++;
+
             printWithDelay("Starting your next Set",1500);
             Thread.sleep(1500);
-            Set.Sets_game++;
-            startActivity(new Intent(comprehensive.VisualOnlyWithDistraction.this, Set.class));
+
+            submit_button.setVisibility(View.INVISIBLE);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    final Intent mainIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this, Set.class);
+                    VisualOnlyWithDistraction.this.startActivity(mainIntent);
+                    VisualOnlyWithDistraction.this.finish();
+                }
+            }, 1500);
 
 
         }
@@ -352,7 +365,7 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -397,15 +410,24 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
 
                 obj4.execute();
 
-                lives_left = 3;
+                lives_left = Set.max_lives_every_game;
                 inputText.setVisibility(View.INVISIBLE);
+
+                Set.Sets_game++;
+
+                printWithDelay("You have lost all your lives. Starting your next Set...",1500);
                 Thread.sleep(1500);
 
-                outputTextView.setText("You have lost all your lives. Starting next game...");
-                Set.Sets_game++;
-                Thread.sleep(1500);
-                Intent myIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this,Set.class);
-                startActivity(myIntent);
+                submit_button.setVisibility(View.INVISIBLE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Intent mainIntent = new Intent(comprehensive.VisualOnlyWithDistraction.this, Set.class);
+                        VisualOnlyWithDistraction.this.startActivity(mainIntent);
+                        VisualOnlyWithDistraction.this.finish();
+                    }
+                }, 1500);
 
             }
         }

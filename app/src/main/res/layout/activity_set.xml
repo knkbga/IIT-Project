@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="66dp">
+            android:layout_marginTop="40dp">
             <TextView
                 android:textAlignment="center"
                 android:layout_marginBottom="20dp"
@@ -115,31 +115,32 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/proceed_button"
-            android:textSize="22dp"
-            android:text="PROCEED"
-            android:textColor="#fff"
-            android:background="#4aa"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/set_number_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/game_4_title"
-            android:layout_marginTop="32dp"
-            android:text="Now starting set : 1"
-            android:textAlignment="center"
-            android:textColor="#4aa"
-            android:textSize="32dp" />
-
     </RelativeLayout>
+
+    <TextView
+        android:layout_marginBottom="50dp"
+        android:layout_above="@+id/proceed_button"
+        android:id="@+id/set_number_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:text="Now starting set : 1"
+        android:textAlignment="center"
+        android:textColor="#4aa"
+        android:textSize="32dp" />
+
+    <Button
+        android:id="@+id/proceed_button"
+        android:textSize="22dp"
+        android:text="PROCEED"
+        android:textColor="#fff"
+        android:background="#4aa"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

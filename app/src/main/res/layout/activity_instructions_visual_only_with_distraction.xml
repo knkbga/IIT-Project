@@ -8,7 +8,6 @@
 
 
     <RelativeLayout
-        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
@@ -16,6 +15,16 @@
         android:layout_alignParentStart="true">
 
         <TextView
+            android:textStyle="bold"
+            android:textColor="#4aa"
+            android:textAlignment="center"
+            android:text="ANSWER WHAT YOU SEE \n\nIGNORE WHAT YOU HEAR"
+            android:textSize="27dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <!--<TextView
             android:textSize="14dp"
             android:id="@+id/instruction_title"
             android:textAlignment="center"
@@ -114,7 +123,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
 
     </RelativeLayout>
@@ -127,7 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start This Test"
-        android:id="@+id/StartTestW"
+        android:id="@+id/StartTestWO"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

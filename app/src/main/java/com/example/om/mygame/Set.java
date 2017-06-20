@@ -2,6 +2,7 @@ package com.example.om.mygame;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +20,8 @@ import comprehensive.VisualOnlyWithDistraction;
 
 public class Set extends AppCompatActivity {
     public static int Sets_game;
+    private static int max_sets=3;
+    public static int max_lives_every_game=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +30,11 @@ public class Set extends AppCompatActivity {
 
         final RelativeLayout sets_instructions_label  = (RelativeLayout) findViewById(R.id.sets_instructions_label);
         final TextView set_number_label = (TextView) findViewById(R.id.set_number_label);
+        set_number_label.setPaintFlags(set_number_label.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
         Button proceed_button = (Button) findViewById(R.id.proceed_button);
         sets_instructions_label.setVisibility(View.VISIBLE);
 
-        if(Sets_game<=3){
+        if(Sets_game<=max_sets){
             proceed_button.setText("PROCEED");
             set_number_label.setText("Now starting set - '"+Sets_game+"'");
         }
@@ -45,7 +49,7 @@ public class Set extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(Sets_game<=3)
+                if(Sets_game<=max_sets)
                 {
                     try
                     {
@@ -72,21 +76,29 @@ public class Set extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-        builder.setMessage("Recommended to not leave the game.")
-                .setCancelable(false)
-                .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent myIntent = new Intent(Set.this, Authenticate.class);
-                        startActivity(myIntent);
-                    }
-                })
-                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        android.support.v7.app.AlertDialog alert = builder.create();
-        alert.show();
+        if(Sets_game<=max_sets)
+        {
+            android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+            builder.setMessage("Recommended to not leave the game.")
+                    .setCancelable(false)
+                    .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent myIntent = new Intent(Set.this, HomePage.class);
+                            startActivity(myIntent);
+                        }
+                    })
+                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            android.support.v7.app.AlertDialog alert = builder.create();
+            alert.show();
+        }
+        else
+        {
+            Intent myIntent = new Intent(Set.this, HomePage.class);
+            startActivity(myIntent);
+        }
     }
 }

@@ -29,7 +29,7 @@ public class InstructionsAudioOnly extends AppCompatActivity {
             Button start_this_test = (Button) findViewById(R.id.StartTestA);
 
 
-            TextView ins1 = (TextView) findViewById(R.id.instruction_1_text);
+            /*TextView ins1 = (TextView) findViewById(R.id.instruction_1_text);
             ins1.setText(R.string.instruction_audio_only_1);
 
             TextView ins2 = (TextView) findViewById(R.id.instruction_2_text);
@@ -39,7 +39,7 @@ public class InstructionsAudioOnly extends AppCompatActivity {
             ins3.setText(R.string.instruction_audio_only_3);
 
             TextView ins4 = (TextView) findViewById(R.id.instruction_4_text);
-            ins4.setText(R.string.instruction_audio_only_4);
+            ins4.setText(R.string.instruction_audio_only_4);*/
 
 
             start_this_test.setOnClickListener(new View.OnClickListener() {

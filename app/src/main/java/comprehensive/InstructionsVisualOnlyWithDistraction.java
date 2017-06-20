@@ -23,11 +23,11 @@ public class InstructionsVisualOnlyWithDistraction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_instructions_visual_and_auditory);
+        setContentView(R.layout.activity_instructions_visual_only_with_distraction);
         setTitle("Gaming 'Visual And Audio With Distraction'");
         Button startTest = (Button) findViewById(R.id.StartTestWO);
 
-        TextView ins1 = (TextView) findViewById(R.id.instruction_1_text);
+        /*TextView ins1 = (TextView) findViewById(R.id.instruction_1_text);
         ins1.setText(R.string.instruction_w_gaming_1);
 
         TextView ins2 = (TextView) findViewById(R.id.instruction_2_text);
@@ -37,7 +37,7 @@ public class InstructionsVisualOnlyWithDistraction extends AppCompatActivity {
         ins3.setText(R.string.instruction_w_gaming_3);
 
         TextView ins4 = (TextView) findViewById(R.id.instruction_4_text);
-        ins4.setText(R.string.instruction_w_gaming_4);
+        ins4.setText(R.string.instruction_w_gaming_4);*/
 
         startTest.setOnClickListener(new View.OnClickListener() {
             @Override

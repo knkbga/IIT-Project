@@ -37,7 +37,7 @@ import authentication.PersonCredentials;
 public class VisualAndAuditory extends AppCompatActivity {
     private JSONObject request;
     public String route;
-    protected int lives_left = 3;
+    protected int lives_left ;
     private int level = 6;
     private String questionString;
     private static MediaPlayer audio;
@@ -54,6 +54,8 @@ public class VisualAndAuditory extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        lives_left = Set.max_lives_every_game;
+
         setContentView(R.layout.activity_visual_and_auditory_page);
         setNumber = (TextView) findViewById(R.id.setNumber);
         setNumber.setText("Set = "+Set.Sets_game);
@@ -184,7 +186,7 @@ public class VisualAndAuditory extends AppCompatActivity {
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
         final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
         final Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
-        inputText.setVisibility(View.INVISIBLE) ;
+        inputText.setVisibility(View.INVISIBLE);
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
         {
@@ -230,6 +232,7 @@ public class VisualAndAuditory extends AppCompatActivity {
     }
 
     public void visualOnlySubmitButton() throws InterruptedException {
+        Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
@@ -268,7 +271,7 @@ public class VisualAndAuditory extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number", Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -291,7 +294,7 @@ public class VisualAndAuditory extends AppCompatActivity {
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
-            lives_left=3;
+            lives_left=Set.max_lives_every_game;
             inputText.setText("");
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
@@ -303,7 +306,7 @@ public class VisualAndAuditory extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -317,8 +320,9 @@ public class VisualAndAuditory extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            Thread.sleep(3000);
             outputTextView.setText("Congratulations! All Levels Completed successfully. Starting next game...");
-            Thread.sleep(1500);
+
 
             try {
                 request.put("end_session",df.format(new java.util.Date()));
@@ -331,7 +335,20 @@ public class VisualAndAuditory extends AppCompatActivity {
 
             API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
             obj3.execute();
-            startActivity(new Intent(comprehensive.VisualAndAuditory.this, InstructionsAudioOnly.class));
+
+            printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
+            Thread.sleep(1500);
+
+            submit_button.setVisibility(View.INVISIBLE);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    final Intent mainIntent = new Intent(comprehensive.VisualAndAuditory.this, InstructionsAudioOnly.class);
+                    VisualAndAuditory.this.startActivity(mainIntent);
+                    VisualAndAuditory.this.finish();
+                }
+            }, 1500);
 
         }
         else//wrong answer given
@@ -341,7 +358,7 @@ public class VisualAndAuditory extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -385,14 +402,23 @@ public class VisualAndAuditory extends AppCompatActivity {
                 obj4.execute();
 
                 inputText.setVisibility(View.INVISIBLE);
-                Thread.sleep(1500);
-                lives_left = 3;
+                lives_left = Set.max_lives_every_game;
 
 
-                outputTextView.setText("You have lost all your lives. Starting next game...");
+
+                printWithDelay("You have lost all your lives. Starting next game...",1500);
                 Thread.sleep(1500);
-                Intent myIntent = new Intent(comprehensive.VisualAndAuditory.this, InstructionsAudioOnly.class);
-                startActivity(myIntent);
+
+                submit_button.setVisibility(View.INVISIBLE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Intent mainIntent = new Intent(comprehensive.VisualAndAuditory.this, InstructionsAudioOnly.class);
+                        VisualAndAuditory.this.startActivity(mainIntent);
+                        VisualAndAuditory.this.finish();
+                    }
+                }, 1500);
 
             }
         }

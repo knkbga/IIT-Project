@@ -38,7 +38,7 @@ import authentication.PersonCredentials;
 public class AudioOnly extends AppCompatActivity {
     private JSONObject request;
     public String route;
-    protected int lives_left = 3;
+    protected int lives_left;
     private int level = 6;
     private String questionString;
     private static MediaPlayer audio;
@@ -55,6 +55,8 @@ public class AudioOnly extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        lives_left = Set.max_lives_every_game;
+
         setContentView(R.layout.activity_audio_only);
         setNumber = (TextView) findViewById(R.id.setNumber);
         setNumber.setText("Set = "+ Set.Sets_game);
@@ -230,6 +232,7 @@ public class AudioOnly extends AppCompatActivity {
     }
 
     public void audioOnlySubmitButton() throws InterruptedException {
+        Button submit_button  = (Button)findViewById(R.id.audio_only_submit_button);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
@@ -267,7 +270,7 @@ public class AudioOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number", Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -289,7 +292,7 @@ public class AudioOnly extends AppCompatActivity {
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
-            lives_left=3;
+            lives_left=Set.max_lives_every_game;
             inputText.setText("");
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
@@ -301,7 +304,7 @@ public class AudioOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -315,9 +318,6 @@ public class AudioOnly extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            outputTextView.setText("Congratulations! All Levels Completed successfully. Starting next Game...");
-            Thread.sleep(1500);
-
             try {
                 request.put("end_session",df.format(new java.util.Date()));
                 request.put("point_end",level);
@@ -329,7 +329,20 @@ public class AudioOnly extends AppCompatActivity {
 
             API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
             obj3.execute();
-            startActivity(new Intent(AudioOnly.this, InstructionsVisualOnly.class));
+
+            printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
+            Thread.sleep(1500);
+
+            submit_button.setVisibility(View.INVISIBLE);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    final Intent mainIntent = new Intent(comprehensive.AudioOnly.this, InstructionsVisualOnly.class);
+                    AudioOnly.this.startActivity(mainIntent);
+                    AudioOnly.this.finish();
+                }
+            }, 1500);
 
         }
         else//wrong answer given
@@ -339,7 +352,7 @@ public class AudioOnly extends AppCompatActivity {
 
                 // adding current ongoing event's variables
                 individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(3-lives_left+1));
+                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -383,12 +396,21 @@ public class AudioOnly extends AppCompatActivity {
 
                 inputText.setVisibility(View.INVISIBLE);
                 Thread.sleep(1500);
-                lives_left = 3;
+                lives_left = Set.max_lives_every_game;
 
-                outputTextView.setText("You have lost all your lives. Starting next game...");
+                printWithDelay("You have lost all your lives. Starting next game...",1500);
                 Thread.sleep(1500);
-                Intent myIntent = new Intent(AudioOnly.this, InstructionsVisualOnly.class);
-                startActivity(myIntent);
+
+                submit_button.setVisibility(View.INVISIBLE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Intent mainIntent = new Intent(comprehensive.AudioOnly.this, InstructionsVisualOnly.class);
+                        AudioOnly.this.startActivity(mainIntent);
+                        AudioOnly.this.finish();
+                    }
+                }, 1500);
 
             }
         }

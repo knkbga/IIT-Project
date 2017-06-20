@@ -9,14 +9,13 @@
 
 
     <RelativeLayout
-        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <TextView
+        <!--<TextView
             android:textSize="14dp"
             android:id="@+id/instruction_title"
             android:textAlignment="center"
@@ -115,7 +114,17 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#4aa"
+            android:textAlignment="center"
+            android:text="ANSWER WHAT YOU SEE "
+            android:textSize="27dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
 
 
     </RelativeLayout>
