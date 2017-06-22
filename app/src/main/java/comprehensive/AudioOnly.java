@@ -186,7 +186,7 @@ public class AudioOnly extends AppCompatActivity {
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
         final EditText inputText = (EditText) findViewById(R.id.audio_only_input);
         final Button submit_button  = (Button)findViewById(R.id.audio_only_submit_button) ;
-        inputText.setVisibility(View.INVISIBLE) ;
+        inputText.setVisibility(View.GONE) ;
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
         {
@@ -373,7 +373,7 @@ public class AudioOnly extends AppCompatActivity {
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
-                inputText.setVisibility(View.INVISIBLE);
+                inputText.setVisibility(View.GONE);
                 Thread.sleep(1500);
                 levelLabel.setText("Level - "+(level));
                 myGameLoop(level);
@@ -394,7 +394,7 @@ public class AudioOnly extends AppCompatActivity {
 
                 obj4.execute();
 
-                inputText.setVisibility(View.INVISIBLE);
+                inputText.setVisibility(View.GONE);
                 Thread.sleep(1500);
                 lives_left = Set.max_lives_every_game;
 

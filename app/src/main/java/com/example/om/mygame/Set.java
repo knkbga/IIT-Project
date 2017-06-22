@@ -21,8 +21,8 @@ import comprehensive.VisualOnlyWithDistraction;
 public class Set extends AppCompatActivity {
     public static int Sets_game;
     private static int max_sets=3;
-    public static int max_lives_every_game=3;
-    public static int max_levels_every_game=2;
+    public static int max_lives_every_game=1;
+    public static int max_levels_every_game=20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
