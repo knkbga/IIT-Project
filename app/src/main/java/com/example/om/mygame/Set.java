@@ -23,6 +23,7 @@ public class Set extends AppCompatActivity {
     private static int max_sets=3;
     public static int max_lives_every_game=3;
     public static int max_levels_every_game=20;
+    public static int session_score=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

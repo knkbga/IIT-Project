@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -125,7 +126,8 @@ public class VisualOnly extends AppCompatActivity {
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
         final EditText inputText = (EditText) findViewById(R.id.visual_only_input);
         final Button submit_button  = (Button)findViewById(R.id.visual_only_submit_button) ;
-        inputText.setVisibility(View.GONE) ;
+        inputText.setEnabled(false); inputText.setVisibility(View.GONE);
+        inputText.setInputType(InputType.TYPE_NULL); ;
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
         {
@@ -135,7 +137,8 @@ public class VisualOnly extends AppCompatActivity {
                 public void run() {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
-                    inputText.setVisibility(View.VISIBLE) ;
+                    inputText.setEnabled(true); inputText.setVisibility(View.VISIBLE);
+                    inputText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
                     submit_button.setVisibility(View.VISIBLE) ;
                 }
             }, delay_time);
@@ -312,7 +315,8 @@ public class VisualOnly extends AppCompatActivity {
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
-                inputText.setVisibility(View.GONE);
+                inputText.setEnabled(false); inputText.setVisibility(View.GONE);
+                inputText.setInputType(InputType.TYPE_NULL);;
                 Thread.sleep(1500);
                 levelLabel.setText("Level - "+(level));
                 myGameLoop(level);
@@ -334,7 +338,8 @@ public class VisualOnly extends AppCompatActivity {
 
                 obj4.execute();
 
-                inputText.setVisibility(View.GONE);
+                inputText.setEnabled(false); inputText.setVisibility(View.GONE);
+                inputText.setInputType(InputType.TYPE_NULL);;
                 Thread.sleep(1500);
                 lives_left = Set.max_lives_every_game;
 
