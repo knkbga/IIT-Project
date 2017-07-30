@@ -92,7 +92,7 @@ public class LogIn extends AppCompatActivity {
                     try {
                         postDataParams.put("email", email.getText().toString());
                         postDataParams.put("password", password.getText().toString());
-                        postDataParams.put("app_code", "mzf");
+                        postDataParams.put("app_code", "iit");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
