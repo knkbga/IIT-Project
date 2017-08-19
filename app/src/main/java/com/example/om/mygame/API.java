@@ -34,6 +34,7 @@ import authentication.Authenticate;
 import authentication.LogIn;
 import authentication.PersonCredentials;
 import authentication.Register;
+import comprehensive.InstructionsVisualAndAuditory;
 
 
 /**
@@ -95,6 +96,7 @@ public class API extends AsyncTask<String , String , String>
 
     @Override
     protected String doInBackground(String... strings) {
+        Log.d("API","Request params ::\t"+ jsonObject);
         progressBar.post(new Runnable() {
             @Override
             public void run() {
@@ -199,12 +201,10 @@ public class API extends AsyncTask<String , String , String>
                 break;
                 case 3: // Forgot password
                 {
-                    Log.d("API","Forgot Password");
                     JSONObject res = new JSONObject(result);
                     Boolean success = res.getBoolean("success");
                     if(success)
                     {
-                        Log.d("API","Success found");
                         Intent myIntent = new Intent(mContext,ResetPassword.class);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(myIntent);
@@ -224,6 +224,24 @@ public class API extends AsyncTask<String , String , String>
                         Intent myIntent = new Intent(mContext,LogIn.class);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(myIntent);
+                    }
+                    else
+                    {
+                        testing.setText("** "+res.getString("response")+" **");
+                    }
+                }
+                break;
+                case 5: //start session
+                {
+                    JSONObject res = new JSONObject(result);
+                    Boolean success = res.getBoolean("success");
+                    if(success)
+                    {
+                        Set.session_token = res.getString("session_token");
+                        Intent myIntent = new Intent(mContext, InstructionsVisualAndAuditory.class);
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(myIntent);
+                        Set.new_session = false;
                     }
                     else
                     {

@@ -25,7 +25,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
+        Set.new_session = true;
 
         if(isConnected)
         {

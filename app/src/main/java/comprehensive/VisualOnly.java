@@ -70,8 +70,10 @@ public class VisualOnly extends AppCompatActivity {
         Log.d("_id",PersonCredentials.oid);
 
         try {
+            request.put("set",Set.Sets_game);
             request.put("_id",PersonCredentials.oid);
             request.put("start_session",df.format(new java.util.Date()));
+            request.put("session_token",Set.session_token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -160,11 +162,6 @@ public class VisualOnly extends AppCompatActivity {
                 return false;
             }
         });
-        try {
-            individual_event.put("time_of_end",df.format(new java.util.Date()));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         // From here the answer that the user gives will be checked by clicking on the Submit button on the visual only page
     } // The work of this loop is to display the random numbers with their audio after appropriate delay & make questionString
@@ -211,14 +208,12 @@ public class VisualOnly extends AppCompatActivity {
             try {
 
                 // adding current ongoing event's variables
-                individual_event.put("set_number", Set.Sets_game);
                 individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -245,14 +240,12 @@ public class VisualOnly extends AppCompatActivity {
             try {
 
                 // adding current ongoing event's variables
-                individual_event.put("set_number",Set.Sets_game);
                 individual_event.put("lives_till_used",(Set.max_lives_every_game+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -262,7 +255,6 @@ public class VisualOnly extends AppCompatActivity {
 
             try {
                 request.put("end_session",df.format(new java.util.Date()));
-                request.put("point_end",level);
 
                 request.put("different_events",different_events);
             } catch (JSONException e) {
@@ -293,14 +285,12 @@ public class VisualOnly extends AppCompatActivity {
             try {
 
                 // adding current ongoing event's variables
-                individual_event.put("set_number",Set.Sets_game);
                 individual_event.put("lives_till_used",(Set.max_lives_every_game+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
-                request.put("point_end", level);
                 request.put("end_session", df.format(new java.util.Date()));
 
                 request.put("different_events",different_events);
@@ -326,7 +316,6 @@ public class VisualOnly extends AppCompatActivity {
 
                 try {
                     request.put("end_session", df.format(new java.util.Date()));
-                    request.put("point_end", level);
 
                     request.put("different_events",different_events);
 
@@ -459,7 +448,6 @@ public class VisualOnly extends AppCompatActivity {
                         try {
                             different_events = new JSONArray();
 
-                            request.put("point_end", level);
                             request.put("end_session", df.format(new java.util.Date()));
 
                             request.put("different_events",different_events);

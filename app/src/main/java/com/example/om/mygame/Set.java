@@ -1,29 +1,41 @@
 package com.example.om.mygame;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+
 import authentication.Authenticate;
-import comprehensive.InstructionsAudioOnly;
+import authentication.PersonCredentials;
 import comprehensive.InstructionsVisualAndAuditory;
-import comprehensive.VisualAndAuditory;
-import comprehensive.VisualOnlyWithDistraction;
 
 public class Set extends AppCompatActivity {
     public static int Sets_game;
+    public static Boolean new_session = true;
     private static int max_sets=3;
-    public static int max_lives_every_game=3;
+    public static int max_lives_every_game=1;
     public static int max_levels_every_game=20;
     public static int session_score=0;
+    private Context mContext;
+    public static String session_token;
+
+    private JSONObject request;
+    private SimpleDateFormat df;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +47,13 @@ public class Set extends AppCompatActivity {
         set_number_label.setPaintFlags(set_number_label.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
         Button proceed_button = (Button) findViewById(R.id.proceed_button);
         sets_instructions_label.setVisibility(View.VISIBLE);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        final TextView testing = (TextView)findViewById(R.id.testing);
+
+        df = new SimpleDateFormat( "dd-MM-yyyy 'at' kk:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("IST"));
+        mContext = getBaseContext();
+        request =new JSONObject();
 
         if(Sets_game<=max_sets){
             proceed_button.setText("PROCEED");
@@ -53,14 +72,23 @@ public class Set extends AppCompatActivity {
 
                 if(Sets_game<=max_sets)
                 {
-                    try
-                    {
+                    if(new_session) {
+                        try {
+                            request.put("start_session", df.format(new java.util.Date()));
+                            request.put("_id", PersonCredentials.oid);
+                            API obj = new API(PersonCredentials.oid, request, Authenticate.url + "/start_session", testing, mContext, 5, progressBar);
+
+                            Log.v("API", "API called from Set Activity.");
+                            obj.execute();
+                        } catch (Exception e) {
+                            Log.v("API", e.getClass().toString());
+                            Toast.makeText(getApplication(), "Some error occurred. Please try again", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
+                        Sets_game++;
                         Intent myIntent = new Intent(Set.this, InstructionsVisualAndAuditory.class);
                         startActivity(myIntent);
-                    }
-                    catch(Exception e)
-                    {
-                        Toast.makeText(getApplication(), "Some error occurred. Please try again",Toast.LENGTH_LONG).show();
                     }
                 }
                 else
