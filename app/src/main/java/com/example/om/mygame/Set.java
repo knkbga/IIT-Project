@@ -28,7 +28,7 @@ public class Set extends AppCompatActivity {
     public static int Sets_game;
     public static Boolean new_session = true;
     private static int max_sets=3;
-    public static int max_lives_every_game=1;
+    public static int max_lives_every_game=3;
     public static int max_levels_every_game=20;
     public static int session_score=0;
     private Context mContext;
@@ -86,7 +86,6 @@ public class Set extends AppCompatActivity {
                         }
                     }
                     else {
-                        Sets_game++;
                         Intent myIntent = new Intent(Set.this, InstructionsVisualAndAuditory.class);
                         startActivity(myIntent);
                     }
