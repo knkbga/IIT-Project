@@ -145,7 +145,7 @@ public class LogIn extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent myIntent = new Intent(this, HomePage.class);
+        Intent myIntent = new Intent(this, Authenticate.class);
         startActivity(myIntent);
     }
 
