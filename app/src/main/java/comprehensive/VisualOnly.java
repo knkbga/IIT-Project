@@ -39,7 +39,7 @@ public class VisualOnly extends AppCompatActivity {
     private JSONObject request;
     public String route;
     protected int lives_left;
-    private int level = 6;
+    private int level = Set.starting_level;
     private String questionString;
     private static MediaPlayer audio;
     private static int back_button_pressed;
@@ -102,27 +102,36 @@ public class VisualOnly extends AppCompatActivity {
         int[] randomArray = new int[lenth] ;
         printWithDelay("",1000);
         total_delay_time = 1000;
+
+        try
+        {
+            individual_event.put("time_of_start",df.format(new java.util.Date()));
+            individual_event.put("level",level);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         for(i = 0;i<lenth;i++)
         {
             Random r = new Random();
-            int rand = r.nextInt(10) ;  // Generates a random number from 0-9
+            int rand = r.nextInt(10) ; // Generates a random number from 0-9
             randomArray[i] = rand ;
             questionString = questionString + Integer.toString(rand) ;
 
-            try
-            {
-                individual_event.put("time_of_start",df.format(new java.util.Date()));
-                individual_event.put("string_question",questionString);
-                individual_event.put("level",level);
-            }
-            catch (JSONException e) {
-                e.printStackTrace();
-            }
             // Delay of 1 Has to inserted here
             total_delay_time = 1000 + 1000*(i+1);
             printWithDelayDigit("",total_delay_time-50); //Just for clearness between the first number and the next number
             printWithDelayDigit(Integer.toString(rand),total_delay_time);
         }
+
+        try
+        {
+            individual_event.put("string_question",questionString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         // Delay of 2 Has to be inserted here
         printWithDelayDigit("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////

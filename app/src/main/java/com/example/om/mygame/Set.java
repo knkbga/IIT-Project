@@ -26,6 +26,7 @@ import comprehensive.InstructionsVisualAndAuditory;
 
 public class Set extends AppCompatActivity {
     public static int Sets_game;
+    public static int starting_level=6;
     public static Boolean new_session = true;
     private static int max_sets=3;
     public static int max_lives_every_game=3;

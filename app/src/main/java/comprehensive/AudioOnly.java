@@ -23,7 +23,7 @@ import com.example.om.mygame.API;
 import com.example.om.mygame.HomePage;
 import com.example.om.mygame.R;
 import com.example.om.mygame.Set;
-import com.google.api.client.util.Sets;
+import com.tekle.oss.android.audio.VolumeControl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +40,7 @@ public class AudioOnly extends AppCompatActivity {
     private JSONObject request;
     public String route;
     protected int lives_left;
-    private int level = 6;
+    private int level = Set.starting_level;
     private String questionString;
     private static MediaPlayer audio;
     private static int back_button_pressed;
@@ -53,6 +53,7 @@ public class AudioOnly extends AppCompatActivity {
     private JSONObject individual_event;
     private int number_of_events =-1;
     private TextView setNumber;
+    private String TotalVolume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,7 @@ public class AudioOnly extends AppCompatActivity {
 
     public void myGameLoop(int level)
     {
+        TotalVolume = "";
         individual_event = new JSONObject();
         timer.setVisibility(View.VISIBLE);
         timer.start();
@@ -103,6 +105,16 @@ public class AudioOnly extends AppCompatActivity {
         int[] randomArray = new int[lenth] ;
         printWithDelay("",1000);
         total_delay_time = 1000;
+
+        try
+        {
+            individual_event.put("time_of_start",df.format(new java.util.Date()));
+            individual_event.put("level",level);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         for(i = 0;i<lenth;i++)
         {
             Random r = new Random();
@@ -110,15 +122,6 @@ public class AudioOnly extends AppCompatActivity {
             randomArray[i] = rand ;
             questionString = questionString + Integer.toString(rand);
 
-            try
-            {
-                individual_event.put("time_of_start",df.format(new java.util.Date()));
-                individual_event.put("string_question",questionString);
-                individual_event.put("level",level);
-            }
-            catch (JSONException e) {
-                e.printStackTrace();
-            }
             // Delay of 1 Has to inserted here
             total_delay_time = 1000 + 1000*(i+1);
             printWithDelay("",total_delay_time-50); //Just for clearness between the first number and the next number
@@ -184,6 +187,16 @@ public class AudioOnly extends AppCompatActivity {
                 setAudioStopTime(audio,total_delay_time+1000-50);
             }
         }
+
+        try
+        {
+            individual_event.put("string_question",questionString);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         // Delay of 2 Has to be inserted here
         printWithDelay("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
@@ -236,6 +249,8 @@ public class AudioOnly extends AppCompatActivity {
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
+            TotalVolume = TotalVolume.substring(0, TotalVolume.length() - 1);
+            individual_event.put("total_volume",TotalVolume);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -456,6 +471,9 @@ public class AudioOnly extends AppCompatActivity {
                     // 1 second = 1000 milli second
                     if ((audio != null)&&(back_button_pressed==0))
                         audio.start();
+                    VolumeControl.sharedVolumeControl().configure(AudioOnly.this, audio);
+                    TotalVolume += Math.round(VolumeControl.sharedVolumeControl().getVolume()*10)+"-";
+                    Log.d("Volume","Start"+Math.round(VolumeControl.sharedVolumeControl().getVolume()*10)+"");
                 }
             }, delay_time);
         }

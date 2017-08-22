@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.om.mygame.API;
 import com.example.om.mygame.Connectivity;
 import com.example.om.mygame.ForgotPassword;
+import com.example.om.mygame.HomePage;
 import com.example.om.mygame.R;
 
 import org.json.JSONException;
@@ -140,6 +141,12 @@ public class LogIn extends AppCompatActivity {
         }
 
         return false;
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent myIntent = new Intent(this, HomePage.class);
+        startActivity(myIntent);
     }
 
 }
