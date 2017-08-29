@@ -16,7 +16,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:textColor="#4aa"
+            android:textColor="#1e90ff"
             android:textAlignment="center"
             android:text="ANSWER WHAT YOU SEE \n\nIGNORE WHAT YOU HEAR"
             android:textSize="27dp"
@@ -132,7 +132,7 @@
         android:textSize="20dp"
         android:padding="17dp"
         android:textColor="#ffff"
-        android:background="#9ddb1d"
+        android:background="#1e90ff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start This Test"

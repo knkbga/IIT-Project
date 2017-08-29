@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id = "@+id/activity_visual_only_with_distraction"
     android:orientation="vertical"
@@ -32,17 +32,16 @@
                 android:id="@+id/textView2" />
 
             <TextView
-                android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:layout_width="316dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
                 android:gravity="center"
                 android:id="@+id/visual_only_with_distraction_output"
                 android:layout_marginTop="170dp"
                 android:layout_below="@+id/textView2"
-                android:layout_alignLeft="@+id/visual_only_with_distraction_input"
-                android:layout_alignStart="@+id/visual_only_with_distraction_input" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <EditText
                 android:layout_width="316dp"
@@ -116,7 +115,7 @@
             </LinearLayout>
 
             <TextView
-                android:textSize="80dp"
+                android:textSize="140dp"
                 android:id="@+id/digits_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,4 +129,4 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</RelativeLayout>

@@ -100,7 +100,7 @@ public class VisualOnly extends AppCompatActivity {
         int total_delay_time ;
         back_button_pressed = 0;
         int[] randomArray = new int[lenth] ;
-        printWithDelay("",1000);
+        printWithDelayDigit("",1000);
         total_delay_time = 1000;
 
         try

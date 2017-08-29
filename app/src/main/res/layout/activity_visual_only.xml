@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id = "@+id/activity_visual_only"
     android:orientation="vertical"
@@ -11,7 +11,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,17 +36,16 @@
                 android:id="@+id/textView2" />
 
             <TextView
-                android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:layout_width="316dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
                 android:gravity="center"
                 android:id="@+id/visual_only_output"
                 android:layout_marginTop="200dp"
                 android:layout_below="@+id/textView2"
-                android:layout_alignLeft="@+id/visual_only_input"
-                android:layout_alignStart="@+id/visual_only_input" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <EditText
                 android:layout_width="316dp"
@@ -52,9 +55,9 @@
                 android:textSize="30sp"
                 android:gravity="center"
                 android:id="@+id/visual_only_input"
-                android:layout_alignTop="@+id/visual_only_output"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="23dp" />
+                android:layout_alignBaseline="@+id/visual_only_output"
+                android:layout_alignBottom="@+id/visual_only_output"
+                android:layout_centerHorizontal="true" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -106,7 +109,7 @@
             </LinearLayout>
 
             <TextView
-                android:textSize="80dp"
+                android:textSize="140dp"
                 android:id="@+id/digits_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,4 +132,4 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</RelativeLayout>

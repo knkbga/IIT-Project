@@ -73,12 +73,12 @@ public class LogIn extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
 
 
-            if(email.getText().toString().equals("") || password.getText().toString().equals(""))
+            if(email.getText().toString().trim().equals("") || password.getText().toString().equals(""))
             {
                 testing.setText("**  All fields should be filled **");
                 progressBar.setVisibility(View.GONE);
             }
-            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches())
+            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString().trim()).matches())
             {
                 testing.setText("**  Email not valid **");
                 progressBar.setVisibility(View.GONE);
@@ -91,8 +91,8 @@ public class LogIn extends AppCompatActivity {
                 if(Connectivity.isConnected(mContext,Authenticate.url)) {
                     JSONObject postDataParams = new JSONObject();
                     try {
-                        postDataParams.put("email", email.getText().toString());
-                        postDataParams.put("password", password.getText().toString());
+                        postDataParams.put("email", email.getText().toString().trim());
+                        postDataParams.put("password", password.getText().toString().trim());
                         postDataParams.put("app_code", "iit");
                     } catch (JSONException e) {
                         e.printStackTrace();

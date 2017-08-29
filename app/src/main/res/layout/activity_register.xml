@@ -177,12 +177,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.70"
-                android:ems="10"
-                android:inputType="number" />
+                android:ems="10" />
 
         </LinearLayout>
 
-        <!-- JEE Roll Number-->
+        <!-- 12th Marks-->
         <LinearLayout
             android:visibility="visible"
             android:id="@+id/linearLayout7"
@@ -194,21 +193,20 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/Sleep_hourLabel"
+                android:id="@+id/Grade_12Label"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:text="JEE Roll Number"
+                android:text="12th Grade"
                 android:textSize="20dp" />
 
             <EditText
                 android:textAlignment="center"
-                android:id="@+id/jeeRollNumberField"
+                android:id="@+id/Grade_12Field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.70"
-                android:ems="10"
-                android:inputType="number" />
+                android:ems="10" />
 
         </LinearLayout>
 
@@ -231,13 +229,13 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeeTotalScoreField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.70"
-                android:ems="10"
-                android:inputType="numberDecimal" />
+                android:ems="10" />
 
         </LinearLayout>
 
@@ -260,7 +258,7 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:inputType="numberDecimal"
+                android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeePhysicsScoreField"
                 android:layout_width="wrap_content"
@@ -288,7 +286,7 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:inputType="numberDecimal"
+                android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeeChemistryScoreField"
                 android:layout_width="wrap_content"
@@ -316,7 +314,7 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:inputType="numberDecimal"
+                android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeeMathsScoreField"
                 android:layout_width="wrap_content"
@@ -325,7 +323,7 @@
                 android:ems="10"/>
         </LinearLayout>
 
-        <!-- Institute Name -->
+        <!-- JEE Roll Number -->
         <LinearLayout
             android:id="@+id/linearLayout12"
             android:layout_width="match_parent"
@@ -336,16 +334,17 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/InstituteLabel"
+                android:id="@+id/jeeRollNumberLabel"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:text="Institute Name"
+                android:text="JEE Roll Number"
                 android:textSize="20dp" />
 
             <EditText
+                android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
-                android:id="@+id/InstituteField"
+                android:id="@+id/jeeRollNumberField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.70"
@@ -353,7 +352,7 @@
 
         </LinearLayout>
 
-        <!--Password -->
+        <!--Institute -->
         <LinearLayout
             android:id="@+id/linearLayout13"
             android:layout_width="match_parent"
@@ -361,6 +360,33 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/linearLayout12"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/InstituteLabel"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text="Institute"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/InstituteField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.70"
+                android:ems="10" />
+
+        </LinearLayout>
+
+        <!-- Password -->
+        <LinearLayout
+            android:id="@+id/linearLayout14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/linearLayout13"
             android:layout_marginTop="20dp">
 
             <TextView
@@ -383,12 +409,12 @@
 
         <!-- Confirm Password -->
         <LinearLayout
-            android:id="@+id/linearLayout14"
+            android:id="@+id/linearLayout15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/linearLayout13"
+            android:layout_below="@+id/linearLayout14"
             android:layout_marginTop="20dp">
 
             <TextView
@@ -414,7 +440,7 @@
             android:id="@+id/Register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout14"
+            android:layout_below="@+id/linearLayout15"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="70dp"
@@ -426,7 +452,7 @@
             android:id="@+id/testing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout11"
+            android:layout_below="@+id/linearLayout15"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text=""

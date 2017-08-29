@@ -81,7 +81,7 @@ public class Register extends AppCompatActivity {
                 {
                     testing.setText("** Date of Birth format is not correct **");
                 }
-                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches())
+                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString().trim()).matches())
                 {
                     testing.setText("** Email not valid **");
                 }

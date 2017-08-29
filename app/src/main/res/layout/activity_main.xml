@@ -18,13 +18,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="#7d45e6"
+            android:textColor="#1e90ff"
             android:id="@+id/instruction_text_view"
             android:text="Please select the type of game that you want to play from the following options!" />
 
         <Button
             android:textColor="#fff"
-            android:background="#4aa"
+            android:background="#1e90ff"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_weight="1"
@@ -38,7 +38,7 @@
             android:layout_alignParentStart="true" />
 
         <Button
-            android:background="#4aa"
+            android:background="#1e90ff"
             android:textColor="#fff"
             android:id="@+id/visual_only_with_Distraction"
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             android:layout_marginTop="20dp" />
         <Button
             android:textColor="#fff"
-            android:background="#4aa"
+            android:background="#1e90ff"
             android:id="@+id/visual_only"
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -67,7 +67,7 @@
             android:layout_marginTop="20dp" />
         <Button
             android:textColor="#fff"
-            android:background="#4aa"
+            android:background="#1e90ff"
             android:id="@+id/audio_only"
             android:layout_width="match_parent"
             android:layout_height="70dp"

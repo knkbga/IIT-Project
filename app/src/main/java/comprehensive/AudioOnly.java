@@ -124,7 +124,7 @@ public class AudioOnly extends AppCompatActivity {
 
             // Delay of 1 Has to inserted here
             total_delay_time = 1000 + 1000*(i+1);
-            printWithDelay("",total_delay_time-50); //Just for clearness between the first number and the next number
+            printWithDelayDigit("",total_delay_time-50); //Just for clearness between the first number and the next number
 //            printWithDelay(Integer.toString(rand),total_delay_time); commented for audio only page
             if (rand==0)
             {
@@ -441,6 +441,22 @@ public class AudioOnly extends AppCompatActivity {
             }, delay_time);
         }
     }// Prints the string_to_print with delay_time in the OutputTextView
+
+    public void printWithDelayDigit(final String string_to_print, final int delay_time) // time in milli seconds
+    {
+        Handler handler = new Handler();
+        {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // D0 something after delay_time milli seconds
+                    // 1 second = 1000 milli second
+                    TextView outputTextView = (TextView) findViewById(R.id.digits_show);
+                    outputTextView.setText(string_to_print);
+                }
+            }, delay_time);
+        }
+    }
 
     public void setAudioStopTime(final MediaPlayer audio , final int delay_time) // time in milli seconds
     {

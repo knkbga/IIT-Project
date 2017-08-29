@@ -90,7 +90,7 @@
             android:layout_below="@+id/linearLayout6"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="39dp"
-            android:background="@color/colorPrimary"
+            android:background="#1e90ff"
             android:text="Proceed"
             android:textColor="#ffff" />
     </RelativeLayout>

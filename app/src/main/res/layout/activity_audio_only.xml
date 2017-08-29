@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_audio_only"
     tools:context="comprehensive.VisualAndAuditory"
@@ -39,10 +39,10 @@
                 android:textSize="40sp"
                 android:gravity="center"
                 android:id="@+id/audio_only_output"
-                android:layout_marginTop="100dp"
-                android:layout_below="@+id/textView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_marginTop="24dp"
+                android:layout_alignTop="@+id/digits_show"
+                android:layout_toRightOf="@+id/progressBar"
+                android:layout_toEndOf="@+id/progressBar" />
 
             <EditText
                 android:layout_width="316dp"
@@ -52,9 +52,9 @@
                 android:textSize="30sp"
                 android:gravity="center"
                 android:id="@+id/audio_only_input"
-                android:layout_below="@+id/audio_only_output"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp" />
+                android:layout_alignBaseline="@+id/audio_only_output"
+                android:layout_alignBottom="@+id/audio_only_output"
+                android:layout_centerHorizontal="true" />
 
             <Button
                 android:layout_marginTop="30dp"
@@ -77,6 +77,13 @@
                 android:layout_below="@+id/audio_only_output"
                 android:layout_centerHorizontal="true"
                 android:visibility="gone" />
+            <TextView
+                android:textSize="140dp"
+                android:id="@+id/digits_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
         </RelativeLayout>
 
         <LinearLayout
@@ -118,4 +125,4 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</RelativeLayout>
