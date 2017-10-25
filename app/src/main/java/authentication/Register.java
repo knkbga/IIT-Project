@@ -95,7 +95,7 @@ public class Register extends AppCompatActivity {
                 }
                 else
                 {
-                    if(Connectivity.isConnected(mContext,Authenticate.url)) {
+                    if(Connectivity.isConnected(mContext, LandingPage.url)) {
                         testing.setText("");
                         JSONObject postDataParams = new JSONObject();
                         try {
@@ -119,7 +119,7 @@ public class Register extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        API api = new API(PersonCredentials.oid, postDataParams, Authenticate.url + "/register", testing, mContext, 0, progressBar);
+                        API api = new API(PersonCredentials.oid, postDataParams, LandingPage.url + "/register", testing, mContext, 0, progressBar);
 
                         progressBar.setVisibility(View.VISIBLE);
                         api.execute();

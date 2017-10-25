@@ -2,7 +2,6 @@ package authentication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 import com.example.om.mygame.API;
 import com.example.om.mygame.Connectivity;
 import com.example.om.mygame.ForgotPassword;
-import com.example.om.mygame.HomePage;
 import com.example.om.mygame.R;
 
 import org.json.JSONException;
@@ -88,7 +86,7 @@ public class LogIn extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                if(Connectivity.isConnected(mContext,Authenticate.url)) {
+                if(Connectivity.isConnected(mContext, LandingPage.url)) {
                     JSONObject postDataParams = new JSONObject();
                     try {
                         postDataParams.put("email", email.getText().toString().trim());
@@ -98,9 +96,9 @@ public class LogIn extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    API api = new API(PersonCredentials.oid, postDataParams, Authenticate.url + "/login", testing, mContext, 1, progressBar);
+                    API api = new API(PersonCredentials.oid, postDataParams, LandingPage.url + "/login", testing, mContext, 1, progressBar);
 
-                    Log.d("URL", Authenticate.url + "/login");
+                    Log.d("URL", LandingPage.url + "/login");
 
                     api.execute();
                 }
@@ -145,7 +143,7 @@ public class LogIn extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent myIntent = new Intent(this, Authenticate.class);
+        Intent myIntent = new Intent(this, LandingPage.class);
         startActivity(myIntent);
     }
 

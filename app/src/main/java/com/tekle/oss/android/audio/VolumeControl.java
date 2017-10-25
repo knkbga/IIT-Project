@@ -296,7 +296,7 @@ public class VolumeControl {
 	}
 	
 	/**
-	 * Set the volume change indicator used when volume is changed using  {@link #setVolume(float)}.
+	 * Sessions the volume change indicator used when volume is changed using  {@link #setVolume(float)}.
 	 * @param indicator the desired volume change indicator
 	 * @see #getVolumeChangeIndicator()
 	 */

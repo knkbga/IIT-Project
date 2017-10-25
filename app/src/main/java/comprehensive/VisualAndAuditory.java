@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.example.om.mygame.API;
 import com.example.om.mygame.HomePage;
 import com.example.om.mygame.R;
-import com.example.om.mygame.Set;
+import com.example.om.mygame.Sessions;
 import com.tekle.oss.android.audio.VolumeControl;
 
 import org.json.JSONArray;
@@ -33,14 +33,14 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.TimeZone;
 
-import authentication.Authenticate;
+import authentication.LandingPage;
 import authentication.PersonCredentials;
 
 public class VisualAndAuditory extends AppCompatActivity {
     private JSONObject request;
     public String route;
     protected int lives_left ;
-    private int level = Set.starting_level;
+    private int level = Sessions.starting_level;
     private String questionString;
     private static MediaPlayer audio;
     private static int back_button_pressed;
@@ -54,15 +54,17 @@ public class VisualAndAuditory extends AppCompatActivity {
     private int number_of_events =-1;
     private TextView setNumber;
     private String TotalVolume;
-
+    private int individual_event_score;
+    private int game_score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        lives_left = Set.max_lives_every_game;
+        game_score = 0;
+        lives_left = Sessions.max_lives_every_game;
 
         setContentView(R.layout.activity_visual_and_auditory);
         setNumber = (TextView) findViewById(R.id.setNumber);
-        setNumber.setText("Set = "+Set.Sets_game);
+        setNumber.setText("Set = "+ Sessions.Sets_game);
 
         different_events = new JSONArray();
         request = new JSONObject();
@@ -73,10 +75,10 @@ public class VisualAndAuditory extends AppCompatActivity {
         Log.d("_id",PersonCredentials.oid);
 
         try {
-            request.put("set",Set.Sets_game);
+            request.put("set", Sessions.Sets_game);
             request.put("_id",PersonCredentials.oid);
             request.put("start_session",df.format(new java.util.Date()));
-            request.put("session_token",Set.session_token);
+            request.put("session_token", Sessions.session_token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -255,7 +257,7 @@ public class VisualAndAuditory extends AppCompatActivity {
             e.printStackTrace();
         }
         number_of_events++;
-        String answerString ;
+        String answerString;
         TextView outputTextView = (TextView) findViewById(R.id.visual_and_auditory_output);
 
         final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
@@ -278,15 +280,20 @@ public class VisualAndAuditory extends AppCompatActivity {
         }
 
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <Set.max_levels_every_game))//correct but not final level
+        if ((questionString.equals(answerString))&&(lenth < Sessions.max_levels_every_game))//correct but not final level
         {
-            different_events = new JSONArray();
+//            different_events = new JSONArray();
 
             try {
+                individual_event_score = level*10 -(Sessions.max_lives_every_game-lives_left);
+                Sessions.session_score += individual_event_score;
+                game_score += individual_event_score;
 
                 // adding current ongoing event's variables
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("lives_till_used",(Sessions.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
+                individual_event.put("individual_event_score",individual_event_score);
+
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
@@ -299,27 +306,31 @@ public class VisualAndAuditory extends AppCompatActivity {
             }
 
 
-            API obj1 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+            /*API obj1 = new API(PersonCredentials.oid,request,LandingPage.url+route,null,mContext,2,progressBar);
 
-            obj1.execute();
+            obj1.execute();*/
 
 
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
-            lives_left=Set.max_lives_every_game;
+            lives_left= Sessions.max_lives_every_game;
             inputText.setText("");
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==Set.max_levels_every_game)) // correct and final level
+        else if ((questionString.equals(answerString))&&(lenth == Sessions.max_levels_every_game)) // correct and final level
         {
-            different_events = new JSONArray();
+//            different_events = new JSONArray();
             try {
+                individual_event_score = level*10 -(Sessions.max_lives_every_game-lives_left);
+                Sessions.session_score += individual_event_score;
+                game_score += individual_event_score;
 
                 // adding current ongoing event's variables
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("lives_till_used",(Sessions.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
+                individual_event.put("individual_event_score",individual_event_score);
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
@@ -337,13 +348,13 @@ public class VisualAndAuditory extends AppCompatActivity {
 
             try {
                 request.put("end_session",df.format(new java.util.Date()));
-
+                request.put("game_score",game_score);
                 request.put("different_events",different_events);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            API obj3 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+            API obj3 = new API(PersonCredentials.oid,request, LandingPage.url+route,null,mContext,2,progressBar);
             obj3.execute();
 
             printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
@@ -363,12 +374,16 @@ public class VisualAndAuditory extends AppCompatActivity {
         }
         else//wrong answer given
         {
-            different_events = new JSONArray();
+//            different_events = new JSONArray();
             try {
+                individual_event_score = 0;
+                Sessions.session_score += individual_event_score;
+                game_score += individual_event_score;
 
                 // adding current ongoing event's variables
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("lives_till_used",(Sessions.max_lives_every_game-lives_left+1));
                 individual_event.put("success","false");
+                individual_event.put("individual_event_score",individual_event_score);
 
                 // adding individual_event in different_events
                 different_events.put(individual_event);
@@ -382,8 +397,8 @@ public class VisualAndAuditory extends AppCompatActivity {
             lives_left--;
             if(lives_left > 0)
             {
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                obj4.execute();
+                /*API obj4 = new API(PersonCredentials.oid,request,LandingPage.url+route,null,mContext,2,progressBar);
+                obj4.execute();*/
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
@@ -398,20 +413,20 @@ public class VisualAndAuditory extends AppCompatActivity {
 
                 try {
                     request.put("end_session", df.format(new java.util.Date()));
-
+                    request.put("game_score",game_score);
                     request.put("different_events",different_events);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                API obj4 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
+                API obj4 = new API(PersonCredentials.oid,request, LandingPage.url+route,null,mContext,2,progressBar);
 
                 obj4.execute();
 
                 inputText.setEnabled(false); inputText.setVisibility(View.GONE);
                 inputText.setInputType(InputType.TYPE_NULL);;
-                lives_left = Set.max_lives_every_game;
+                lives_left = Sessions.max_lives_every_game;
 
 
 
@@ -526,13 +541,13 @@ public class VisualAndAuditory extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Not recommended to leave the game before you complete all 3 sets.")
+        builder.setMessage("Not recommended to leave the game before you complete all 3 sets. Any unsaved data will be lost...")
                 .setCancelable(false)
                 .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent myIntent = new Intent(comprehensive.VisualAndAuditory.this,HomePage.class);
                         try {
-                            different_events = new JSONArray();
+//                            different_events = new JSONArray();
 
                             request.put("end_session", df.format(new java.util.Date()));
 
@@ -542,11 +557,11 @@ public class VisualAndAuditory extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                        API obj5 = new API(PersonCredentials.oid,request,Authenticate.url+route,null,mContext,2,progressBar);
-                        obj5.execute();
+                        /*ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                        API obj5 = new API(PersonCredentials.oid,request,LandingPage.url+route,null,mContext,2,progressBar);
+                        obj5.execute();*/
 
-                        Log.d("API","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
+                        Log.d("API","Request to api:: '"+ LandingPage.url+route+"'"+request.toString());
 
                         startActivity(myIntent);
                         VisualAndAuditory.super.onBackPressed();

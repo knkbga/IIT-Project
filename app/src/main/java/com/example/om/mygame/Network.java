@@ -14,11 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import authentication.Authenticate;
+import authentication.LandingPage;
 import authentication.LogIn;
 import authentication.Register;
-
-import static android.R.attr.data;
 
 
 public class Network extends AppCompatActivity {
@@ -50,13 +48,13 @@ public class Network extends AppCompatActivity {
                 Boolean can_proceed=false;
 
                 if (internet.isChecked()) {
-                    Authenticate.url = "http://nameless-castle-57165.herokuapp.com";
+                    LandingPage.url = "http://nameless-castle-57165.herokuapp.com";
                     can_proceed = true;
                 } else if (localhost.isChecked()) {
 
                     if(!localhostAddress.getText().toString().trim().equals(""))
                     {
-                        Authenticate.url = "http://"+localhostAddress.getText().toString();
+                        LandingPage.url = "http://"+localhostAddress.getText().toString();
                         can_proceed = true;
                     }
                     else {
@@ -84,12 +82,12 @@ public class Network extends AppCompatActivity {
                         }).show();
                 }
 
-                if (can_proceed && Connectivity.isConnected(mContext,Authenticate.url))
+                if (can_proceed && Connectivity.isConnected(mContext, LandingPage.url))
                 {
-                    if (Authenticate.reg_log == 0) {
+                    if (LandingPage.reg_log == 0) {
                         Intent myIntent = new Intent(Network.this, Register.class);
                         startActivity(myIntent);
-                    } else if (Authenticate.reg_log == 1) {
+                    } else if (LandingPage.reg_log == 1) {
                         Intent myIntent = new Intent(Network.this, LogIn.class);
                         startActivity(myIntent);
                     }

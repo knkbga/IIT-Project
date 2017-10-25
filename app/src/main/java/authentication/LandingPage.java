@@ -9,16 +9,28 @@ import android.widget.Button;
 
 import com.example.om.mygame.Network;
 import com.example.om.mygame.R;
+import com.example.om.mygame.VersionData;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
 
 
-public class Authenticate extends FragmentActivity {
+public class LandingPage extends FragmentActivity {
 
+    private static JsonObject version_data;
     public static int reg_log;
     public static String url;
+    private String release_number;
     ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try {
+            release_number = VersionData.version_data.getString("release_number");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authenticate);
 
@@ -36,7 +48,7 @@ public class Authenticate extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 reg_log=0;
-                Intent myIntent = new Intent(Authenticate.this, Network.class);
+                Intent myIntent = new Intent(LandingPage.this, Network.class);
                 startActivity(myIntent);
             }
         });
@@ -45,7 +57,7 @@ public class Authenticate extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 reg_log=1;
-                Intent myIntent = new Intent(Authenticate.this, Network.class);
+                Intent myIntent = new Intent(LandingPage.this, Network.class);
                 startActivity(myIntent);
             }
         });

@@ -1,18 +1,12 @@
 package com.example.om.mygame;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -21,9 +15,8 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import authentication.Authenticate;
+import authentication.LandingPage;
 import authentication.LogIn;
 import authentication.PersonCredentials;
 
@@ -68,9 +61,9 @@ public class ForgotPassword extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    API api = new API(PersonCredentials.oid, postDataParams, Authenticate.url + "/api/resetpass", testing, mContext, 3, progressBar);
+                    API api = new API(PersonCredentials.oid, postDataParams, LandingPage.url + "/api/resetpass", testing, mContext, 3, progressBar);
 
-                    Log.d("URL", Authenticate.url + "/login");
+                    Log.d("URL", LandingPage.url + "/login");
 
                     api.execute();
                 }

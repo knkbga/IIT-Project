@@ -13,9 +13,8 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import authentication.Authenticate;
+import authentication.LandingPage;
 import authentication.LogIn;
 import authentication.PersonCredentials;
 
@@ -54,7 +53,7 @@ public class ResetPassword extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                API api = new API(PersonCredentials.oid, request, Authenticate.url + "/api/resetpass/chg", testing, mContext, 4, progressBar);
+                API api = new API(PersonCredentials.oid, request, LandingPage.url + "/api/resetpass/chg", testing, mContext, 4, progressBar);
 
                 api.execute();
             }

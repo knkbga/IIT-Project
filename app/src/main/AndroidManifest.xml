@@ -28,7 +28,7 @@
             android:label="@string/title_activity_trials_wodistraction"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name="authentication.Authenticate"
+            android:name="authentication.LandingPage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,31 +45,31 @@
             android:name="authentication.LogIn"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_log_in"
-            android:parentActivityName="authentication.Authenticate"
+            android:parentActivityName="authentication.LandingPage"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="authentication.Authenticate" />
+                android:value="authentication.LandingPage" />
         </activity>
         <activity
             android:name="authentication.Register"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_register"
-            android:parentActivityName="authentication.Authenticate"
+            android:parentActivityName="authentication.LandingPage"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="authentication.Authenticate" />
+                android:value="authentication.LandingPage" />
         </activity>
         <activity
             android:name=".Network"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_network"
-            android:parentActivityName="authentication.Authenticate"
+            android:parentActivityName="authentication.LandingPage"
             android:theme="@style/FullscreenTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="authentication.Authenticate" />
+                android:value="authentication.LandingPage" />
         </activity>
         <activity
             android:name=".ForgotPassword"
@@ -122,7 +122,7 @@
             android:label="@string/title_activity_instructions_visual_only"
             android:theme="@style/FullscreenTheme"/>
         <activity
-            android:name=".Set"
+            android:name=".Sessions"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_set"
             android:theme="@style/FullscreenTheme"></activity>

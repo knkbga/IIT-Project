@@ -18,10 +18,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.om.mygame.HomePage;
 import com.example.om.mygame.PracticeHomePage;
 import com.example.om.mygame.R;
-import com.example.om.mygame.Set;
+import com.example.om.mygame.Sessions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,9 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.TimeZone;
 
-import authentication.Authenticate;
+import authentication.LandingPage;
 import authentication.PersonCredentials;
-import comprehensive.InstructionsAudioOnly;
 
 public class VisualAndAuditory extends AppCompatActivity {
     private JSONObject request;
@@ -55,7 +53,7 @@ public class VisualAndAuditory extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        lives_left = Set.max_lives_every_game;
+        lives_left = Sessions.max_lives_every_game;
 
         setContentView(R.layout.activity_visual_and_auditory);
         setNumber = (TextView) findViewById(R.id.setNumber);
@@ -264,15 +262,15 @@ public class VisualAndAuditory extends AppCompatActivity {
         }
 
         //////////////////////////////////////////////////////////////////////
-        if ((questionString.equals(answerString))&&(lenth <Set.max_levels_every_game))//correct but not final level
+        if ((questionString.equals(answerString))&&(lenth < Sessions.max_levels_every_game))//correct but not final level
         {
             different_events = new JSONArray();
 
             try {
 
                 // adding current ongoing event's variables
-                individual_event.put("set_number", Set.Sets_game);
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("set_number", Sessions.Sets_game);
+                individual_event.put("lives_till_used",(Sessions.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -289,19 +287,19 @@ public class VisualAndAuditory extends AppCompatActivity {
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
             level = level + 1;
-            lives_left=Set.max_lives_every_game;
+            lives_left= Sessions.max_lives_every_game;
             inputText.setText("");
             levelLabel.setText("Level - "+(level));
             myGameLoop(level);
         }
-        else if ((questionString.equals(answerString))&&(lenth ==Set.max_levels_every_game)) // correct and final level
+        else if ((questionString.equals(answerString))&&(lenth == Sessions.max_levels_every_game)) // correct and final level
         {
             different_events = new JSONArray();
             try {
 
                 // adding current ongoing event's variables
-                individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("set_number", Sessions.Sets_game);
+                individual_event.put("lives_till_used",(Sessions.max_lives_every_game-lives_left+1));
                 individual_event.put("success","true");
 
                 // adding individual_event in different_events
@@ -349,8 +347,8 @@ public class VisualAndAuditory extends AppCompatActivity {
             try {
 
                 // adding current ongoing event's variables
-                individual_event.put("set_number",Set.Sets_game);
-                individual_event.put("lives_till_used",(Set.max_lives_every_game-lives_left+1));
+                individual_event.put("set_number", Sessions.Sets_game);
+                individual_event.put("lives_till_used",(Sessions.max_lives_every_game-lives_left+1));
                 individual_event.put("success","false");
 
                 // adding individual_event in different_events
@@ -388,7 +386,7 @@ public class VisualAndAuditory extends AppCompatActivity {
                 }
 
                 inputText.setVisibility(View.INVISIBLE);
-                lives_left = Set.max_lives_every_game;
+                lives_left = Sessions.max_lives_every_game;
 
 
 
@@ -519,7 +517,7 @@ public class VisualAndAuditory extends AppCompatActivity {
 
                         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-                        Log.d("API","Request to api:: '"+Authenticate.url+route+"'"+request.toString());
+                        Log.d("API","Request to api:: '"+ LandingPage.url+route+"'"+request.toString());
 
                         startActivity(myIntent);
                         VisualAndAuditory.super.onBackPressed();

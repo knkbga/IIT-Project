@@ -2,8 +2,6 @@ package com.example.om.mygame;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -14,15 +12,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -30,10 +24,8 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import authentication.Authenticate;
 import authentication.LogIn;
 import authentication.PersonCredentials;
-import authentication.Register;
 import comprehensive.InstructionsVisualAndAuditory;
 
 
@@ -237,11 +229,11 @@ public class API extends AsyncTask<String , String , String>
                     Boolean success = res.getBoolean("success");
                     if(success)
                     {
-                        Set.session_token = res.getString("session_token");
+                        Sessions.session_token = res.getString("session_token");
                         Intent myIntent = new Intent(mContext, InstructionsVisualAndAuditory.class);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(myIntent);
-                        Set.new_session = false;
+                        Sessions.new_session = false;
                     }
                     else
                     {

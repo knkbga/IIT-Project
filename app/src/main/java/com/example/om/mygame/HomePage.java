@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import authentication.Authenticate;
+import authentication.LandingPage;
 
 
 public class HomePage extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        Set.new_session = true;
+        Sessions.new_session = true;
 
         if(isConnected)
         {
@@ -37,8 +37,8 @@ public class HomePage extends AppCompatActivity {
             comprehensiveTestButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Set.Sets_game=1;
-                    Intent myIntent = new Intent(HomePage.this, Set.class);
+                    Sessions.Sets_game=1;
+                    Intent myIntent = new Intent(HomePage.this, Sessions.class);
                     startActivity(myIntent);
                 }
             });
@@ -66,7 +66,7 @@ public class HomePage extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent myIntent = new Intent(HomePage.this,Authenticate.class);
+                        Intent myIntent = new Intent(HomePage.this, LandingPage.class);
                         startActivity(myIntent);
                     }
                 })

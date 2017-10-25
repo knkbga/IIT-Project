@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,16 +19,16 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-import authentication.Authenticate;
+import authentication.LandingPage;
 import authentication.PersonCredentials;
 import comprehensive.InstructionsVisualAndAuditory;
 
-public class Set extends AppCompatActivity {
+public class Sessions extends AppCompatActivity {
     public static int Sets_game;
-    public static int starting_level=1;
+    public static int starting_level=6;
     public static Boolean new_session = true;
     private static int max_sets=3;
-    public static int max_lives_every_game=1;
+    public static int max_lives_every_game=3;
     public static int max_levels_every_game=20;
     public static int session_score=0;
     private Context mContext;
@@ -40,6 +39,7 @@ public class Set extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
 
@@ -77,9 +77,9 @@ public class Set extends AppCompatActivity {
                         try {
                             request.put("start_session", df.format(new java.util.Date()));
                             request.put("_id", PersonCredentials.oid);
-                            API obj = new API(PersonCredentials.oid, request, Authenticate.url + "/start_session", testing, mContext, 5, progressBar);
+                            API obj = new API(PersonCredentials.oid, request, LandingPage.url + "/start_session", testing, mContext, 5, progressBar);
 
-                            Log.v("API", "API called from Set Activity.");
+                            Log.v("API", "API called from Sessions Activity.");
                             obj.execute();
                         } catch (Exception e) {
                             Log.v("API", e.getClass().toString());
@@ -87,13 +87,13 @@ public class Set extends AppCompatActivity {
                         }
                     }
                     else {
-                        Intent myIntent = new Intent(Set.this, InstructionsVisualAndAuditory.class);
+                        Intent myIntent = new Intent(Sessions.this, InstructionsVisualAndAuditory.class);
                         startActivity(myIntent);
                     }
                 }
                 else
                 {
-                    Intent myIntent = new Intent(Set.this, HomePage.class);
+                    Intent myIntent = new Intent(Sessions.this, HomePage.class);
                     startActivity(myIntent);
                     Toast.makeText(getApplication(), "Sets finished...",Toast.LENGTH_LONG).show();
                 }
@@ -113,7 +113,7 @@ public class Set extends AppCompatActivity {
                     .setCancelable(false)
                     .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Intent myIntent = new Intent(Set.this, HomePage.class);
+                            Intent myIntent = new Intent(Sessions.this, HomePage.class);
                             startActivity(myIntent);
                         }
                     })
@@ -127,7 +127,7 @@ public class Set extends AppCompatActivity {
         }
         else
         {
-            Intent myIntent = new Intent(Set.this, HomePage.class);
+            Intent myIntent = new Intent(Sessions.this, HomePage.class);
             startActivity(myIntent);
         }
     }
