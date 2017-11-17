@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import com.example.om.mygame.API;
 import com.example.om.mygame.HomePage;
 import com.example.om.mygame.R;
@@ -52,6 +53,7 @@ public class VisualOnly extends AppCompatActivity {
     private JSONObject individual_event;
     private int number_of_events =-1;
     private TextView setNumber;
+//    private String TotalVolume;
     private int individual_event_score;
     private int game_score;
 
@@ -63,7 +65,6 @@ public class VisualOnly extends AppCompatActivity {
         setContentView(R.layout.activity_visual_only);
         setNumber = (TextView) findViewById(R.id.setNumber);
         setNumber.setText("Set = "+ Sessions.Sets_game);
-
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -95,6 +96,7 @@ public class VisualOnly extends AppCompatActivity {
 
     public void myGameLoop(int level)
     {
+//        TotalVolume = "";
         individual_event = new JSONObject();
         timer.setVisibility(View.VISIBLE);
         timer.start();
@@ -103,7 +105,7 @@ public class VisualOnly extends AppCompatActivity {
         int total_delay_time ;
         back_button_pressed = 0;
         int[] randomArray = new int[lenth] ;
-        printWithDelayDigit("",1000);
+        printWithDelay("",1000);
         total_delay_time = 1000;
 
         try
@@ -118,9 +120,9 @@ public class VisualOnly extends AppCompatActivity {
         for(i = 0;i<lenth;i++)
         {
             Random r = new Random();
-            int rand = r.nextInt(10) ; // Generates a random number from 0-9
+            int rand = r.nextInt(10) ;  // Generates a random number from 0-9
             randomArray[i] = rand ;
-            questionString = questionString + Integer.toString(rand) ;
+            questionString = questionString + Integer.toString(rand);
 
             // Delay of 1 Has to inserted here
             total_delay_time = 1000 + 1000*(i+1);
@@ -153,7 +155,7 @@ public class VisualOnly extends AppCompatActivity {
                     // 1 second = 1000 milli second
                     inputText.setEnabled(true); inputText.setVisibility(View.VISIBLE);
                     inputText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
-                    submit_button.setVisibility(View.VISIBLE) ;
+                    submit_button.setVisibility(View.VISIBLE);
                 }
             }, delay_time);
         }
@@ -187,6 +189,8 @@ public class VisualOnly extends AppCompatActivity {
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));
+
+            
         } catch (JSONException e) {
             e.printStackTrace();
         }

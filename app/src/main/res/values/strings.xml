@@ -64,4 +64,6 @@
 
     <string name="title_activity_set">Set</string>
 
+    <string name="title_activity_leaderboard">Leaderboard</string>
+
 </resources>

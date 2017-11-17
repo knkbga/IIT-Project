@@ -33,6 +33,7 @@ public class HomePage extends AppCompatActivity {
 
             Button comprehensiveTestButton = (Button) findViewById(R.id.ComprehensiveTestButton);
             Button specificTestButton = (Button) findViewById(R.id.SpecificTestButton);
+            Button leaderboardButton = (Button) findViewById(R.id.LeaderBoardButton);
 
             comprehensiveTestButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -47,6 +48,14 @@ public class HomePage extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent myIntent = new Intent(HomePage.this,PracticeHomePage.class);
+                    startActivity(myIntent);
+                }
+            });
+
+            leaderboardButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(HomePage.this,Leaderboard.class);
                     startActivity(myIntent);
                 }
             });

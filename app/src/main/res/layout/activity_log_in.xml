@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
     android:padding="20dp"
-    android:background="#ffff"
+    android:background="@color/theme_white"
     tools:context="authentication.LogIn">
 
     <RelativeLayout
@@ -16,13 +16,15 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Enter your email"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/theme_grey"
             android:id="@+id/textView4"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <EditText
+            android:backgroundTint="@color/theme_orange"
+            android:textColor="@color/theme_grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/EmailField"
@@ -31,8 +33,8 @@
             android:layout_alignParentStart="true" />
 
         <Button
-            android:textColor="#ffff"
-            android:background="#1e90ff"
+            android:textColor="@color/theme_white"
+            android:background="@color/theme_orange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Log In"
@@ -47,7 +49,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Enter Password"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/theme_grey"
             android:id="@+id/PasswordLabel"
             android:layout_marginTop="29dp"
             android:layout_below="@+id/EmailField"
@@ -55,6 +57,8 @@
             android:layout_alignParentStart="true" />
 
         <EditText
+            android:backgroundTint="@color/theme_orange"
+            android:textColor="@color/theme_grey"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,7 +91,7 @@
             android:layout_marginTop="16dp" />
 
         <TextView
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/theme_orange"
             android:id="@+id/forgot_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

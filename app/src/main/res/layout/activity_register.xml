@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffff"
+    android:background="@color/theme_white"
     android:padding="16dp"
     tools:context="authentication.Register">
 
@@ -22,6 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/NameLabel"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -31,6 +32,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textAlignment="center"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:id="@+id/NameField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,6 +55,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/PhoneLabel"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -60,6 +65,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textAlignment="center"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:id="@+id/PhoneField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,6 +88,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/EmailLAbel"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -89,6 +98,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textAlignment="center"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:id="@+id/EmailField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,6 +121,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/GenderLabel"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -117,6 +130,8 @@
                 android:textSize="20dp" />
 
             <Spinner
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:id="@+id/GenderField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -135,6 +150,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/AgeLabel"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -143,6 +159,10 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textAlignment="center"
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:hint="      DD-MM-YYYY"
                 android:id="@+id/dob"
                 android:layout_width="wrap_content"
@@ -164,6 +184,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/Grade_10Label"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -172,6 +193,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:textAlignment="center"
                 android:id="@+id/Grade_10Field"
                 android:layout_width="wrap_content"
@@ -193,6 +217,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/Grade_12Label"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -201,6 +226,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:textAlignment="center"
                 android:id="@+id/Grade_12Field"
                 android:layout_width="wrap_content"
@@ -221,6 +249,7 @@
             android:layout_alignParentLeft="true">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/jeeTotalScore"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -229,6 +258,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeeTotalScoreField"
@@ -250,6 +282,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/jeePhysicsScore"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -258,6 +291,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeePhysicsScoreField"
@@ -278,6 +314,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/jeeChemistryScore"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -286,6 +323,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeeChemistryScoreField"
@@ -306,6 +346,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/jeeMathsScore"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -314,6 +355,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeeMathsScoreField"
@@ -334,6 +378,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/jeeRollNumberLabel"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -342,6 +387,9 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:hint="If not any, type 'NA'"
                 android:textAlignment="center"
                 android:id="@+id/jeeRollNumberField"
@@ -363,6 +411,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/InstituteLabel"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -371,6 +420,10 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textAlignment="center"
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:id="@+id/InstituteField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -390,6 +443,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/PasswordLabel"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -398,6 +452,10 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textAlignment="center"
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:id="@+id/PasswordField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -418,6 +476,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:id="@+id/ConfirmPasswordLabel"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
@@ -426,6 +485,10 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:textAlignment="center"
+                android:textColorHint="@color/theme_orange"
+                android:textColor="@color/theme_grey"
+                android:backgroundTint="@color/theme_orange"
                 android:id="@+id/ConfirmPasswordField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -444,9 +507,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="70dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/theme_orange"
             android:text="Register"
-            android:textColor="#fff" />
+            android:textColor="@color/theme_white" />
 
         <TextView
             android:id="@+id/testing"

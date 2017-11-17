@@ -37,10 +37,11 @@
             android:layout_height="match_parent"
             android:layout_weight="0.1">
             <Button
+                android:textColor="@color/theme_black"
                 android:id="@+id/RegisterButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fff"
+                android:background="@color/theme_white"
                 android:layout_marginRight="0.5dp"
                 android:text="Register"/>
         </LinearLayout>
@@ -50,10 +51,11 @@
             android:layout_height="match_parent"
             android:layout_weight="0.1">
             <Button
+                android:textColor="@color/theme_black"
                 android:id="@+id/LogInButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fff"
+                android:background="@color/theme_white"
                 android:layout_marginLeft="0.5dp"
                 android:text="LogIn"/>
         </LinearLayout>

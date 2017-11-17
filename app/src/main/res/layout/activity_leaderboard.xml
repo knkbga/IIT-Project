@@ -1,0 +1,304 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    android:background="@color/theme_yellow"
+    tools:context="com.example.om.mygame.Leaderboard">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:id="@+id/LEADERBOARD_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:padding="20sp"
+                    android:textSize="20dp"
+                    android:textColor="@color/theme_white"
+                    android:background="@color/theme_orange"
+                    android:textAlignment="center"
+                    android:text="LEADERBOARD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/YOURRANK_Layout"
+                android:padding="5dp"
+                android:layout_below="@+id/LEADERBOARD_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:textColor="#f96d00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:text="Your Rank"
+                    android:textAlignment="center"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:textColor="#f96d00"
+                    android:textSize="25sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:inputType="number"
+                    android:text="3004" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/RANKINGTEXT_Layout"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/YOURRANK_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textAlignment="center"
+                    android:textSize="20dp"
+                    android:textColor="@color/theme_black"
+                    android:text="Our Top Scorers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LINE_1"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/RANKINGTEXT_Layout"
+                android:background="@color/theme_black"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/RANKS_1"
+                android:padding="7dp"
+                android:layout_below="@+id/LINE_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="4"
+                    android:text="#1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3"
+                    android:text="Kanak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3.5"
+                    android:text="640 pts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/LINE_2"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/RANKS_1"
+                android:background="@color/theme_black"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/RANKS_2"
+                android:padding="7dp"
+                android:layout_below="@+id/LINE_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="4"
+                    android:text="#2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3"
+                    android:text="Kanak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3.5"
+                    android:text="640 pts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LINE_3"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/RANKS_2"
+                android:background="@color/theme_black"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/RANKS_3"
+                android:padding="7dp"
+                android:layout_below="@+id/LINE_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="4"
+                    android:text="#3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3"
+                    android:text="Kanak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3.5"
+                    android:text="640 pts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LINE_4"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/RANKS_3"
+                android:background="@color/theme_black"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/RANKS_4"
+                android:padding="7dp"
+                android:layout_below="@+id/LINE_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="4"
+                    android:text="#4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3"
+                    android:text="Kanak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3.5"
+                    android:text="640 pts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LINE_5"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/RANKS_4"
+                android:background="@color/theme_black"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/RANKS_5"
+                android:padding="7dp"
+                android:layout_below="@+id/LINE_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="4"
+                    android:text="#5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3"
+                    android:text="Kanak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/theme_grey"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="3.5"
+                    android:text="640 pts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LINE_6"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/RANKS_5"
+                android:background="@color/theme_black"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"></LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</FrameLayout>

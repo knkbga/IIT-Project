@@ -41,7 +41,8 @@ public class Sessions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set);
+        setContentView(R.layout.activity_session);
+        getSupportActionBar().hide();
 
         final RelativeLayout sets_instructions_label  = (RelativeLayout) findViewById(R.id.sets_instructions_label);
         final TextView set_number_label = (TextView) findViewById(R.id.set_number_label);

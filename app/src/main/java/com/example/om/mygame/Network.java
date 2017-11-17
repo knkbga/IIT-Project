@@ -30,6 +30,7 @@ public class Network extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_network);
+        getSupportActionBar().hide();
 
         Button proceed = (Button) findViewById(R.id.ProceedButton);
         final RadioButton internet = (RadioButton) findViewById(R.id.radio_internet);

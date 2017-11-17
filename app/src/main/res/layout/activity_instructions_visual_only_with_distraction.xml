@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-    android:background="#ffff"
+    android:background="@color/theme_white"
     tools:context="comprehensive.VisualOnlyWithDistraction">
 
 
@@ -16,7 +16,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:textColor="#1e90ff"
+            android:textColor="@color/theme_orange"
             android:textAlignment="center"
             android:text="ANSWER WHAT YOU SEE \n\nIGNORE WHAT YOU HEAR"
             android:textSize="27dp"
@@ -131,8 +131,8 @@
     <Button
         android:textSize="20dp"
         android:padding="17dp"
-        android:textColor="#ffff"
-        android:background="#1e90ff"
+        android:textColor="@color/theme_white"
+        android:background="@color/theme_orange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start This Test"

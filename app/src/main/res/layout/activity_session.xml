@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@color/theme_white"
     tools:context="com.example.om.mygame.Sessions">
 
 
@@ -27,11 +27,11 @@
             <TextView
                 android:textAlignment="center"
                 android:layout_marginBottom="20dp"
-                android:textColor="#ff9a14"
+                android:textColor="#f96d00"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:padding="5dp"
-                android:textSize="27dp"
+                android:textSize="22dp"
                 android:text="Four types of games"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -46,11 +46,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
             <TextView
-                android:textColor="#1e90ff"
+                android:textColor="@color/theme_grey"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="5dp"
                 android:padding="5dp"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:text="(i) Visual with Audio"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -65,11 +65,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
             <TextView
-                android:textColor="#1e90ff"
+                android:textColor="@color/theme_grey"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="5dp"
                 android:padding="5dp"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:text="(ii) Audio Only"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -85,11 +85,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
             <TextView
-                android:textColor="#1e90ff"
+                android:textColor="@color/theme_grey"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="5dp"
                 android:padding="5dp"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:text="(iii) Visual Only"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -105,11 +105,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
             <TextView
-                android:textColor="#1e90ff"
+                android:textColor="@color/theme_grey"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="5dp"
                 android:padding="5dp"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:text="(iv) Visual with Distraction"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -137,17 +137,17 @@
         android:layout_marginTop="32dp"
         android:text="Now starting set : 1"
         android:textAlignment="center"
-        android:textColor="#1e90ff"
-        android:textSize="32dp" />
+        android:textColor="@color/theme_orange"
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/proceed_button"
-        android:textSize="22dp"
+        android:textSize="18dp"
         android:text="PROCEED"
-        android:textColor="#fff"
-        android:background="#1e90ff"
+        android:textColor="@color/theme_white"
+        android:background="@color/theme_orange"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

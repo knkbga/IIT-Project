@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffff"
+    android:background="@color/theme_white"
     tools:context="com.example.om.mygame.Network">
 
     <RelativeLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:padding="20dp"
             android:layout_width="match_parent"
@@ -25,11 +27,13 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
+                        android:buttonTint="@color/theme_orange"
                         android:id="@+id/radio_internet"
                         android:layout_width="30dp"
                         android:layout_height="30dp" />
 
                     <RadioButton
+                        android:buttonTint="@color/theme_orange"
                         android:layout_marginTop="105dp"
                         android:id="@+id/radio_localhost"
                         android:layout_width="30dp"
@@ -42,12 +46,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textColor="@color/theme_grey"
                     android:id="@+id/InternetLabel"
                     android:textSize="20dp"
                     android:text="Check this if you have internet connection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:textColor="@color/theme_grey"
                     android:layout_marginTop="50dp"
                     android:id="@+id/localhostLabel"
                     android:textSize="20dp"
@@ -57,6 +63,8 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
+                    android:backgroundTint="@color/theme_orange"
+                    android:textColor="@color/theme_grey"
                     android:text="192.168.12.1:8080"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
@@ -90,7 +98,7 @@
             android:layout_below="@+id/linearLayout6"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="39dp"
-            android:background="#1e90ff"
+            android:background="#f96d00"
             android:text="Proceed"
             android:textColor="#ffff" />
     </RelativeLayout>

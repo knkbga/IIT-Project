@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id = "@+id/activity_visual_only"
     android:orientation="vertical"
-    android:background="#fff"
+    android:background="@color/theme_yellow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="comprehensive.VisualOnly"
@@ -31,11 +31,12 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:textColor="#39add1"
+                android:textColor="@color/theme_orange"
                 android:text="Visual Only Memory Test Game"
                 android:id="@+id/textView2" />
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +49,9 @@
                 android:layout_alignParentEnd="true" />
 
             <EditText
+                android:backgroundTint="@color/theme_orange"
+                android:textColorHint="@color/theme_grey"
+                android:textColor="@color/theme_grey"
                 android:layout_width="316dp"
                 android:layout_height="100dp"
                 android:hint="Write your answer here"
@@ -60,6 +64,8 @@
                 android:layout_centerHorizontal="true" />
 
             <Button
+                android:textColor="@color/theme_white"
+                android:background="@color/theme_orange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
@@ -80,6 +86,7 @@
                 android:weightSum="1">
 
                 <Chronometer
+                    android:textColor="@color/theme_grey"
                     android:textAlignment="center"
                     android:id="@+id/timer"
                     android:layout_width="wrap_content"
@@ -89,6 +96,7 @@
                     android:visibility="visible" />
 
                 <TextView
+                    android:textColor="@color/theme_grey"
                     android:id="@+id/setNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,6 +107,7 @@
                     android:textSize="25dp" />
 
                 <TextView
+                    android:textColor="@color/theme_grey"
                     android:text="level - 1"
                     android:id="@+id/levelIndicator"
                     android:layout_width="wrap_content"
@@ -109,6 +118,7 @@
             </LinearLayout>
 
             <TextView
+                android:textColor="@color/theme_grey"
                 android:textSize="140dp"
                 android:id="@+id/digits_show"
                 android:layout_width="wrap_content"

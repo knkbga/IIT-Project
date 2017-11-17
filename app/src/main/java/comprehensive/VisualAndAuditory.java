@@ -65,7 +65,6 @@ public class VisualAndAuditory extends AppCompatActivity {
         setContentView(R.layout.activity_visual_and_auditory);
         setNumber = (TextView) findViewById(R.id.setNumber);
         setNumber.setText("Set = "+ Sessions.Sets_game);
-
         different_events = new JSONArray();
         request = new JSONObject();
         mContext= getBaseContext();
@@ -82,7 +81,6 @@ public class VisualAndAuditory extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("TIME",df.format(new java.util.Date()));
 
         route = "/comprehensive/gaming/without";
 
@@ -205,7 +203,7 @@ public class VisualAndAuditory extends AppCompatActivity {
         final EditText inputText = (EditText) findViewById(R.id.visual_and_auditory_input);
         final Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
         inputText.setEnabled(false); inputText.setVisibility(View.GONE);
-        inputText.setInputType(InputType.TYPE_NULL);;
+        inputText.setInputType(InputType.TYPE_NULL);
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
         {
@@ -215,9 +213,9 @@ public class VisualAndAuditory extends AppCompatActivity {
                 public void run() {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
-                    inputText.setEnabled(true); inputText.setVisibility(View.VISIBLE);
                     inputText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
-                    submit_button.setVisibility(View.VISIBLE) ;
+                    inputText.setEnabled(true); inputText.setVisibility(View.VISIBLE);
+                    submit_button.setVisibility(View.VISIBLE);
                 }
             }, delay_time);
         }
@@ -294,7 +292,6 @@ public class VisualAndAuditory extends AppCompatActivity {
                 individual_event.put("success","true");
                 individual_event.put("individual_event_score",individual_event_score);
 
-
                 // adding individual_event in different_events
                 different_events.put(individual_event);
 
@@ -309,7 +306,6 @@ public class VisualAndAuditory extends AppCompatActivity {
             /*API obj1 = new API(PersonCredentials.oid,request,LandingPage.url+route,null,mContext,2,progressBar);
 
             obj1.execute();*/
-
 
             outputTextView.setText("Correct Answer ! Get Ready for level : "+Integer.toString((level)+1));
             Thread.sleep(1500);
@@ -342,10 +338,6 @@ public class VisualAndAuditory extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Thread.sleep(3000);
-            outputTextView.setText("Congratulations! All Levels Completed successfully. Starting next game...");
-
-
             try {
                 request.put("end_session",df.format(new java.util.Date()));
                 request.put("game_score",game_score);
@@ -358,7 +350,7 @@ public class VisualAndAuditory extends AppCompatActivity {
             obj3.execute();
 
             printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
-            Thread.sleep(1500);
+            Thread.sleep(3000);
 
             submit_button.setVisibility(View.INVISIBLE);
 
@@ -402,8 +394,8 @@ public class VisualAndAuditory extends AppCompatActivity {
                 String str = "";
                 str = (lives_left == 1)?("You have one life left."):("You have only "+lives_left+" lives left.");
                 outputTextView.setText(str);
-                inputText.setEnabled(false); inputText.setVisibility(View.GONE);
                 inputText.setInputType(InputType.TYPE_NULL);
+                inputText.setEnabled(false); inputText.setVisibility(View.GONE);
                 Thread.sleep(1500);
                 levelLabel.setText("Level - "+(level));
                 myGameLoop(level);
@@ -415,7 +407,6 @@ public class VisualAndAuditory extends AppCompatActivity {
                     request.put("end_session", df.format(new java.util.Date()));
                     request.put("game_score",game_score);
                     request.put("different_events",different_events);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -424,11 +415,11 @@ public class VisualAndAuditory extends AppCompatActivity {
 
                 obj4.execute();
 
-                inputText.setEnabled(false); inputText.setVisibility(View.GONE);
-                inputText.setInputType(InputType.TYPE_NULL);;
+                inputText.setInputType(InputType.TYPE_NULL);
+                inputText.setEnabled(false);
+                inputText.setVisibility(View.GONE);
+                Thread.sleep(1500);
                 lives_left = Sessions.max_lives_every_game;
-
-
 
                 printWithDelay("You have lost all your lives. Starting next game...",1500);
                 Thread.sleep(1500);
@@ -509,7 +500,7 @@ public class VisualAndAuditory extends AppCompatActivity {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
                     if ((audio != null)&&(back_button_pressed==0))
-                    audio.start();
+                        audio.start();
                     VolumeControl.sharedVolumeControl().configure(VisualAndAuditory.this, audio);
                     TotalVolume += Math.round(VolumeControl.sharedVolumeControl().getVolume()*10)+"-";
                     Log.d("Volume","Start"+Math.round(VolumeControl.sharedVolumeControl().getVolume()*10)+"");

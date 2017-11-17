@@ -16,6 +16,7 @@ public class InstructionsVisualOnly extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
 
 
         //is connected to the internet

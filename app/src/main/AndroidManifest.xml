@@ -110,22 +110,32 @@
             android:name="comprehensive.VisualOnly"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_visual_only"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name="practice.VisualOnly"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_visual_only"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name="comprehensive.InstructionsVisualOnly"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_instructions_visual_only"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Sessions"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_set"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".Leaderboard"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_leaderboard"
+            android:parentActivityName=".HomePage"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.om.mygame.HomePage" />
+        </activity>
     </application>
 
 </manifest>

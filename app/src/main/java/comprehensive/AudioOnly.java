@@ -81,9 +81,8 @@ public class AudioOnly extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("TIME",df.format(new java.util.Date()));
 
-            route = "/comprehensive/gaming/audio";
+        route = "/comprehensive/gaming/audio";
 
         super.onCreate(savedInstanceState);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -194,19 +193,17 @@ public class AudioOnly extends AppCompatActivity {
         try
         {
             individual_event.put("string_question",questionString);
-        }
-        catch (Exception e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
         // Delay of 2 Has to be inserted here
-        printWithDelay("",total_delay_time + 1500);
+        printWithDelayDigit("",total_delay_time + 1500);
         //// Input Text & Submit Button Only Visible when all numbers have already been displayed in the outputTextView////
         final EditText inputText = (EditText) findViewById(R.id.audio_only_input);
         final Button submit_button  = (Button)findViewById(R.id.audio_only_submit_button) ;
-        inputText.setInputType(InputType.TYPE_NULL);
         inputText.setEnabled(false); inputText.setVisibility(View.GONE);
+        inputText.setInputType(InputType.TYPE_NULL);
         submit_button.setVisibility(View.INVISIBLE) ;
         Handler input_textbox_handler = new Handler();
         {
@@ -216,8 +213,8 @@ public class AudioOnly extends AppCompatActivity {
                 public void run() {
                     // Do after delay_time milli seconds
                     // 1 second = 1000 milli second
+                    inputText.setEnabled(true); inputText.setVisibility(View.VISIBLE);
                     inputText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
-                    inputText.setEnabled(true); inputText.setVisibility(View.VISIBLE); 
                     submit_button.setVisibility(View.VISIBLE);
                 }
             }, delay_time);
@@ -352,7 +349,7 @@ public class AudioOnly extends AppCompatActivity {
             obj3.execute();
 
             printWithDelay("Congratulations! All Levels Completed successfully. Starting next game...",1500);
-            Thread.sleep(1500);
+            Thread.sleep(3000);
 
             submit_button.setVisibility(View.INVISIBLE);
 
@@ -418,7 +415,8 @@ public class AudioOnly extends AppCompatActivity {
                 obj4.execute();
 
                 inputText.setInputType(InputType.TYPE_NULL);
-                inputText.setEnabled(false); inputText.setVisibility(View.GONE);
+                inputText.setEnabled(false);
+                inputText.setVisibility(View.GONE);
                 Thread.sleep(1500);
                 lives_left = Sessions.max_lives_every_game;
 
@@ -537,7 +535,7 @@ public class AudioOnly extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("GO BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent myIntent = new Intent(AudioOnly.this,HomePage.class);
+                        Intent myIntent = new Intent(comprehensive.AudioOnly.this,HomePage.class);
                         try {
 //                            different_events = new JSONArray();
 
