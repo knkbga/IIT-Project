@@ -45,6 +45,19 @@ public class API extends AsyncTask<String , String , String>
     public ProgressBar progressBar;
     public static String oid;
 
+    private String methodType = "POST";
+
+    //constructor with method type
+    public API(String oid,JSONObject jsonObject, String requestURL, TextView testing, Context mContext, int which_class, ProgressBar progressBar,String methodType) {
+        this.oid = oid;
+        this.requestURL = requestURL;
+        this.testing = testing;
+        this.mContext = mContext;
+        this.which_class = which_class;
+        this.progressBar = progressBar;
+        this.jsonObject = jsonObject;
+        this.methodType = methodType;
+    }
     public API(String oid,JSONObject jsonObject, String requestURL, TextView testing, Context mContext, int which_class, ProgressBar progressBar)
     {
         this.oid = oid;
@@ -89,12 +102,14 @@ public class API extends AsyncTask<String , String , String>
     @Override
     protected String doInBackground(String... strings) {
         Log.d("API","Request params ::\t"+ jsonObject);
-        progressBar.post(new Runnable() {
-            @Override
-            public void run() {
-                progressBar.setVisibility(View.VISIBLE);
-            }
-        });
+        if(progressBar!=null) {
+            progressBar.post(new Runnable() {
+                @Override
+                public void run() {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+            });
+        }
         String response = "";
         try {
 
@@ -104,7 +119,7 @@ public class API extends AsyncTask<String , String , String>
             con.setDoInput(true);
             con.setRequestProperty("Content-Type", "application/json");
             con.setRequestProperty("Accept", "application/json");
-            con.setRequestMethod("POST");
+            con.setRequestMethod(methodType);
 
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
             wr.write(jsonObject.toString());
@@ -141,15 +156,15 @@ public class API extends AsyncTask<String , String , String>
 
     @Override
     protected void onPostExecute(String result) {
-        progressBar.post(new Runnable()
-        {
+        if(progressBar!=null) {
+            progressBar.post(new Runnable() {
 
-            @Override
-            public void run()
-            {
-                progressBar.setVisibility(View.GONE);
-            }
-        });
+                @Override
+                public void run() {
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
+        }
         try
         {
             switch (which_class)
@@ -177,6 +192,7 @@ public class API extends AsyncTask<String , String , String>
                     if(success)
                     {
                         PersonCredentials.oid = res.getString("_id");
+                        PersonCredentials.name = res.getString("name");
                         Intent myIntent = new Intent(mContext,HomePage.class);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(myIntent);
@@ -238,6 +254,21 @@ public class API extends AsyncTask<String , String , String>
                     else
                     {
                         testing.setText("** "+res.getString("response")+" **");
+                    }
+                }
+                case 6: //get leaderboard members
+                {
+                    JSONObject res = new JSONObject(result);
+                    Boolean success = res.getBoolean("success");
+                    JSONObject top_scorers = new JSONObject( res.getString("top_scorers"));
+                    Log.d("API","top scorers :\t"+top_scorers);
+                    if(success) // list found
+                    {
+
+                    }
+                    else // list not found
+                    {
+
                     }
                 }
             }

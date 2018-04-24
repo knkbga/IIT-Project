@@ -250,6 +250,11 @@ public class VisualOnlyWithDistraction extends AppCompatActivity {
     }
 
     public void visualOnlyWithDistractionSubmitButton() throws InterruptedException {
+        try {
+            request.put("name",PersonCredentials.name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Button submit_button  = (Button)findViewById(R.id.visual_only_with_distraction_submit_button) ;
         try {
             individual_event.put("time_of_submission",df.format(new java.util.Date()));

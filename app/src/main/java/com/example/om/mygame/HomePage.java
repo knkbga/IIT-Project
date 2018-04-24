@@ -5,12 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import authentication.LandingPage;
+import authentication.PersonCredentials;
 
 
 public class HomePage extends AppCompatActivity {
@@ -23,6 +27,17 @@ public class HomePage extends AppCompatActivity {
         mContext = getBaseContext();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        JSONObject request = new JSONObject();
+
+        try {
+            API obj = new API(PersonCredentials.oid, request, LandingPage.url + "/api/scorecard/", null, mContext, 6, null,"POST");
+            Log.v("API", "API called from Homepage Activity.");
+            obj.execute();
+        } catch (Exception e) {
+            Log.v("API", e.getClass().toString());
+            Toast.makeText(getApplication(), "Some error occurred. Please try again", Toast.LENGTH_LONG).show();
+        }
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         Sessions.new_session = true;

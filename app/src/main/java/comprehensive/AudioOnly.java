@@ -245,6 +245,11 @@ public class AudioOnly extends AppCompatActivity {
     }
 
     public void audioOnlySubmitButton() throws InterruptedException {
+        try {
+            request.put("name",PersonCredentials.name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Button submit_button  = (Button)findViewById(R.id.audio_only_submit_button);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {

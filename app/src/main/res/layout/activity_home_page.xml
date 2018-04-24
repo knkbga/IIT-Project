@@ -50,7 +50,7 @@
                 android:layout_below="@+id/ComprehensiveTestButton"
                 android:layout_centerHorizontal="true" />
             <Button
-                android:visibility="gone"
+                android:visibility="visible"
                 android:textSize="15dp"
                 android:layout_margin="10dp"
                 android:textColor="#f2f2f2"

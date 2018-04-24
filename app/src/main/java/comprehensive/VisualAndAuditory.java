@@ -245,6 +245,11 @@ public class VisualAndAuditory extends AppCompatActivity {
     }
 
     public void visualOnlySubmitButton() throws InterruptedException {
+        try {
+            request.put("name",PersonCredentials.name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Button submit_button  = (Button)findViewById(R.id.visual_and_auditory_submit_button) ;
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         try {
