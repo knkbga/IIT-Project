@@ -1,16 +1,11 @@
 package com.example.om.mygame;
 
-import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Leaderboard extends AppCompatActivity {
@@ -23,6 +18,20 @@ public class Leaderboard extends AppCompatActivity {
 
         setContentView(R.layout.activity_leaderboard);
         getSupportActionBar().hide();
+
+        String name;
+        String rank;
+        String score;
+
+        for(int i=0;i<leaderboard_score_array.length();i++) {
+            try {
+                Log.d("Top-scorers",leaderboard_score_array.getJSONObject(i).getString("user_name")+"");
+                Log.d("Top-scorers",leaderboard_score_array.getJSONObject(i).getString("score")+"");
+                Log.d("Top-scorers",leaderboard_score_array.getJSONObject(i).getString("rank")+"");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

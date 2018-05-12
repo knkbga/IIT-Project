@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -260,15 +261,15 @@ public class API extends AsyncTask<String , String , String>
                 {
                     JSONObject res = new JSONObject(result);
                     Boolean success = res.getBoolean("success");
-                    JSONObject top_scorers = new JSONObject( res.getString("top_scorers"));
-                    Log.d("API","top scorers :\t"+top_scorers);
+                    JSONArray top_scorers = new JSONArray( res.getString("top_scorers"));
                     if(success) // list found
                     {
-
+                        Leaderboard.leaderboard_score_array = top_scorers;
                     }
                     else // list not found
                     {
-
+                        Leaderboard.leaderboard_score_array = new JSONArray();
+                        Log.d("API",Leaderboard.leaderboard_score_array+"");
                     }
                 }
             }

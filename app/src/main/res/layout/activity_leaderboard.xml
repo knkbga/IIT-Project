@@ -29,39 +29,10 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-
-            <LinearLayout
-                android:id="@+id/YOURRANK_Layout"
-                android:padding="5dp"
-                android:layout_below="@+id/LEADERBOARD_Layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="1">
-
-                <TextView
-                    android:textColor="#f96d00"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.6"
-                    android:text="Your Rank"
-                    android:textAlignment="center"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:paddingLeft="10dp"
-                    android:textColor="#f96d00"
-                    android:textSize="25sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:inputType="number"
-                    android:text="3004" />
-            </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/RANKINGTEXT_Layout"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/YOURRANK_Layout"
+                android:layout_below="@+id/LEADERBOARD_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
