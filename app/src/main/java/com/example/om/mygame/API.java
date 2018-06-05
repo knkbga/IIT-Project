@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,13 +29,6 @@ import authentication.LogIn;
 import authentication.PersonCredentials;
 import comprehensive.InstructionsVisualAndAuditory;
 
-
-/**
- * Created by root on 3/31/17.
- */
-
-
-/////////////////////////AsyncTask<Params, Progress, Result>
 public class API extends AsyncTask<String , String , String>
 {
     public JSONObject jsonObject;
@@ -260,11 +254,26 @@ public class API extends AsyncTask<String , String , String>
                 {
                     JSONObject res = new JSONObject(result);
                     Boolean success = res.getBoolean("success");
-                    JSONObject top_scorers = new JSONObject( res.getString("top_scorers"));
+                    JSONArray top_scorers = new JSONArray( res.getString("top_scorers"));
                     Log.d("API","top scorers :\t"+top_scorers);
                     if(success) // list found
                     {
+                        Leaderboard.leaderboard_score_array = top_scorers;
 
+                        Leaderboard.name = new String[top_scorers.length()];
+                        Leaderboard.score = new String[top_scorers.length()];
+                        Leaderboard.rank = new String[top_scorers.length()];
+
+                        for(int i=0; i<Leaderboard.leaderboard_score_array.length(); i++){
+                            try {
+                                Leaderboard.name[i] = Leaderboard.leaderboard_score_array.getJSONObject(i).getString("user_name");
+                                Leaderboard.rank[i] = (i+1)+"";
+                                Leaderboard.score[i] = Leaderboard.leaderboard_score_array.getJSONObject(i).getString("score");
+                                Log.d("scorers",Leaderboard.score[i]);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                     else // list not found
                     {
