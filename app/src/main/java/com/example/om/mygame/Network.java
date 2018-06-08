@@ -49,7 +49,7 @@ public class Network extends AppCompatActivity {
                 Boolean can_proceed=false;
 
                 if (internet.isChecked()) {
-                    LandingPage.url = "http://nameless-castle-57165.herokuapp.com";
+                    LandingPage.url = "https://digit-span-test.herokuapp.com";
                     can_proceed = true;
                 } else if (localhost.isChecked()) {
 
